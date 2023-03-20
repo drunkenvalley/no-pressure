@@ -1,10 +1,14 @@
 # No Pressure
 
-Welcome to the No Pressure website repository. This is a React project using Vite, TypeScript, SCSS and Tailwind.
+Welcome to the No Pressure website repository. This is a [React](https://react.dev/) & [TypeScript](https://www.typescriptlang.org/) project built on [Vite](https://vitejs.dev/), with [SCSS](https://sass-lang.com/) and [Tailwind CSS](https://tailwindcss.com/) available for use.
 
 ## Getting started
 
 ### Requirements
+
+This project uses [Vite](https://vitejs.dev/), so it needs to meet the minimum requirements set forth there.
+
+With that in mind, the currently known requirements are:
 
 * Node version 14.18+, 16+
 
