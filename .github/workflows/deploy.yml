@@ -1,0 +1,52 @@
+# Big thanks to this vid. https://www.youtube.com/watch?v=MKw-IriprJY
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
+  
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
+      
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          publish-dir: ./dist
