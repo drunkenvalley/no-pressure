@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build Vite project
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
           path: ./dist
   
   deploy:
-    name: Deploy
+    name: Deploy to gh-pages branch
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
