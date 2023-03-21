@@ -9,6 +9,7 @@ const App = () => (
     <div id="join-us">
       <Discord />
     </div>
+    <div>For husky</div>
   </div>
 );
 
