@@ -1,4 +1,4 @@
-import HeroBannerImg from "@/assets/hero-banner-1280px.png"
+import HeroBannerImg from "@/assets/hero-banner-1280px.png";
 
 const HeroBanner = () => (
   <div className="relative h-96">
