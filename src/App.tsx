@@ -6,6 +6,7 @@ const App = () => (
   <div className="App">
     <Nav />
     <FetchUserCount />
+    <div>Some JSX in here</div>
     <div id="join-us">
       <Discord />
     </div>
