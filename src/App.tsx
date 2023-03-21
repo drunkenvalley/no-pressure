@@ -2,7 +2,6 @@ import "./App.css";
 import { Nav } from "./components/nav";
 import { FetchUserCount, Discord } from "./components/body";
 import HeroBanner from "./components/HeroBanner";
-import HeroBannerImg from "./assets/hero-banner-1280px.png"
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <header className="sticky top-0 pt-4 pb-[14px] z-10">
           <Nav />
         </header>
-        <HeroBanner src={HeroBannerImg} />
+        <HeroBanner />
         <main className="relative my-4">
           <FetchUserCount />
           <div className="scroll-mt-[88px]" id="join-us">
