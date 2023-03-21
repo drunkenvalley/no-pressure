@@ -16,12 +16,16 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="flex sticky top-0 w-full justify-around">
-      <img src={logo} />
-      <ul className="flex">
+    <nav className="flex w-full justify-around">
+      <img
+        className="cursor-pointer"
+        src={logo}
+        onClick={() => scrollToView("#home")}
+      />
+      <ul className="flex items-center">
         {navItems.map(({ name, selector }) => (
           <li
-            className="mx-4 my-2 cursor-pointer"
+            className="mx-4 cursor-pointer"
             onClick={() => scrollToView(selector)}
           >
             {name}
