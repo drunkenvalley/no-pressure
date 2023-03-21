@@ -1,13 +1,15 @@
 import "./App.css";
 import { Nav } from "./components/nav";
-import {FetchUserCount, Discord} from "./components/body";
+import { FetchUserCount, Discord } from "./components/body";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App font-nunito">
       <Nav />
       <FetchUserCount />
-      <div id="join-us"><Discord /></div>
+      <div id="join-us">
+        <Discord />
+      </div>
     </div>
   );
 }
