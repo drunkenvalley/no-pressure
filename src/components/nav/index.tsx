@@ -8,7 +8,7 @@ export const Nav = () => {
     { name: "Bruxy's Corner", selector: "#corner" },
   ] as const;
 
-  const scrollToView = (selector: typeof navItems[number]["selector"]) => {
+  const scrollToView = (selector: (typeof navItems)[number]["selector"]) => {
     const element = document.querySelector(selector);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
