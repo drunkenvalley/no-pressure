@@ -1,6 +1,6 @@
-import logo from "../../assets/logo-ipsum-nav.svg";
+import logo from "@/assets/logo-ipsum-nav.svg";
 
-export const Nav = () => {
+const Nav = () => {
   const navItems = [
     { name: "Home", selector: "#home" },
     { name: "Join us", selector: "#join-us" },
@@ -35,3 +35,5 @@ export const Nav = () => {
     </nav>
   );
 };
+
+export default Nav;
