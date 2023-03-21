@@ -19,13 +19,14 @@ const Nav = () => {
     <nav className="flex w-full justify-around">
       <img
         className="cursor-pointer"
-        src={logo}
         onClick={() => scrollToView("#home")}
+        src={logo}
       />
       <ul className="flex items-center">
         {navItems.map(({ name, selector }) => (
           <li
             className="mx-4 cursor-pointer"
+            key={selector.replace("#", "")}
             onClick={() => scrollToView(selector)}
           >
             {name}
