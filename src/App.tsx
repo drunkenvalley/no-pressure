@@ -10,13 +10,7 @@ function App() {
       </header>
       <main className="relative my-4">
         <FetchUserCount />
-        <div className="h-96 scroll-mt-[88px]" id="join-us">
-          <Discord />
-        </div>
-        <div className="h-96 scroll-mt-[88px]" id="raid-progression">
-          <Discord />
-        </div>
-        <div className="h-96 scroll-mt-[88px]" id="corner">
+        <div className="scroll-mt-[88px]" id="join-us">
           <Discord />
         </div>
       </main>

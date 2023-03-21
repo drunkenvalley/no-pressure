@@ -16,7 +16,7 @@ function FetchUserCount() {
   }, []);
 
   return (
-    <div className="grid gap-4 grid-cols-3 h-96 scroll-mt-[88px]" id="home">
+    <div className="grid gap-4 grid-cols-3 scroll-mt-[88px]" id="home">
       <span>
         <h1 className="text-4xl font-bold text-center">Meet people!</h1>
         <p className="text-xl text-center">Relax with {userCount} people.</p>
