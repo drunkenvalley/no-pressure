@@ -7,7 +7,7 @@ import Nav from "./components/Nav";
 const App = () => (
   <div className="App font-nunito h-full bg-purple text-gold">
     <main className="max-w-5xl mx-auto flex flex-col gap-y-8 py-8">
-      <header className="sticky top-0 pt-4 pb-[14px] z-10">
+      <header className="sticky top-0 py-4 z-10">
         <Nav />
       </header>
       <HeroBanner />
