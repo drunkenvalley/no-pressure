@@ -1,6 +1,6 @@
-import logo from "../../assets/logo-ipsum-nav.svg";
+import logo from "@/assets/logo-ipsum-nav.svg";
 
-export const Nav = () => {
+const Nav = () => {
   const navItems = [
     { name: "Home", selector: "#home" },
     { name: "Join us", selector: "#join-us" },
@@ -8,7 +8,7 @@ export const Nav = () => {
     { name: "Bruxy's Corner", selector: "#corner" },
   ] as const;
 
-  const scrollToView = (selector: typeof navItems[number]["selector"]) => {
+  const scrollToView = (selector: (typeof navItems)[number]["selector"]) => {
     const element = document.querySelector(selector);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -35,3 +35,5 @@ export const Nav = () => {
     </nav>
   );
 };
+
+export default Nav;

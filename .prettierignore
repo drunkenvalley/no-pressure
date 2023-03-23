@@ -1,0 +1,15 @@
+node_modules
+dist
+**/*.{cjs,json,html,md,css,scss}
+src/assets/**/*
+public/**/*
+.eslintrc.cjs
+.eslintignore
+.gitignore
+vite.config.ts
+vite.build.config.ts
+.github
+.husky
+tailwind.config.cjs
+postcss.config.cjs
+readme.md
