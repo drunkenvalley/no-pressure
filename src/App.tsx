@@ -1,6 +1,7 @@
 import "./App.css";
 import Discord from "./components/Discord";
 import FeatureList from "./components/FeatureList";
+import Footer from "./components/Footer";
 import HeroBanner from "./components/HeroBanner";
 import Nav from "./components/Nav";
 
@@ -12,7 +13,7 @@ const App = () => {
         <HeroBanner />
         <FeatureList />
         <Discord />
-        <footer>Footer content here</footer>
+        <Footer />
       </main>
     </div>
   );
