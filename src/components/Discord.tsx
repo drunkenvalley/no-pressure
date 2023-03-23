@@ -7,10 +7,10 @@ const Discord = () => {
 
   return (
     <div
-      className="center justify-center items-center w-full border border-blue rounded p-16 scroll-mt-[136px] flex flex-col gap-y-8"
+      className="center justify-center w-full py-16 scroll-mt-[136px] flex gap-y-8"
       id="join-us"
     >
-      <div>
+      <div className="border border-blue rounded mr-4">
         <label className="text-2xl font-bold text-center text-yellow-400">
           No Pressure{" "}
         </label>
@@ -30,22 +30,23 @@ const Discord = () => {
         <p className="text-yellow-400">
           Dragonflight together, without the pressure
         </p>
-      </div>
-      <div className="my-4 w-[500px] h-[185px] border-blue border rounded flex items-center justify-evenly">
-        <img src={logo} />
-        <div className="flex flex-col">
-          <h3 className="text-xl mb-4">No Pressure Community</h3>
-          <a
-            className="hover:bg-green ease-in-out duration-300 bg-blue rounded py-2 px-16 join-us cursor-pointer"
-            href={discordInviteLink}
-            rel="noreferrer"
-            target="_blank"
-          >
-            Join us
-          </a>
+        <div className="my-4 w-[500px] h-[185px] border-blue border rounded flex items-center justify-evenly">
+          <img src={logo} />
+          <div className="flex flex-col">
+            <h3 className="text-xl mb-4">No Pressure Community</h3>
+            <a
+              className="hover:bg-green ease-in-out duration-300 bg-blue rounded py-2 px-16 join-us cursor-pointer"
+              href={discordInviteLink}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Join us
+            </a>
+          </div>
         </div>
       </div>
       <iframe
+        className="ml-4"
         height="500"
         sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
         src={`https://discord.com/widget?id=${discordWidgetId}&theme=dark`}
