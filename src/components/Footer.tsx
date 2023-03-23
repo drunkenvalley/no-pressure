@@ -10,7 +10,7 @@ const Footer = () => {
           rel="noreferrer"
           target="_blank"
         >
-          Made with 🦶 by members of the no pressure community.
+          Made with 🦶 by members of the No Pressure community.
         </a>
       </p>
       <div className="flex items-center justify-center mt-4">
