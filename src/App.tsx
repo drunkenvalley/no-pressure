@@ -4,6 +4,7 @@ import FeatureList from "./components/FeatureList";
 import Footer from "./components/Footer";
 import HeroBanner from "./components/HeroBanner";
 import Nav from "./components/Nav";
+import RaidProgression from "./components/RaidProgression";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <HeroBanner />
         <FeatureList />
         <Discord />
+        <RaidProgression />
         <Footer />
       </main>
     </div>
