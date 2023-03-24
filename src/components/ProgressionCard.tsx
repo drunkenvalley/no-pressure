@@ -4,22 +4,22 @@ import { paramCase } from "change-case";
 
 export interface ProgressionCardProps {
   bosses: number;
-  heroic?: number;
+  heroic: number;
   image: string;
-  mythic?: number;
+  mythic: number;
   name: string;
-  normal?: number;
-  raiders: RaiderIOCharacter[];
+  normal: number;
+  raiders: readonly RaiderIOCharacter[];
   reverse?: boolean;
 }
 
 const ProgressionCard = ({
   bosses,
-  heroic = 0,
+  heroic,
   image,
-  mythic = 0,
+  mythic,
   name,
-  normal = 0,
+  normal,
   raiders,
   reverse = false,
 }: ProgressionCardProps) => (

@@ -19,7 +19,8 @@ export type RaiderIOCharacter = {
 };
 
 const RaidProgression = () => {
-  const [raiders, setRaiders] = useState<RaiderIOCharacter[]>([]);
+  const [raiders, setRaiders] = useState<readonly RaiderIOCharacter[]>([]);
+
   const characters = [
     { name: "Bruxy", realm: "Silvermoon" },
     { name: "Hyrrvorð", realm: "Wrathbringer" },
@@ -31,24 +32,6 @@ const RaidProgression = () => {
     { name: "Thoggo", realm: "Ragnaros" },
     { name: "Villish", realm: "Silvermoon" },
     { name: "Xamona", realm: "Turalyon" },
-  ];
-
-  const raids: readonly ProgressionCardProps[] = [
-    {
-      bosses: 8,
-      image: shadowedCrucible,
-      name: "Aberrus, the Shadowed Crucible",
-      raiders,
-    },
-    {
-      bosses: 8,
-      heroic: 8,
-      image: vaultOfTheIncarnates,
-      mythic: 3,
-      name: "Vault of the Incarnates",
-      normal: 8,
-      raiders,
-    },
   ];
 
   const fetchRaiders = async () => {
@@ -64,6 +47,42 @@ const RaidProgression = () => {
 
     setRaiders(fetchedRaiders);
   };
+
+  const generateMaxTotalFor = (
+    raid: string,
+    type: "normal" | "heroic" | "mythic"
+  ) => {
+    if (raiders.some((raider) => raider.raid_progression[raid])) {
+      return Math.max(
+        ...raiders.map(
+          (raider) => raider.raid_progression[raid][`${type}_bosses_killed`]
+        )
+      );
+    }
+
+    return 0;
+  };
+
+  const raids: readonly ProgressionCardProps[] = [
+    {
+      bosses: 8,
+      heroic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "heroic"),
+      image: shadowedCrucible,
+      mythic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "mythic"),
+      name: "Aberrus, the Shadowed Crucible",
+      normal: generateMaxTotalFor("aberrus-the-shadowed-crucible", "normal"),
+      raiders,
+    },
+    {
+      bosses: 8,
+      heroic: generateMaxTotalFor("vault-of-the-incarnates", "heroic"),
+      image: vaultOfTheIncarnates,
+      mythic: generateMaxTotalFor("vault-of-the-incarnates", "mythic"),
+      name: "Vault of the Incarnates",
+      normal: generateMaxTotalFor("vault-of-the-incarnates", "normal"),
+      raiders,
+    },
+  ];
 
   useEffect(() => {
     fetchRaiders();
