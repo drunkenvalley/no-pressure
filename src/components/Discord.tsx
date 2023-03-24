@@ -19,8 +19,7 @@ const Discord = () => {
           <a className="text-light-200" href={wowMadeEasy}>
             WoW Made Easy
           </a>
-          - a community built on enjoying Dragonflight together, without no
-          pressure
+          - a community built on enjoying Dragonflight together, with no pressure
         </p>
         <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly">
           <img src={logo} />
