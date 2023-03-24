@@ -25,6 +25,10 @@ const RaidProgression = () => {
 
   return (
     <section id="raid-progression">
+      <h2 className="text-2xl">Raid Progression</h2>
+      <p className="text-orange mb-8">
+        See how far we&apos;ve made it this tier!
+      </p>
       {raids.map(({ image, ...props }) => (
         <ProgressionCard image={image} key={image} {...props} />
       ))}

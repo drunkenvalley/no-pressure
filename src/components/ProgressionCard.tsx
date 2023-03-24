@@ -17,7 +17,7 @@ const ProgressionCard = ({
 }: ProgressionCardProps) => (
   <div className="bg-dark p-4 rounded w-full p-4 my-4 ">
     <div className="flex items-center">
-      <img className="h-48 w-full object-cover rounded" src={image} />
+      <img className="h-36 w-full object-cover rounded" src={image} />
       <div className="w-full">
         <h3 className="text-2xl">{name}</h3>
         <div className="flex w-full items-center justify-evenly mt-2">
