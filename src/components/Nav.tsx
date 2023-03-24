@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo-ipsum-nav.svg";
 
 const Nav = () => {
@@ -15,24 +16,67 @@ const Nav = () => {
     }
   };
 
+  const startRef = useRef<HTMLDivElement>(null);
+
+  const observer = new IntersectionObserver(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        if (id === startRef.current?.id) {
+          return handleStart(entry);
+        }
+        // Any other intersection handlers can be added here
+      });
+    },
+    {
+      threshold: 1,
+    }
+  );
+
+  const [navHasBackground, setNavHasBackground] = useState(false);
+  const handleStart = (entry: IntersectionObserverEntry) => {
+    if (entry.isIntersecting) {
+      return setNavHasBackground(false);
+    }
+    return setNavHasBackground(true);
+  };
+
+  useEffect(() => {
+    observer.observe(startRef.current as HTMLDivElement);
+  }, []);
+
   return (
-    <nav className="flex w-full justify-around">
-      <img
-        className="cursor-pointer"
-        src={logo}
-        onClick={() => scrollToView("#home")}
-      />
-      <ul className="flex items-center">
-        {navItems.map(({ name, selector }) => (
-          <li
-            className="mx-4 cursor-pointer"
-            onClick={() => scrollToView(selector)}
-          >
-            {name}
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <div className="absolute" id="start" ref={startRef}>
+        {/* position: absolute removes it from the visual flow, while still intersecting with viewport */}
+      </div>
+      <header
+        className={`sticky top-0 py-4 z-10 max-w-none w-[100vw] ml-[50%] translate-x-[-50%] ${
+          navHasBackground &&
+          "bg-purple/80 ease-in duration-300 backdrop-blur-sm"
+        }`}
+        id="navbar"
+      >
+        <nav className="flex justify-around" id="nav">
+          <img
+            className="cursor-pointer"
+            onClick={() => scrollToView("#home")}
+            src={logo}
+          />
+          <ul className="flex items-center">
+            {navItems.map(({ name, selector }) => (
+              <li
+                className="mx-4 cursor-pointer"
+                key={selector.replace("#", "")}
+                onClick={() => scrollToView(selector)}
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+    </>
   );
 };
 

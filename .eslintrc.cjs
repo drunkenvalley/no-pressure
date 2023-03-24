@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
@@ -25,6 +26,8 @@ module.exports = {
     "no-unused-vars": "error",
     "prefer-arrow/prefer-arrow-functions": "warn",
     "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-sort-props": "error",
     "sort-imports": "error",
     "sort-keys": ["error", "asc"],
   },

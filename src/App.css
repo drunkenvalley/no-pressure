@@ -1,6 +1,14 @@
 #root {
   margin: 0 auto;
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+}
+
+a.join-us {
+  color: white;
+}
+
+a.join-us:hover {
+  color: black;
 }
