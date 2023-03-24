@@ -29,8 +29,13 @@ const RaidProgression = () => {
       <p className="text-orange mb-8">
         See how far we&apos;ve made it this tier!
       </p>
-      {raids.map(({ image, ...props }) => (
-        <ProgressionCard image={image} key={image} {...props} />
+      {raids.map(({ image, ...props }, index) => (
+        <ProgressionCard
+          image={image}
+          key={image}
+          reverse={index % 2 === 0}
+          {...props}
+        />
       ))}
     </section>
   );

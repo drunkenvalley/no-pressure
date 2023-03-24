@@ -5,6 +5,7 @@ export interface ProgressionCardProps {
   mythic?: number;
   name: string;
   normal?: number;
+  reverse?: boolean;
 }
 
 const ProgressionCard = ({
@@ -14,10 +15,13 @@ const ProgressionCard = ({
   mythic = 0,
   name,
   normal = 0,
+  reverse = false,
 }: ProgressionCardProps) => (
   <div className="bg-dark p-4 rounded w-full p-4 my-4 ">
     <div className="flex items-center">
-      <img className="h-36 w-full object-cover rounded" src={image} />
+      {!reverse && (
+        <img className="h-36 w-full object-cover rounded" src={image} />
+      )}
       <div className="w-full">
         <h3 className="text-2xl">{name}</h3>
         <div className="flex w-full items-center justify-evenly mt-2">
@@ -32,6 +36,9 @@ const ProgressionCard = ({
           </p>
         </div>
       </div>
+      {reverse && (
+        <img className="h-36 w-full object-cover rounded" src={image} />
+      )}
     </div>
     <div className="w-full mt-4">
       <h4 className="text-xl">Raid Leaders</h4>
