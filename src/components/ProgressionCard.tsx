@@ -1,3 +1,5 @@
+import { Raider } from "./RaidProgression";
+
 export interface ProgressionCardProps {
   bosses: number;
   heroic?: number;
@@ -5,6 +7,7 @@ export interface ProgressionCardProps {
   mythic?: number;
   name: string;
   normal?: number;
+  raiders: readonly Raider[];
   reverse?: boolean;
 }
 
