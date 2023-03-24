@@ -1,6 +1,7 @@
 import "./App.css";
 import Discord from "./components/Discord";
 import FeatureList from "./components/FeatureList";
+import Footer from "./components/Footer";
 import HeroBanner from "./components/HeroBanner";
 import Nav from "./components/Nav";
 import RaidProgression from "./components/RaidProgression";
@@ -14,7 +15,7 @@ const App = () => {
         <FeatureList />
         <Discord />
         <RaidProgression />
-        <footer>Footer content here</footer>
+        <Footer />
       </main>
     </div>
   );
