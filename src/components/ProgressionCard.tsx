@@ -1,4 +1,6 @@
-import { Raider } from "./RaidProgression";
+import RaiderCard from "./RaiderCard";
+import { RaiderIOCharacter } from "./RaidProgression";
+import { paramCase } from "change-case";
 
 export interface ProgressionCardProps {
   bosses: number;
@@ -7,7 +9,7 @@ export interface ProgressionCardProps {
   mythic?: number;
   name: string;
   normal?: number;
-  raiders: readonly Raider[];
+  raiders: RaiderIOCharacter[];
   reverse?: boolean;
 }
 
@@ -18,6 +20,7 @@ const ProgressionCard = ({
   mythic = 0,
   name,
   normal = 0,
+  raiders,
   reverse = false,
 }: ProgressionCardProps) => (
   <div className="bg-dark p-4 rounded w-full p-4 my-4 ">
@@ -45,7 +48,19 @@ const ProgressionCard = ({
     </div>
     <div className="w-full mt-4">
       <h4 className="text-xl">Raid Leaders</h4>
-      <p className="text-orange mt-2">No content available.</p>
+      {raiders.every((raider) => raider.raid_progression[paramCase(name)]) ? (
+        <div className="flex w-full justify-center">
+          {raiders.map((raider) => (
+            <RaiderCard
+              currentRaid={paramCase(name)}
+              key={raider.name + raider.realm}
+              raider={raider}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-orange mt-2">No content available.</p>
+      )}
     </div>
   </div>
 );

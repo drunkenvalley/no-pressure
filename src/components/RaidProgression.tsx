@@ -3,37 +3,23 @@ import { useEffect, useState } from "react";
 import shadowedCrucible from "@/assets/raid-placeholder.png";
 import vaultOfTheIncarnates from "@/assets/voti-800px.png";
 
-// This component will rely on data from the API to display the current raid progression.
-// It's still undecided where we'll get the data from, but it will likely be from the google sheet.
-// Raid portraits we can look into a Warcraft Logs API or something similar.
-
-type RaiderIOCharacter = {
+export type RaiderIOCharacter = {
   name: string;
   profile_url: string;
   thumbnail_url: string;
   raid_progression: {
-    "vault-of-the-incarnates": {
+    [raid: string]: {
       heroic_bosses_killed: number;
       mythic_bosses_killed: number;
       normal_bosses_killed: number;
       summary: string;
     };
   };
-};
-
-export type Raider = {
-  heroic: number;
-  mythic: number;
-  name: string;
-  normal: number;
-  profile: string;
   realm: string;
-  summary: string;
-  thumbnail: string;
 };
 
 const RaidProgression = () => {
-  const [raiders, setRaiders] = useState<readonly Raider[]>([]);
+  const [raiders, setRaiders] = useState<RaiderIOCharacter[]>([]);
   const characters = [
     { name: "Bruxy", realm: "Silvermoon" },
     { name: "Hyrrvorð", realm: "Wrathbringer" },
@@ -46,46 +32,6 @@ const RaidProgression = () => {
     { name: "Villish", realm: "Silvermoon" },
     { name: "Xamona", realm: "Turalyon" },
   ];
-
-  const fetchRaidProgressionForCharacter = async ({
-    name,
-    realm,
-  }: (typeof characters)[number]) => {
-    const response = await fetch(
-      `https://raider.io/api/v1/characters/profile?region=eu&realm=${encodeURI(
-        realm
-      )}&name=${encodeURI(name)}&fields=raid_progression`
-    );
-    const data: RaiderIOCharacter = await response.json();
-
-    const raider: Raider = {
-      heroic:
-        data.raid_progression["vault-of-the-incarnates"].heroic_bosses_killed,
-      mythic:
-        data.raid_progression["vault-of-the-incarnates"].mythic_bosses_killed,
-      name,
-      normal:
-        data.raid_progression["vault-of-the-incarnates"].normal_bosses_killed,
-      profile: data.profile_url,
-      realm,
-      summary: data.raid_progression["vault-of-the-incarnates"].summary,
-      thumbnail: data.thumbnail_url,
-    };
-
-    return raider;
-  };
-
-  useEffect(() => {
-    const resolvedCharacters: Raider[] = [];
-
-    for (const character of characters) {
-      fetchRaidProgressionForCharacter(character).then((raider) => {
-        resolvedCharacters.push(raider);
-      });
-    }
-
-    setRaiders(resolvedCharacters);
-  }, []);
 
   const raids: readonly ProgressionCardProps[] = [
     {
@@ -104,6 +50,24 @@ const RaidProgression = () => {
       raiders,
     },
   ];
+
+  const fetchRaiders = async () => {
+    const fetchedRaiders = await Promise.all(
+      characters.map(async (character) => {
+        const response = await fetch(
+          `https://raider.io/api/v1/characters/profile?region=eu&realm=${character.realm}&name=${character.name}&fields=guild,raid_progression`
+        );
+
+        return response.json();
+      })
+    );
+
+    setRaiders(fetchedRaiders);
+  };
+
+  useEffect(() => {
+    fetchRaiders();
+  }, []);
 
   return (
     <section id="raid-progression">
