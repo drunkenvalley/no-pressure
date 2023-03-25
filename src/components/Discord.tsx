@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-ipsum-nav.svg";
+import logo from "@/assets/inv_pet_frostwolfpup.jpg";
 
 const Discord = () => {
   const wowMadeEasy = "https://www.wowmadeeasy.com/";
@@ -22,8 +22,8 @@ const Discord = () => {
           - a community built on enjoying Dragonflight together, with no
           pressure
         </p>
-        <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly">
-          <img src={logo} />
+        <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly gap-6">
+          <img className="rounded-full" src={logo} />
           <div className="flex flex-col align-center">
             <h3 className="text-xl mb-4">No Pressure Community</h3>
             <a
