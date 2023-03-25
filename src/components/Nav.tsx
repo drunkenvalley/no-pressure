@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo-ipsum-nav.svg";
+import logo from "@/assets/inv_pet_frostwolfpup.jpg";
 
 const Nav = () => {
   const navItems = [
@@ -83,7 +83,7 @@ const Nav = () => {
       >
         <nav className="max-w-5xl mx-auto flex justify-between" id="nav">
           <img
-            className="cursor-pointer"
+            className="cursor-pointer rounded-full"
             onClick={() => scrollToView("home")}
             src={logo}
           />
