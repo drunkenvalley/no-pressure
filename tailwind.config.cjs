@@ -10,7 +10,7 @@ module.exports = {
       current: 'currentColor',
       gold: '#FCC251',
       green: '#A4CD70',
-      orange: '#CD6226',
+      orange: '#F46514',
       dark: '#1E1E1E',
       purple: '#28272F',
       blue: '#484878',
