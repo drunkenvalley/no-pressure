@@ -1,14 +1,19 @@
 import Link from "./Link";
 import discord from "@/assets/discord.svg";
 import github from "@/assets/github.svg";
+import { useState } from "react";
 
 const Footer = () => {
+  const [isCreditLinkActive, setIsCreditLinkActive] = useState<boolean>(false);
+
   return (
     <footer className="bg-purple text-gold text-center py-4">
       <p className="text-sm">
         <Link
           href="https://github.com/drunkenvalley/no-pressure"
+          isActive={isCreditLinkActive}
           rel="noreferrer"
+          setIsActive={setIsCreditLinkActive}
           target="_blank"
         >
           Made with 🦶 by members of the No Pressure community.

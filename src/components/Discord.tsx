@@ -1,10 +1,14 @@
 import Link from "./Link";
 import logo from "@/assets/inv_pet_frostwolfpup.jpg";
+import { useState } from "react";
 
 const Discord = () => {
   const wowMadeEasy = "https://www.wowmadeeasy.com/";
   const discordInviteLink = import.meta.env.VITE_DISCORD_INVITE_LINK;
   const discordWidgetId = import.meta.env.VITE_DISCORD_WIDGET_ID;
+
+  const [isWowMadeEasyLinkActive, setIsWowMadeEasyLinkActive] =
+    useState<boolean>(false);
 
   return (
     <div
@@ -17,8 +21,15 @@ const Discord = () => {
             No Pressure
           </strong>{" "}
           started as a European counterpart to{" "}
-          <Link href={wowMadeEasy}>WoW Made Easy</Link> - a community built on
-          enjoying Dragonflight together, with no pressure
+          <Link
+            href={wowMadeEasy}
+            isActive={isWowMadeEasyLinkActive}
+            setIsActive={setIsWowMadeEasyLinkActive}
+          >
+            WoW Made Easy
+          </Link>{" "}
+          - a community built on enjoying Dragonflight together, with no
+          pressure
         </p>
         <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly gap-6">
           <img className="rounded-full" src={logo} />

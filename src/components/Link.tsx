@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 
-type LinkProps = React.HTMLProps<HTMLAnchorElement> & {
-  href?: string;
-  onClick?: () => void;
+type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
+  isActive: boolean;
+  variant?: "link";
+  href: string;
+  setIsActive: (newValue: boolean) => void;
 };
+type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
+  isActive: boolean;
+  variant: "nav";
+  onClick: () => void;
+};
+type Props = LinkVariantProps | NavVariantProps;
 
-const Link = (props: LinkProps) => {
-  const { href, onClick, children } = props;
-  const [active, setActive] = useState<boolean>(false);
+/**
+ * A reusable link component with animated underline when the link is active.
+ *
+ * Has two variants:
+ *  1. "link" (default): renders an <a> tag and calls a setIsActive callback
+ *     when the link is (un)focused and (un)hovered.
+ *  2. "nav": renders a <li> tag with an onClick callback. Has no inherent
+ *     hover/focus behaviour.
+ */
+const Link = (props: Props) => {
+  const { isActive, variant, children } = props;
 
   const className = `
+    ${variant === "nav" ? "mx-4" : null}
     cursor-pointer
     relative 
     
@@ -23,24 +40,27 @@ const Link = (props: LinkProps) => {
     after:duration-300 
 
     ${
-      active
+      isActive
         ? "after:right-0 after:opacity-1"
         : "after:right-full after:opacity-0"
     }`.trim();
 
-  return (
-    <a
-      className={className}
-      href={href}
-      onBlur={() => setActive(false)}
-      onClick={onClick}
-      onFocus={() => setActive(true)}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-    >
-      {children}
-    </a>
-  );
+  const Tag = variant === "nav" ? "li" : "a";
+  const returnProps = {
+    className,
+    ...(variant === "nav" && {
+      onClick: props.onClick,
+    }),
+    ...(variant !== "nav" && {
+      href: props.href,
+      onBlur: () => props.setIsActive(false),
+      onFocus: () => props.setIsActive(true),
+      onMouseEnter: () => props.setIsActive(true),
+      onMouseLeave: () => props.setIsActive(false),
+    }),
+  };
+
+  return <Tag {...returnProps}>{children}</Tag>;
 };
 
 export default Link;
