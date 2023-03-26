@@ -1,3 +1,4 @@
+import Link from "./Link";
 import discord from "@/assets/discord.svg";
 import github from "@/assets/github.svg";
 
@@ -5,13 +6,13 @@ const Footer = () => {
   return (
     <footer className="bg-purple text-gold text-center py-4">
       <p className="text-sm">
-        <a
+        <Link
           href="https://github.com/drunkenvalley/no-pressure"
           rel="noreferrer"
           target="_blank"
         >
           Made with 🦶 by members of the No Pressure community.
-        </a>
+        </Link>
       </p>
       <div className="flex items-center justify-center mt-4">
         <a
