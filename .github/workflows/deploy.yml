@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Create .env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
       - name: Build project
         run: npm run build
 
@@ -44,10 +48,6 @@ jobs:
         with:
           name: production-files
           path: ./dist
-
-      - name: Create .env file
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
