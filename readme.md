@@ -4,7 +4,7 @@ Welcome to the No Pressure website repository. This is a [React](https://react.d
 
 ## Contributing
 
-If you want to join the team reach out in [Issues](https://github.com/drunkenvalley/no-pressure/issues), or you can *Fork* and then perform *Pull Requests*.
+If you want to join the team reach out in [Issues](https://github.com/drunkenvalley/no-pressure/issues) or [Discussions](https://github.com/drunkenvalley/no-pressure/discussions), or reach out in the Discord community, or you can *Fork* and then perform *Pull Requests*.
 
 ## Requirements
 
