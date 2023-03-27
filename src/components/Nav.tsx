@@ -90,14 +90,15 @@ const Nav = () => {
           />
           <ul className="flex items-center">
             {navItems.map(({ name, id }) => (
-              <Link
-                isActive={activeNavItem === id}
-                key={id}
-                onClick={() => scrollToView(id)}
-                variant="nav"
-              >
-                {name}
-              </Link>
+              <li className="mx-4" key={id}>
+                <Link
+                  isActive={activeNavItem === id}
+                  onClick={() => scrollToView(id)}
+                  variant="nav"
+                >
+                  {name}
+                </Link>
+              </li>
             ))}
           </ul>
         </nav>

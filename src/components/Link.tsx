@@ -1,10 +1,8 @@
 import React from "react";
 
 type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
-  isActive: boolean;
   variant?: "link";
   href: string;
-  setIsActive: (newValue: boolean) => void;
 };
 type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
   isActive: boolean;
@@ -17,19 +15,35 @@ type Props = LinkVariantProps | NavVariantProps;
  * A reusable link component with animated underline when the link is active.
  *
  * Has two variants:
- *  1. "link" (default): renders an <a> tag and calls a setIsActive callback
- *     when the link is (un)focused and (un)hovered.
- *  2. "nav": renders a <li> tag with an onClick callback. Has no inherent
- *     hover/focus behaviour.
+ *  1. "link" (default): renders an <a> tag with hover/focus styling.
+ *  2. "nav": renders a <button> with an onClick callback. Active state styling
+ *     is handled by an isActive prop, rather than directly by hover/focus.
  */
 const Link = (props: Props) => {
-  const { isActive, variant, children } = props;
+  const { variant, children } = props;
+
+  const getActiveStyle = (): string => {
+    if (variant === "nav") {
+      return props.isActive
+        ? "after:right-0 after:opacity-1"
+        : "after:right-full after:opacity-0";
+    } else {
+      return `
+        after:right-full
+        hover:after:right-0
+        focus:after:right-0
+
+        after:opacity-0
+        hover:after:opacity-100
+        focus:after:opacity-100
+      `;
+    }
+  };
 
   const className = `
-    ${variant === "nav" ? "mx-4" : null}
     cursor-pointer
     relative 
-    
+ 
     after:block
     after:absolute
     after:border
@@ -37,26 +51,20 @@ const Link = (props: Props) => {
     after:top-full
     after:left-0
     after:transition-all
-    after:duration-300 
+    after:duration-300
 
-    ${
-      isActive
-        ? "after:right-0 after:opacity-1"
-        : "after:right-full after:opacity-0"
-    }`.trim();
+    ${getActiveStyle()}
+  `.trim();
 
-  const Tag = variant === "nav" ? "li" : "a";
+  const Tag = variant === "nav" ? "button" : "a";
   const returnProps = {
     className,
     ...(variant === "nav" && {
       onClick: props.onClick,
     }),
     ...(variant !== "nav" && {
+      className: className + "hover:opacity-50",
       href: props.href,
-      onBlur: () => props.setIsActive(false),
-      onFocus: () => props.setIsActive(true),
-      onMouseEnter: () => props.setIsActive(true),
-      onMouseLeave: () => props.setIsActive(false),
     }),
   };
 
