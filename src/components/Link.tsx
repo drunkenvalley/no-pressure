@@ -63,7 +63,7 @@ const Link = (props: Props) => {
       onClick: props.onClick,
     }),
     ...(variant !== "nav" && {
-      className: className + "hover:opacity-50",
+      className: className,
       href: props.href,
     }),
   };
