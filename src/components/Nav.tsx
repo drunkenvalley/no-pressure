@@ -74,7 +74,7 @@ const Nav = () => {
         {/* position: absolute removes it from the visual flow, while still intersecting with viewport */}
       </div>
       <header
-        className={`sticky top-0 py-8 z-10 max-w-none w-full ml-[50%] translate-x-[-50%] ${
+        className={`sticky top-0 py-8 z-10 max-w-none w-full ${
           navHasBackground
             ? "bg-purple/80 ease-in duration-300 backdrop-blur-sm"
             : ""
