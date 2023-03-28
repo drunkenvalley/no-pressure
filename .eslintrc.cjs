@@ -20,10 +20,10 @@ module.exports = {
     "func-style": ["error", "expression", {
       allowArrowFunctions: true
     }],
+    "@typescript-eslint/no-unused-vars": "error",
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "no-console": "error",
-    "no-unused-vars": "error",
     "prefer-arrow/prefer-arrow-functions": "warn",
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
