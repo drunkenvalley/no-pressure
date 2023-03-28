@@ -22,23 +22,20 @@ type Props = LinkVariantProps | NavVariantProps;
 const Link = (props: Props) => {
   const { variant, children } = props;
 
-  const getActiveStyle = (): string => {
-    if (variant === "nav") {
-      return props.isActive
-        ? "after:right-0 after:opacity-1"
-        : "after:right-full after:opacity-0";
-    } else {
-      return `
-        after:right-full
-        hover:after:right-0
-        focus:after:right-0
+  const getActiveStyle = (): string => `
+  ${
+    // Non-hover/focus state: no underline unless link is the active nav variant
+    variant === "nav" && props.isActive
+      ? "after:right-0 after:opacity-100"
+      : "after:right-full after:opacity-0"
+  }
 
-        after:opacity-0
-        hover:after:opacity-100
-        focus:after:opacity-100
-      `;
-    }
-  };
+  hover:after:right-0
+  focus:after:right-0
+  
+  hover:after:opacity-100
+  focus:after:opacity-100
+`;
 
   const className = `
     cursor-pointer
