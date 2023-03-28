@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "./Link";
 import logo from "@/assets/inv_pet_frostwolfpup.jpg";
 
 const Nav = () => {
@@ -74,7 +75,7 @@ const Nav = () => {
         {/* position: absolute removes it from the visual flow, while still intersecting with viewport */}
       </div>
       <header
-        className={`sticky top-0 py-8 z-10 max-w-none w-full ml-[50%] translate-x-[-50%] ${
+        className={`sticky top-0 py-8 z-10 max-w-none w-full ${
           navHasBackground
             ? "bg-purple/80 ease-in duration-300 backdrop-blur-sm"
             : ""
@@ -89,16 +90,14 @@ const Nav = () => {
           />
           <ul className="flex items-center">
             {navItems.map(({ name, id }) => (
-              <li
-                className={`mx-4 cursor-pointer relative before:block before:absolute before:border before:h-px before:top-full before:left-0 before:transition-all before:duration-300 ${
-                  activeNavItem === id
-                    ? "before:right-0 before:opacity-1"
-                    : "before:right-full before:opacity-0"
-                }`.trim()}
-                key={id}
-                onClick={() => scrollToView(id)}
-              >
-                {name}
+              <li className="mx-4" key={id}>
+                <Link
+                  isActive={activeNavItem === id}
+                  onClick={() => scrollToView(id)}
+                  variant="nav"
+                >
+                  {name}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,3 +1,4 @@
+import Link from "./Link";
 import logo from "@/assets/inv_pet_frostwolfpup.jpg";
 
 const Discord = () => {
@@ -16,11 +17,8 @@ const Discord = () => {
             No Pressure
           </strong>{" "}
           started as a European counterpart to{" "}
-          <a className="text-light-200" href={wowMadeEasy}>
-            WoW Made Easy
-          </a>
-          - a community built on enjoying Dragonflight together, with no
-          pressure
+          <Link href={wowMadeEasy}>WoW Made Easy</Link> - a community built on
+          enjoying Dragonflight together, with no pressure
         </p>
         <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly gap-6">
           <img className="rounded-full" src={logo} />
