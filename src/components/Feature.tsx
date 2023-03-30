@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./Image";
 import { PropsWithChildren } from "react";
 
 interface Props {
@@ -12,8 +12,9 @@ const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
       alt={title}
       className="w-full h-[160px] object-cover rounded"
       height={160}
+      responsive
       src={src}
-      width={700}
+      width={{ lg: 167, md: 167, sm: 283 }}
     />
     <section>
       <h2 className="text-2xl">{title && title}</h2>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "./Image";
 import Link from "./Link";
 
 const Nav = () => {
@@ -92,14 +92,14 @@ const Nav = () => {
           id="nav"
         >
           <Image
-            alt="Frost wolf pup"
+            alt="Frostwolf pup"
             className="cursor-pointer rounded-full w-16 h-16"
             height={64}
             onClick={() => {
               window.scrollTo({ behavior: "smooth", top: 0 });
               setShowMobileMenu(false);
             }}
-            src={"/inv_pet_frostwolfpup.jpg"}
+            src={"/frostwolfpup.jpg"}
             width={64}
           />
           <div

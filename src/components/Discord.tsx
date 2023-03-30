@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./Image";
 import Link from "./Link";
 import NextLink from "next/link";
 
@@ -26,10 +26,10 @@ const Discord = () => {
           </p>
           <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly gap-6">
             <Image
-              alt="Frost wolf pup"
+              alt="Frostwolf pup"
               className="w-16 h-16 rounded-full"
               height={64}
-              src={"/inv_pet_frostwolfpup.jpg"}
+              src="/frostwolfpup.jpg"
               width={64}
             />
             <div className="flex flex-col align-center">
