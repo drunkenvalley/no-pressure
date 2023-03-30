@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import React from "react";
 
 type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
@@ -15,7 +16,7 @@ type Props = LinkVariantProps | NavVariantProps;
  * A reusable link component with animated underline when the link is active.
  *
  * Has two variants:
- *  1. "link" (default): renders an <a> tag with hover/focus styling.
+ *  1. "link" (default): renders a <Link> component with hover/focus styling.
  *  2. "nav": renders a <button> with an onClick callback. Active state styling
  *     is handled by an isActive prop, rather than directly by hover/focus.
  */
@@ -32,15 +33,15 @@ const Link = (props: Props) => {
 
   hover:after:right-0
   focus:after:right-0
-  
+
   hover:after:opacity-100
   focus:after:opacity-100
 `;
 
   const className = `
     cursor-pointer
-    relative 
- 
+    relative
+
     after:block
     after:absolute
     after:border
@@ -53,19 +54,26 @@ const Link = (props: Props) => {
     ${getActiveStyle()}
   `.trim();
 
-  const Tag = variant === "nav" ? "button" : "a";
-  const returnProps = {
-    className,
-    ...(variant === "nav" && {
-      onClick: props.onClick,
-    }),
-    ...(variant !== "nav" && {
-      className: className,
-      href: props.href,
-    }),
-  };
+  let element: JSX.Element;
+  switch (variant) {
+    case "nav": {
+      element = (
+        <button className={className} onClick={props.onClick}>
+          {children}
+        </button>
+      );
+      break;
+    }
+    default: {
+      element = (
+        <NextLink className={className} href={props.href as string}>
+          {children}
+        </NextLink>
+      );
+    }
+  }
 
-  return <Tag {...returnProps}>{children}</Tag>;
+  return element;
 };
 
 export default Link;

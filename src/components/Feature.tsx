@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PropsWithChildren } from "react";
 
 interface Props {
@@ -5,13 +6,15 @@ interface Props {
   title: string;
 }
 
-const Feature = ({
-  children,
-  src,
-  title,
-}: Partial<PropsWithChildren<Props>>) => (
+const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
   <article className="text-center flex-grow w-full flex flex-col gap-y-3">
-    <img className="h-[160px] w-full object-cover rounded" src={src} />
+    <Image
+      alt={title}
+      className="w-full h-[160px] object-cover rounded"
+      height={160}
+      src={src}
+      width={700}
+    />
     <section>
       <h2 className="text-2xl">{title && title}</h2>
       <p className="text-green">{children && children}</p>

@@ -1,7 +1,5 @@
 import ProgressionCard, { ProgressionCardProps } from "./ProgressionCard";
 import { useEffect, useState } from "react";
-import shadowedCrucible from "@/assets/raid-placeholder.png";
-import vaultOfTheIncarnates from "@/assets/voti-800px.png";
 
 export type RaiderIOCharacter = {
   name: string;
@@ -67,7 +65,7 @@ const RaidProgression = () => {
     {
       bosses: 8,
       heroic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "heroic"),
-      image: shadowedCrucible,
+      image: "/raid-placeholder.png",
       mythic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "mythic"),
       name: "Aberrus, the Shadowed Crucible",
       normal: generateMaxTotalFor("aberrus-the-shadowed-crucible", "normal"),
@@ -76,7 +74,7 @@ const RaidProgression = () => {
     {
       bosses: 8,
       heroic: generateMaxTotalFor("vault-of-the-incarnates", "heroic"),
-      image: vaultOfTheIncarnates,
+      image: "/voti-800px.png",
       mythic: generateMaxTotalFor("vault-of-the-incarnates", "mythic"),
       name: "Vault of the Incarnates",
       normal: generateMaxTotalFor("vault-of-the-incarnates", "normal"),
@@ -89,12 +87,10 @@ const RaidProgression = () => {
   }, []);
 
   return (
-    <section id="raid-progression" className="flex flex-col gap-8">
+    <section className="flex flex-col gap-8" id="raid-progression">
       <div>
         <h2 className="text-2xl">Raid Progression</h2>
-        <p className="text-orange">
-          See how far we&apos;ve made it this tier!
-        </p>
+        <p className="text-orange">See how far we&apos;ve made it this tier!</p>
       </div>
       {raids.map(({ image, ...props }, index) => (
         <ProgressionCard
