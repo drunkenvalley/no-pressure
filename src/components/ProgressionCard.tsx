@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./Image";
 import RaiderCard from "./RaiderCard";
 import { RaiderIOCharacter } from "./RaidProgression";
 import { paramCase } from "change-case";
@@ -34,8 +34,9 @@ const ProgressionCard = ({
         alt={name}
         className="w-full md:w-inherit h-36 object-cover rounded md:flex-1"
         height={144}
+        responsive
         src={image}
-        width={700}
+        width={{ lg: 496, md: 496, sm: 735 }}
       />
       <div className="md:flex-1 mt-4 md:mt-0">
         <h3 className="text-2xl">{name}</h3>

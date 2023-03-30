@@ -5,11 +5,7 @@ const Document = () => {
     <Html lang="en">
       <Head>
         <meta charSet="UTF-8" />
-        <link
-          href="/inv_pet_frostwolfpup.jpg"
-          rel="icon"
-          type="image/svg+xml"
-        />
+        <link href="/images/frostwolfpup.jpg" rel="icon" type="image/svg+xml" />
         <meta
           content="No Pressure - a community built on enjoying Dragonflight together, with no pressure"
           name="description"
@@ -22,7 +18,7 @@ const Document = () => {
           property="og:description"
         />
         <meta
-          content="https://no-pressure.eu/inv_pet_frostwolfpup.jpg"
+          content="https://no-pressure.eu/images/frostwolfpup.jpg"
           property="og:image"
         />
         <meta content="summary_large_image" name="twitter:card" />
@@ -34,7 +30,7 @@ const Document = () => {
           name="twitter:description"
         />
         <meta
-          content="https://no-pressure.eu/inv_pet_frostwolfpup.jpg"
+          content="https://no-pressure.eu/images/frostwolfpup.jpg"
           name="twitter:image"
         />
       </Head>

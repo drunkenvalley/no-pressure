@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./Image";
 import Link from "./Link";
 import NextLink from "next/link";
 
@@ -23,9 +23,9 @@ const Footer = () => {
           <Image
             alt="Discord"
             className="w-6 h-6 m-2"
-            height={6}
-            src="/discord.svg"
-            width={6}
+            height={24}
+            src="/logos/discord.svg"
+            width={24}
           />
         </NextLink>
         <NextLink
@@ -36,9 +36,9 @@ const Footer = () => {
           <Image
             alt="GitHub"
             className="w-6 h-6 m-2"
-            height={6}
-            src="/github.svg"
-            width={6}
+            height={24}
+            src="/logos/github.svg"
+            width={24}
           />
         </NextLink>
       </div>

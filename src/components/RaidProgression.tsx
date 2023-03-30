@@ -32,18 +32,14 @@ const RaidProgression = () => {
     { name: "Xamona", realm: "Turalyon" },
   ];
 
-  const fetchRaiders = async () => {
-    const fetchedRaiders = await Promise.all(
-      characters.map(async (character) => {
-        const response = await fetch(
+  const fetchRaiders = () => {
+    Promise.all(
+      characters.map((character) =>
+        fetch(
           `https://raider.io/api/v1/characters/profile?region=eu&realm=${character.realm}&name=${character.name}&fields=guild,raid_progression`
-        );
-
-        return response.json();
-      })
-    );
-
-    setRaiders(fetchedRaiders);
+        ).then((r) => r.json())
+      )
+    ).then((raiders) => setRaiders(raiders));
   };
 
   const generateMaxTotalFor = (
@@ -65,7 +61,7 @@ const RaidProgression = () => {
     {
       bosses: 8,
       heroic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "heroic"),
-      image: "/raid-placeholder.png",
+      image: "/raids/placeholder.png",
       mythic: generateMaxTotalFor("aberrus-the-shadowed-crucible", "mythic"),
       name: "Aberrus, the Shadowed Crucible",
       normal: generateMaxTotalFor("aberrus-the-shadowed-crucible", "normal"),
@@ -74,7 +70,7 @@ const RaidProgression = () => {
     {
       bosses: 8,
       heroic: generateMaxTotalFor("vault-of-the-incarnates", "heroic"),
-      image: "/voti-800px.png",
+      image: "/raids/voti.png",
       mythic: generateMaxTotalFor("vault-of-the-incarnates", "mythic"),
       name: "Vault of the Incarnates",
       normal: generateMaxTotalFor("vault-of-the-incarnates", "normal"),

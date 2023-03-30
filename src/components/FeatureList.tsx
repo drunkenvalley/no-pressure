@@ -18,13 +18,13 @@ const FeatureList = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full gap-x-4 gap-y-6 px-4 md:px-0">
-      <Feature src="/feature-meet-people.jpg" title="Meet people!">
-        Relax with {userCount} people
+      <Feature src="/features/people.jpg" title="Meet people!">
+        Relax with {userCount || "thousands of"} people
       </Feature>
-      <Feature src="/feature-dungeons-800px.png" title="Dungeoneer!">
+      <Feature src="/features/dungeons.png" title="Dungeoneer!">
         Group up with no pressure
       </Feature>
-      <Feature src="/feature-raiding-800px.png" title="Raid with us!">
+      <Feature src="/features/raids.png" title="Raid with us!">
         Enjoy good company & prog
       </Feature>
     </div>

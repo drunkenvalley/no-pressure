@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./Image";
 
 const HeroBanner = () => (
   <div className="relative h-96 scroll-mt-[136px]" id="home">
@@ -7,8 +7,9 @@ const HeroBanner = () => (
         alt="Dragonflight splash art"
         className="w-full h-full object-cover"
         height={384}
-        src="/hero-banner-1280px.png"
-        width={1280}
+        responsive
+        src="/hero.png"
+        width={{ lg: 1280, md: 1023, sm: 767 }}
       />
     </div>
   </div>
