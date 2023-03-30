@@ -20,7 +20,7 @@ const FeatureList = () => {
   }, []);
 
   return (
-    <div className="flex flex-row gap-x-4">
+    <div className="flex flex-col md:flex-row w-full gap-x-4 gap-y-6 px-4 md:px-0">
       <Feature src={FeatureMeetImg} title="Meet people!">
         Relax with {userCount} people
       </Feature>

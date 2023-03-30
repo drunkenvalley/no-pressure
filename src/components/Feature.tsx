@@ -10,7 +10,7 @@ const Feature = ({
   src,
   title,
 }: Partial<PropsWithChildren<Props>>) => (
-  <article className="text-center flex-grow w-px flex flex-col gap-y-3">
+  <article className="text-center flex-grow w-full flex flex-col gap-y-3">
     <img className="h-[160px] w-full object-cover rounded" src={src} />
     <section>
       <h2 className="text-2xl">{title && title}</h2>
