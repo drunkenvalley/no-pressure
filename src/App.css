@@ -12,3 +12,10 @@ a.join-us {
 a.join-us:hover {
   color: black;
 }
+
+/* I might be taking crazy pills here but flex-row-reverse and flex-col-reverse have no css on my end */
+@media (min-width: 768px) {
+  .md\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+}
