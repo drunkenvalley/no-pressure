@@ -19,6 +19,9 @@ module.exports = {
     extend: {
       fontFamily: {
         nunito: ['Nunito', 'sans-serif']
+      },
+      transitionProperty: {
+        height: 'height'
       }
     }
   },

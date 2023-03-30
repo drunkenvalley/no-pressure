@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="App font-nunito h-full bg-purple text-gold">
       <Nav />
-      <main className="max-w-5xl mx-auto flex flex-col gap-y-8 pb-8">
+      <main className="max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
         <HeroBanner />
         <FeatureList />
         <Discord />
