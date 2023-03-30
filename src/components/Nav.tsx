@@ -17,16 +17,10 @@ const Nav = () => {
     }
   };
 
-  const [navHasBackground, setNavHasBackground] = useState(false);
   const [visibleNavItems, setVisibleNavItems] = useState<string[]>([]);
   const [activeNavItem, setActiveNavItem] = useState<string | null>(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const observedStart = (entry: IntersectionObserverEntry) => {
-    if (entry.isIntersecting) {
-      return setNavHasBackground(false);
-    }
-    return setNavHasBackground(true);
-  };
   const observedNavItems = (entry: IntersectionObserverEntry) => {
     const id = entry.target.id;
     if (entry.isIntersecting) {
@@ -38,10 +32,6 @@ const Nav = () => {
   const observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        const id = entry.target.id;
-        if (id === "start") {
-          return observedStart(entry);
-        }
         observedNavItems(entry);
       });
     },
@@ -69,39 +59,60 @@ const Nav = () => {
     );
   }, [visibleNavItems]);
 
+  const navItemEls = navItems.map(({ name, id }) => (
+    <li className="mx-4" key={id}>
+      <Link
+        isActive={activeNavItem === id}
+        onClick={() => {
+          scrollToView(id);
+          setShowMobileMenu(false);
+        }}
+        variant="nav"
+      >
+        {name}
+      </Link>
+    </li>
+  ));
   return (
     <>
       <div className="absolute" id="start">
         {/* position: absolute removes it from the visual flow, while still intersecting with viewport */}
       </div>
       <header
-        className={`sticky top-0 py-8 z-10 max-w-none w-full ${
-          navHasBackground
-            ? "bg-purple/80 ease-in duration-300 backdrop-blur-sm"
-            : ""
-        }`.trim()}
+        className="fixed top-0 p-4 pr-12 lg:px-0 z-10 max-w-none w-full bg-purple/80 backdrop-blur-sm"
         id="navbar"
       >
-        <nav className="max-w-5xl mx-auto flex justify-between" id="nav">
+        <nav
+          className="max-w-5xl mx-auto flex justify-between items-center"
+          id="nav"
+        >
           <img
-            className="cursor-pointer rounded-full"
-            onClick={() => scrollToView("home")}
+            className="cursor-pointer rounded-full w-16 h-16"
+            onClick={() => {
+              window.scrollTo({ behavior: "smooth", top: 0 });
+              setShowMobileMenu(false);
+            }}
             src={logo}
           />
-          <ul className="flex items-center">
-            {navItems.map(({ name, id }) => (
-              <li className="mx-4" key={id}>
-                <Link
-                  isActive={activeNavItem === id}
-                  onClick={() => scrollToView(id)}
-                  variant="nav"
-                >
-                  {name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div
+            className="md:hidden flex flex-col justify-between h-4 cursor-pointer"
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+          >
+            {Array(3)
+              .fill(0)
+              .map((_, i) => (
+                <div className="w-4 h-0.5 rounded-sm bg-gold" key={i} />
+              ))}
+          </div>
+          <ul className="hidden md:flex items-center">{navItemEls}</ul>
         </nav>
+        <ul
+          className={`flex flex-col items-center justify-evenly md:hidden overflow-hidden ease-in duration-300 ${
+            showMobileMenu ? "h-96" : "h-0"
+          }`.trim()}
+        >
+          {navItemEls}
+        </ul>
       </header>
     </>
   );
