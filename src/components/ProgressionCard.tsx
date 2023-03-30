@@ -23,14 +23,19 @@ const ProgressionCard = ({
   raiders,
   reverse = false,
 }: ProgressionCardProps) => (
-  <div className="bg-dark p-4 rounded w-full p-4 my-4 ">
-    <div className="flex items-center">
-      {!reverse && (
-        <img className="h-36 w-full object-cover rounded" src={image} />
-      )}
-      <div className="w-full">
+  <div className="bg-dark p-4 rounded w-full">
+    <div
+      className={`flex items-center flex-col md:flex-row${
+        reverse ? "-reverse" : ""
+      } gap-y-6 md:gap-0`}
+    >
+      <img
+        className="h-36 object-cover rounded w-full md:w-inherit md:flex-1"
+        src={image}
+      />
+      <div className="md:flex-1 mt-4 md:mt-0">
         <h3 className="text-2xl">{name}</h3>
-        <div className="flex w-full items-center justify-evenly mt-2">
+        <div className="flex w-full items-center justify-evenly gap-x-6">
           <p className="text-green">
             {normal} / {bosses} Normal
           </p>
@@ -42,14 +47,11 @@ const ProgressionCard = ({
           </p>
         </div>
       </div>
-      {reverse && (
-        <img className="h-36 w-full object-cover rounded" src={image} />
-      )}
     </div>
     <div className="w-full mt-4">
       <h4 className="text-xl">Raid Leaders</h4>
       {raiders.every((raider) => raider.raid_progression[paramCase(name)]) ? (
-        <div className="flex w-full justify-center">
+        <div className="flex w-full justify-center gap-4 flex-wrap mt-4">
           {raiders.map((raider) => (
             <RaiderCard
               currentRaid={paramCase(name)}

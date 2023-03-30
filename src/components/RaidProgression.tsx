@@ -89,11 +89,13 @@ const RaidProgression = () => {
   }, []);
 
   return (
-    <section id="raid-progression">
-      <h2 className="text-2xl">Raid Progression</h2>
-      <p className="text-orange mb-8">
-        See how far we&apos;ve made it this tier!
-      </p>
+    <section id="raid-progression" className="flex flex-col gap-8">
+      <div>
+        <h2 className="text-2xl">Raid Progression</h2>
+        <p className="text-orange">
+          See how far we&apos;ve made it this tier!
+        </p>
+      </div>
       {raids.map(({ image, ...props }, index) => (
         <ProgressionCard
           image={image}
