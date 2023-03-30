@@ -1,3 +1,4 @@
+import Image from "next/image";
 import RaiderCard from "./RaiderCard";
 import { RaiderIOCharacter } from "./RaidProgression";
 import { paramCase } from "change-case";
@@ -29,9 +30,12 @@ const ProgressionCard = ({
         reverse ? "-reverse" : ""
       } gap-y-6 md:gap-0`}
     >
-      <img
-        className="h-36 object-cover rounded w-full md:w-inherit md:flex-1"
+      <Image
+        alt={name}
+        className="w-full md:w-inherit h-36 object-cover rounded md:flex-1"
+        height={144}
         src={image}
+        width={700}
       />
       <div className="md:flex-1 mt-4 md:mt-0">
         <h3 className="text-2xl">{name}</h3>
