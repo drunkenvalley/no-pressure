@@ -6,9 +6,9 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "render.worldofwarcraft.com",
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
