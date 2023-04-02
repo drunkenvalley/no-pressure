@@ -18,7 +18,7 @@ const Document = () => {
           property="og:description"
         />
         <meta
-          content="https://no-pressure.eu/images/frostwolfpup.jpg"
+          content="https://no-pressure.eu/images/og.jpg"
           property="og:image"
         />
         <meta content="summary_large_image" name="twitter:card" />
@@ -30,7 +30,7 @@ const Document = () => {
           name="twitter:description"
         />
         <meta
-          content="https://no-pressure.eu/images/frostwolfpup.jpg"
+          content="https://no-pressure.eu/images/og.jpg"
           name="twitter:image"
         />
       </Head>
