@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import Image from "./Image";
 import Link from "./Link";
-import logo from "@/assets/inv_pet_frostwolfpup.jpg";
 
 const Nav = () => {
   const navItems = [
@@ -29,16 +29,21 @@ const Nav = () => {
     return setVisibleNavItems((items) => items.filter((item) => item !== id));
   };
 
-  const observer = new IntersectionObserver(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        observedNavItems(entry);
-      });
-    },
-    {
-      threshold: 0.85,
-    }
-  );
+  // typeof window === 'undefined' when component is being rendered on the server.
+  // node env doesn't have IntersectionObserver, so we have to account for it not being available
+  const observer = (typeof window !== "undefined" &&
+    new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+          observedNavItems(entry);
+        });
+      },
+      {
+        threshold: 0.85,
+      }
+    )) as IntersectionObserver;
+  // observer is currently only used inside useEffect, which never runs on the server.
+  // that means we're safe to do "as ..." on the whole thing, and the browser/node discrepancy ends here
 
   // This effect is to observe the start and nav items
   useEffect(() => {
@@ -86,13 +91,16 @@ const Nav = () => {
           className="max-w-5xl mx-auto flex justify-between items-center"
           id="nav"
         >
-          <img
+          <Image
+            alt="Frostwolf pup"
             className="cursor-pointer rounded-full w-16 h-16"
+            height={64}
             onClick={() => {
               window.scrollTo({ behavior: "smooth", top: 0 });
               setShowMobileMenu(false);
             }}
-            src={logo}
+            src={"/frostwolfpup.jpg"}
+            width={64}
           />
           <div
             className="md:hidden flex flex-col justify-between h-4 cursor-pointer"
