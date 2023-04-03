@@ -34,7 +34,7 @@ const Document = () => {
           name="twitter:image"
         />
       </Head>
-      <body>
+      <body className="font-nunito bg-purple text-gold">
         <Main />
         <NextScript />
       </body>

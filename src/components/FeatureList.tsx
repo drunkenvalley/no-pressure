@@ -13,6 +13,10 @@ const FeatureList = () => {
       )
       .then((res: { data: { approximate_member_count: number } }) => {
         setUserCount(res.data.approximate_member_count);
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
       });
   }, []);
 

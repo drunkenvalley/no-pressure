@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import Image from "./Image";
 import Link from "./Link";
+import { useRouter } from "next/router";
 
-const Nav = () => {
-  const navItems = [
-    { id: "home", name: "Home" },
-    { id: "join-us", name: "Join us" },
-    { id: "raid-progression", name: "Raid Progression" },
-    { id: "corner", name: "Bruxy's Corner" },
-  ] as const;
+const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
+  const router = useRouter();
 
   const scrollToView = (id: (typeof navItems)[number]["id"]) => {
     const element = document.getElementById(id);
@@ -96,22 +92,28 @@ const Nav = () => {
             className="cursor-pointer rounded-full w-16 h-16"
             height={64}
             onClick={() => {
-              window.scrollTo({ behavior: "smooth", top: 0 });
-              setShowMobileMenu(false);
+              if (router.pathname === "/") {
+                window.scrollTo({ behavior: "smooth", top: 0 });
+                setShowMobileMenu(false);
+              } else {
+                router.push("/");
+              }
             }}
             src={"/frostwolfpup.jpg"}
             width={64}
           />
-          <div
-            className="md:hidden flex flex-col justify-between h-4 cursor-pointer"
-            onClick={() => setShowMobileMenu(!showMobileMenu)}
-          >
-            {Array(3)
-              .fill(0)
-              .map((_, i) => (
-                <div className="w-4 h-0.5 rounded-sm bg-gold" key={i} />
-              ))}
-          </div>
+          {navItems.length ? (
+            <div
+              className="md:hidden flex flex-col justify-between h-4 cursor-pointer"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              {Array(3)
+                .fill(0)
+                .map((_, i) => (
+                  <div className="w-4 h-0.5 rounded-sm bg-gold" key={i} />
+                ))}
+            </div>
+          ) : null}
           <ul className="hidden md:flex items-center">{navItemEls}</ul>
         </nav>
         <ul
