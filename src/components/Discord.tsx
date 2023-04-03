@@ -1,10 +1,13 @@
+import Image from "./Image";
 import Link from "./Link";
-import logo from "@/assets/inv_pet_frostwolfpup.jpg";
+import NextLink from "next/link";
 
 const Discord = () => {
   const wowMadeEasy = "https://www.wowmadeeasy.com/";
-  const discordInviteLink = import.meta.env.VITE_DISCORD_INVITE_LINK;
-  const discordWidgetId = import.meta.env.VITE_DISCORD_WIDGET_ID;
+
+  const discordInviteLink = process.env
+    .NEXT_PUBLIC_DISCORD_INVITE_LINK as string;
+  const discordWidgetId = process.env.NEXT_PUBLIC_DISCORD_WIDGET_ID as string;
 
   return (
     <div
@@ -22,17 +25,23 @@ const Discord = () => {
             enjoying Dragonflight together, with no pressure
           </p>
           <div className="my-4 p-8 border-blue border rounded-xl flex items-center justify-evenly gap-6">
-            <img className="rounded-full" src={logo} />
+            <Image
+              alt="Frostwolf pup"
+              className="w-16 h-16 rounded-full"
+              height={64}
+              src="/frostwolfpup.jpg"
+              width={64}
+            />
             <div className="flex flex-col align-center">
               <h3 className="text-xl mb-4">No Pressure Community</h3>
-              <a
+              <NextLink
                 className="hover:bg-green ease-in-out duration-300 bg-blue rounded p-3 join-us cursor-pointer"
                 href={discordInviteLink}
                 rel="noreferrer"
                 target="_blank"
               >
                 Join us
-              </a>
+              </NextLink>
             </div>
           </div>
         </div>

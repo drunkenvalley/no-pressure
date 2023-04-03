@@ -1,6 +1,6 @@
+import Image from "./Image";
 import Link from "./Link";
-import discord from "@/assets/discord.svg";
-import github from "@/assets/github.svg";
+import NextLink from "next/link";
 
 const Footer = () => {
   return (
@@ -15,20 +15,32 @@ const Footer = () => {
         </Link>
       </p>
       <div className="flex items-center justify-center mt-4">
-        <a
-          href={import.meta.env.VITE_DISCORD_INVITE_LINK}
+        <NextLink
+          href={process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string}
           rel="noreferrer"
           target="_blank"
         >
-          <img className="w-6 h-6 m-2" src={discord} />
-        </a>
-        <a
+          <Image
+            alt="Discord"
+            className="w-6 h-6 m-2"
+            height={24}
+            src="/logos/discord.svg"
+            width={24}
+          />
+        </NextLink>
+        <NextLink
           href="https://github.com/drunkenvalley/no-pressure/graphs/contributors"
           rel="noreferrer"
           target="_blank"
         >
-          <img className="w-6 h-6 m-2" src={github} />
-        </a>
+          <Image
+            alt="GitHub"
+            className="w-6 h-6 m-2"
+            height={24}
+            src="/logos/github.svg"
+            width={24}
+          />
+        </NextLink>
       </div>
     </footer>
   );

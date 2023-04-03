@@ -1,15 +1,17 @@
-#root {
-  margin: 0 auto;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap");
+
+html {
   text-align: center;
-  height: 100%;
-  width: 100%;
 }
 
-a.join-us {
+.join-us {
   color: white;
 }
 
-a.join-us:hover {
+.join-us:hover {
   color: black;
 }
 
