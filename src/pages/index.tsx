@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>No Pressure</title>
+        <title>No Pressure Community</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </Head>
       <Nav
