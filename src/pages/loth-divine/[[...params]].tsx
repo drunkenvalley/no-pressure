@@ -10,15 +10,27 @@ const DEFAULT_KEY = 10;
 const DEFAULT_ILVL = BASE_ILVL + DEFAULT_KEY * ILVL_STEP;
 const Home = () => {
   const router = useRouter();
-  const [keyLvl, setKeyLvl] = useState(DEFAULT_KEY);
-  const [iLvl, setILvl] = useState(DEFAULT_ILVL);
+  const [keyLvl, _setKeyLvl] = useState(DEFAULT_KEY);
+  const [iLvl, _setILvl] = useState(DEFAULT_ILVL);
+  const [scaleOverride, setScaleOverride] = useState<number | null>(null);
+  const setKeyLvl = (lvl: number) => {
+    _setKeyLvl(lvl);
+    setScaleOverride(null);
+  };
+  const setILvl = (lvl: number) => {
+    _setILvl(lvl);
+    setScaleOverride(null);
+  };
   useEffect(() => {
     if (router.query.params) {
-      const [pKeyLvl, pILvl] = (router.query.params as string[]).map((s) =>
-        parseInt(s)
-      );
-      setKeyLvl(pKeyLvl);
-      setILvl(pILvl);
+      const [pKeyLvl, pILvl, scaleOverride] = (
+        router.query.params as string[]
+      ).map((s) => parseInt(s));
+      _setKeyLvl(pKeyLvl);
+      _setILvl(pILvl);
+      if (scaleOverride !== undefined) {
+        setScaleOverride(scaleOverride);
+      }
     }
   }, [router.query.params]);
   useEffect(() => {
@@ -28,7 +40,8 @@ const Home = () => {
     router.push(`/loth-divine/${keyLvl}/${iLvl}`, undefined, { shallow: true });
   }, [keyLvl, iLvl]);
   const targetILvl = BASE_ILVL + keyLvl * ILVL_STEP;
-  const scale = 5 + (iLvl - targetILvl) / 5.2;
+  const scale =
+    scaleOverride === null ? 5 + (iLvl - targetILvl) / 5.2 : scaleOverride;
   const barScale = Math.abs(5 - scale) / 5;
   const barColor =
     barScale <= 0.5 ? "bg-green" : barScale <= 0.75 ? "bg-gold" : "bg-orange";
