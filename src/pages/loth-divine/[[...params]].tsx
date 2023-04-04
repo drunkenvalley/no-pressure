@@ -96,7 +96,7 @@ const Home = () => {
                 alt="Divine"
                 className="basis-px z-10"
                 height={64}
-                src="/loth-divine/divine.gif"
+                src="/loth-divine/divine.png"
                 width={64}
               />
             </div>
