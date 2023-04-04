@@ -2,13 +2,15 @@ import NextLink from "next/link";
 import React from "react";
 
 type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
-  variant?: "link";
+  className?: string;
   href: string;
+  variant?: "link";
 };
 type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
+  className?: string;
   isActive: boolean;
-  variant: "nav";
   onClick: () => void;
+  variant: "nav";
 };
 type Props = LinkVariantProps | NavVariantProps;
 
@@ -21,7 +23,7 @@ type Props = LinkVariantProps | NavVariantProps;
  *     is handled by an isActive prop, rather than directly by hover/focus.
  */
 const Link = (props: Props) => {
-  const { variant, children } = props;
+  const { children, className: additionalClassNames = "", variant } = props;
 
   const getActiveStyle = (): string => `
   ${
@@ -38,7 +40,9 @@ const Link = (props: Props) => {
   focus:after:opacity-100
 `;
 
-  const className = `
+  const className = [
+    `
+    outline-offset-2
     cursor-pointer
     relative
 
@@ -52,7 +56,11 @@ const Link = (props: Props) => {
     after:duration-300
 
     ${getActiveStyle()}
-  `.trim();
+  `,
+    additionalClassNames,
+  ]
+    .join(" ")
+    .trim();
 
   let element: JSX.Element;
   switch (variant) {
