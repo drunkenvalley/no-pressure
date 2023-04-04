@@ -51,6 +51,7 @@ const Home = () => {
       <Head>
         <title>No Pressure - the Loth-Divine Scale</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="noindex" name="robots" />
       </Head>
       <Nav navItems={[]} />
       <main className="h-full max-w-5xl mx-auto flex flex-col items-center gap-y-12 lg:gap-y-32 pb-8 pt-24 px-4">
