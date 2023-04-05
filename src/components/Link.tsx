@@ -29,15 +29,9 @@ const Link = (props: Props) => {
   ${
     // Non-hover/focus state: no underline unless link is the active nav variant
     variant === "nav" && props.isActive
-      ? "after:right-0 after:opacity-100"
-      : "after:right-full after:opacity-0"
+      ? "bg-[length:100%_0.1em] bg-[left_top_100%]"
+      : ""
   }
-
-  hover:after:right-0
-  focus:after:right-0
-
-  hover:after:opacity-100
-  focus:after:opacity-100
 `;
 
   const className = [
@@ -46,14 +40,11 @@ const Link = (props: Props) => {
     cursor-pointer
     relative
 
-    after:block
-    after:absolute
-    after:border
-    after:h-px
-    after:top-full
-    after:left-0
-    after:transition-all
-    after:duration-300
+    bg-gradient-to-r from-current to-current bg-no-repeat
+    bg-[length:0%_0.1em] hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
+    bg-[right_top_100%] hover:bg-[left_top_100%] focus:bg-[left_top_100%]
+
+    transition-all duration-300 ease-in-out
 
     ${getActiveStyle()}
   `,
