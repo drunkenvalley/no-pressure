@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/inv_pet_frostwolfpup.jpg";
+import Image from "./Image";
+import Link from "./Link";
+import { useRouter } from "next/router";
 
-const Nav = () => {
-  const navItems = [
-    { id: "home", name: "Home" },
-    { id: "join-us", name: "Join us" },
-    { id: "raid-progression", name: "Raid Progression" },
-    { id: "corner", name: "Bruxy's Corner" },
-  ] as const;
+const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
+  const router = useRouter();
 
   const scrollToView = (id: (typeof navItems)[number]["id"]) => {
     const element = document.getElementById(id);
@@ -16,16 +13,10 @@ const Nav = () => {
     }
   };
 
-  const [navHasBackground, setNavHasBackground] = useState(false);
   const [visibleNavItems, setVisibleNavItems] = useState<string[]>([]);
   const [activeNavItem, setActiveNavItem] = useState<string | null>(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const observedStart = (entry: IntersectionObserverEntry) => {
-    if (entry.isIntersecting) {
-      return setNavHasBackground(false);
-    }
-    return setNavHasBackground(true);
-  };
   const observedNavItems = (entry: IntersectionObserverEntry) => {
     const id = entry.target.id;
     if (entry.isIntersecting) {
@@ -34,20 +25,21 @@ const Nav = () => {
     return setVisibleNavItems((items) => items.filter((item) => item !== id));
   };
 
-  const observer = new IntersectionObserver(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        const id = entry.target.id;
-        if (id === "start") {
-          return observedStart(entry);
-        }
-        observedNavItems(entry);
-      });
-    },
-    {
-      threshold: 0.85,
-    }
-  );
+  // typeof window === 'undefined' when component is being rendered on the server.
+  // node env doesn't have IntersectionObserver, so we have to account for it not being available
+  const observer = (typeof window !== "undefined" &&
+    new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+          observedNavItems(entry);
+        });
+      },
+      {
+        threshold: 0.85,
+      }
+    )) as IntersectionObserver;
+  // observer is currently only used inside useEffect, which never runs on the server.
+  // that means we're safe to do "as ..." on the whole thing, and the browser/node discrepancy ends here
 
   // This effect is to observe the start and nav items
   useEffect(() => {
@@ -68,41 +60,69 @@ const Nav = () => {
     );
   }, [visibleNavItems]);
 
+  const navItemEls = navItems.map(({ name, id }) => (
+    <li className="mx-4" key={id}>
+      <Link
+        isActive={activeNavItem === id}
+        onClick={() => {
+          scrollToView(id);
+          setShowMobileMenu(false);
+        }}
+        variant="nav"
+      >
+        {name}
+      </Link>
+    </li>
+  ));
   return (
     <>
       <div className="absolute" id="start">
         {/* position: absolute removes it from the visual flow, while still intersecting with viewport */}
       </div>
       <header
-        className={`sticky top-0 py-8 z-10 max-w-none w-full ml-[50%] translate-x-[-50%] ${
-          navHasBackground
-            ? "bg-purple/80 ease-in duration-300 backdrop-blur-sm"
-            : ""
-        }`.trim()}
+        className="fixed top-0 p-4 pr-12 lg:px-0 z-10 max-w-none w-full bg-purple/80 backdrop-blur-sm"
         id="navbar"
       >
-        <nav className="max-w-5xl mx-auto flex justify-between" id="nav">
-          <img
-            className="cursor-pointer rounded-full"
-            onClick={() => scrollToView("home")}
-            src={logo}
+        <nav
+          className="max-w-5xl mx-auto flex justify-between items-center"
+          id="nav"
+        >
+          <Image
+            alt="Frostwolf pup"
+            className="cursor-pointer rounded-full w-16 h-16"
+            height={64}
+            onClick={() => {
+              if (router.pathname === "/") {
+                window.scrollTo({ behavior: "smooth", top: 0 });
+                setShowMobileMenu(false);
+              } else {
+                router.push("/");
+              }
+            }}
+            src={"/frostwolfpup.jpg"}
+            width={64}
           />
-          <ul className="flex items-center">
-            {navItems.map(({ name, id }) => (
-              <li
-                className={`mx-4 cursor-pointer relative before:block before:absolute before:border before:h-px before:top-full before:left-0 before:transition-all before:duration-300 ${
-                  activeNavItem === id
-                    ? "before:right-0 before:opacity-1"
-                    : "before:right-full before:opacity-0"
-                }`.trim()}
-                key={id}
-                onClick={() => scrollToView(id)}
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
+          {navItems.length ? (
+            <div
+              className="md:hidden flex flex-col justify-between h-4 cursor-pointer"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              {Array(3)
+                .fill(0)
+                .map((_, i) => (
+                  <div className="w-4 h-0.5 rounded-sm bg-gold" key={i} />
+                ))}
+            </div>
+          ) : null}
+          <ul className="hidden md:flex items-center">{navItemEls}</ul>
         </nav>
+        <ul
+          className={`flex flex-col items-center justify-evenly md:hidden overflow-hidden ease-in duration-300 ${
+            showMobileMenu ? "h-96" : "h-0"
+          }`.trim()}
+        >
+          {navItemEls}
+        </ul>
       </header>
     </>
   );

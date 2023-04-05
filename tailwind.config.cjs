@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './index.html',
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
@@ -19,6 +18,9 @@ module.exports = {
     extend: {
       fontFamily: {
         nunito: ['Nunito', 'sans-serif']
+      },
+      transitionProperty: {
+        height: 'height'
       }
     }
   },

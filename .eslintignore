@@ -6,10 +6,9 @@ public/**/*
 .eslintrc.cjs
 .eslintignore
 .gitignore
-vite.config.ts
-vite.build.config.ts
 .github
 .husky
+next.config.js
 tailwind.config.cjs
 postcss.config.cjs
 readme.md
