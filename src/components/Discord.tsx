@@ -76,6 +76,7 @@ const Discord = () => {
         className="w-full h-full min-h-[500px]"
         sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
         src={`https://discord.com/widget?id=${discordWidgetId}&theme=dark`}
+        title="Preview of No Pressure community Discord"
       />
     </div>
   );
