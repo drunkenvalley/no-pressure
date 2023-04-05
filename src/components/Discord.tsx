@@ -35,7 +35,7 @@ const Discord = () => {
               World of Warcraft: Dragonflight
             </Link>{" "}
             together without stress from players. To have fun and learn
-            together, and do contents of all challenges.
+            together, and do content of every difficulty level.
           </p>
           <p>
             Join us today and find out what it&apos;s like to play with a no
