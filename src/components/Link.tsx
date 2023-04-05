@@ -29,8 +29,8 @@ const Link = (props: Props) => {
   ${
     // Non-hover/focus state: no underline unless link is the active nav variant
     variant === "nav" && props.isActive
-      ? "bg-[length:100%_0.1em] bg-[left_top_100%]"
-      : ""
+      ? "bg-[length:100%_0.1em]"
+      : "bg-[length:1em_0.1em]"
   }
 `;
 
@@ -41,10 +41,10 @@ const Link = (props: Props) => {
     relative
 
     bg-gradient-to-r from-current to-current bg-no-repeat
-    bg-[length:0%_0.1em] hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
-    bg-[right_top_100%] hover:bg-[left_top_100%] focus:bg-[left_top_100%]
+    hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
+    bg-[left_top_100%]
 
-    transition-all duration-300 ease-in-out
+    transition-[background-size] duration-300 ease-in-out
 
     ${getActiveStyle()}
   `,
