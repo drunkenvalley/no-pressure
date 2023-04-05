@@ -2,13 +2,13 @@ import NextLink from "next/link";
 import React from "react";
 
 type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
-  variant?: "link";
   href: string;
+  variant?: "link";
 };
 type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
   isActive: boolean;
-  variant: "nav";
   onClick: () => void;
+  variant: "nav";
 };
 type Props = LinkVariantProps | NavVariantProps;
 
@@ -21,38 +21,35 @@ type Props = LinkVariantProps | NavVariantProps;
  *     is handled by an isActive prop, rather than directly by hover/focus.
  */
 const Link = (props: Props) => {
-  const { variant, children } = props;
+  const { children, className: additionalClassNames = "", variant } = props;
 
   const getActiveStyle = (): string => `
   ${
     // Non-hover/focus state: no underline unless link is the active nav variant
     variant === "nav" && props.isActive
-      ? "after:right-0 after:opacity-100"
-      : "after:right-full after:opacity-0"
+      ? "bg-[length:100%_0.1em]"
+      : "bg-[length:1em_0.1em]"
   }
-
-  hover:after:right-0
-  focus:after:right-0
-
-  hover:after:opacity-100
-  focus:after:opacity-100
 `;
 
-  const className = `
+  const className = [
+    `
+    outline-offset-2
     cursor-pointer
     relative
 
-    after:block
-    after:absolute
-    after:border
-    after:h-px
-    after:top-full
-    after:left-0
-    after:transition-all
-    after:duration-300
+    bg-gradient-to-r from-current to-current bg-no-repeat
+    hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
+    bg-[left_top_100%]
+
+    transition-[background-size] duration-300 ease-in-out
 
     ${getActiveStyle()}
-  `.trim();
+  `,
+    additionalClassNames,
+  ]
+    .join(" ")
+    .trim();
 
   let element: JSX.Element;
   switch (variant) {
