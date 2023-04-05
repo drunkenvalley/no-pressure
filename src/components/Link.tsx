@@ -2,12 +2,10 @@ import NextLink from "next/link";
 import React from "react";
 
 type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
-  className?: string;
   href: string;
   variant?: "link";
 };
 type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
-  className?: string;
   isActive: boolean;
   onClick: () => void;
   variant: "nav";
