@@ -16,6 +16,7 @@ const Footer = () => {
       </p>
       <div className="flex items-center justify-center mt-4">
         <NextLink
+          aria-label="Join our Discord server"
           href={process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string}
           rel="noreferrer"
           target="_blank"
@@ -29,6 +30,7 @@ const Footer = () => {
           />
         </NextLink>
         <NextLink
+          aria-label="Visit our Github repository"
           href="https://github.com/drunkenvalley/no-pressure/graphs/contributors"
           rel="noreferrer"
           target="_blank"
