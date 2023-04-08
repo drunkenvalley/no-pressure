@@ -17,7 +17,6 @@ const Home = () => {
           { id: "home", name: "Home" },
           { id: "join-us", name: "Join us" },
           { id: "raid-progression", name: "Raid Progression" },
-          { id: "corner", name: "Bruxy's Corner" },
         ]}
       />
       <main className="max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">

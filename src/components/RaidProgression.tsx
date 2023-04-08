@@ -1,5 +1,6 @@
 import ProgressionCard, { ProgressionCardProps } from "./ProgressionCard";
 import { useEffect, useState } from "react";
+import characters from "@/data/raiders.json";
 
 export type RaiderIOCharacter = {
   name: string;
@@ -18,19 +19,6 @@ export type RaiderIOCharacter = {
 
 const RaidProgression = () => {
   const [raiders, setRaiders] = useState<readonly RaiderIOCharacter[]>([]);
-
-  const characters = [
-    { name: "Bruxy", realm: "Silvermoon" },
-    { name: "Hyrrvorð", realm: "Wrathbringer" },
-    { name: "Liquidora", realm: "Silvermoon" },
-    { name: "Luciferaél", realm: "Draenor" },
-    { name: "Nista", realm: "Twisting Nether" },
-    { name: "Sevattar", realm: "Outland" },
-    { name: "Tabibrave", realm: "Defias Brotherhood" },
-    { name: "Thoggo", realm: "Ragnaros" },
-    { name: "Villish", realm: "Silvermoon" },
-    { name: "Xamona", realm: "Turalyon" },
-  ];
 
   const fetchRaiders = () => {
     Promise.all(

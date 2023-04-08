@@ -13,7 +13,12 @@ const RaiderCard = ({
 
   return (
     <div>
-      <NextLink href={raider.profile_url} rel="noreferrer" target="_blank">
+      <NextLink
+        className="flex-col items-center justify-center flex"
+        href={raider.profile_url}
+        rel="noreferrer"
+        target="_blank"
+      >
         <Image
           alt={raider.name}
           className="w-16 h-16"
