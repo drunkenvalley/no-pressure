@@ -6,16 +6,14 @@ const Discord = ({
   src = `https://discord.com/widget?id=${envWidgetId}&theme=dark`,
   title = "Preview of No Pressure community Discord",
   ...rest
-}: React.HTMLProps<HTMLIFrameElement>) => {
-  return (
-    <iframe
-      className={`w-full h-full min-h-[500px] ${className}`.trim()}
-      sandbox={sandbox}
-      src={src}
-      title={title}
-      {...rest}
-    />
-  );
-};
+}: React.HTMLProps<HTMLIFrameElement>) => (
+  <iframe
+    className={`w-full h-full min-h-[500px] ${className}`.trim()}
+    sandbox={sandbox}
+    src={src}
+    title={title}
+    {...rest}
+  />
+);
 
 export default Discord;
