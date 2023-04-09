@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
     props: {
       discordData,
     },
-    revalidate: 5 * 60,
+    revalidate: 5 * 60, // 5 minutes
   };
 };
 
