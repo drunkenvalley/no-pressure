@@ -1,11 +1,30 @@
+import About from "@/components/About";
 import Discord from "../components/Discord";
+import DiscordResponse from "@/interfaces/DiscordJson";
 import FeatureList from "../components/FeatureList";
+import GetDiscordData from "@/components/GetDiscord";
+import GridSection from "@/components/GridSection";
 import Head from "next/head";
 import HeroBanner from "../components/HeroBanner";
 import Nav from "../components/Nav";
 import RaidProgression from "../components/RaidProgression";
 
-const Home = () => {
+export const getStaticProps = async () => {
+  const discordData = await GetDiscordData();
+
+  return {
+    props: {
+      discordData,
+    },
+    revalidate: 5 * 60,
+  };
+};
+
+interface Props {
+  discordData: DiscordResponse;
+}
+
+const Home = ({ discordData }: Props) => {
   return (
     <>
       <Head>
@@ -22,7 +41,10 @@ const Home = () => {
       <main className="max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
         <HeroBanner />
         <FeatureList />
-        <Discord />
+        <GridSection id="join-us">
+          <About inviteLink={discordData.instant_invite} />
+          <Discord />
+        </GridSection>
         <RaidProgression />
       </main>
     </>
