@@ -1,8 +1,8 @@
 import About from "@/components/About";
 import Discord from "../components/Discord";
-import DiscordResponse from "@/interfaces/DiscordJson";
+import DiscordResponse from "@/interfaces/DiscordData";
 import FeatureList from "../components/FeatureList";
-import GetDiscordData from "@/components/GetDiscord";
+import FetchDiscordData from "@/components/FetchDiscord";
 import GridSection from "@/components/GridSection";
 import Head from "next/head";
 import HeroBanner from "../components/HeroBanner";
@@ -10,7 +10,7 @@ import Nav from "../components/Nav";
 import RaidProgression from "../components/RaidProgression";
 
 export const getStaticProps = async () => {
-  const discordData = await GetDiscordData();
+  const discordData = await FetchDiscordData();
 
   return {
     props: {

@@ -1,4 +1,4 @@
-import DiscordResponse from "@/interfaces/DiscordJson";
+import DiscordResponse from "@/interfaces/DiscordData";
 
 export const getData = async () => {
   const discordId = process.env.NEXT_PUBLIC_DISCORD_WIDGET_ID as string;
