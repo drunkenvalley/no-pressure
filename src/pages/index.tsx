@@ -1,6 +1,6 @@
 import About from "@/components/About";
-import Discord from "../components/Discord";
 import DiscordResponse from "@/interfaces/DiscordData";
+import DiscordWidget from "@/components/Discord/Widget";
 import FeatureList from "../components/FeatureList";
 import FetchDiscordData from "@/components/FetchDiscord";
 import GridSection from "@/components/GridSection";
@@ -43,7 +43,7 @@ const Home = ({ discordData }: Props) => {
         <FeatureList />
         <GridSection id="join-us">
           <About inviteLink={discordData.instant_invite} />
-          <Discord />
+          <DiscordWidget value={discordData} />
         </GridSection>
         <RaidProgression />
       </main>
