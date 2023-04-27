@@ -12,7 +12,9 @@ const Blockquote = ({ cite, children, className }: Props) => {
     >
       <blockquote className="flex flex-col gap-4">{children}</blockquote>
       {cite && (
-        <figcaption className="flex flex-row items-center gap-2">— {cite}</figcaption>
+        <figcaption className="flex flex-row items-center gap-2">
+          — {cite}
+        </figcaption>
       )}
     </figure>
   );
