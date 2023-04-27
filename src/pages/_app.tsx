@@ -4,13 +4,11 @@ import Footer from "@/components/Footer";
 import Head from "next/head";
 import HeroBanner from "@/components/HeroBanner";
 import Nav from "@/components/Nav";
-import pagetitle from "@/utils/pagetitle";
 import { useRouter } from "next/router";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { asPath } = useRouter();
 
-  const title = pagetitle();
   const description = `Welcome to No Pressure - a community built on enjoying World of Warcraft: Dragonflight together, with no pressure`;
   const img = "https://no-pressure.eu/images/og.jpg";
   const domain = "https://no-pressure.eu";
@@ -19,9 +17,6 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <link href="/images/frostwolfpup.jpg" rel="icon" type="image/svg+xml" />
-        <title>{title}</title>
-        <meta content={title} property="og:title" />
-        <meta content={title} name="twitter:title" />
         <meta content={description} name="description" />
         <meta content={description} property="og:description" />
         <meta content={description} name="twitter:description" />
