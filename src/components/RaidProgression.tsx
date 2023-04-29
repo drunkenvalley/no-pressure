@@ -30,9 +30,9 @@ const RaidProgression = () => {
         <>
           {raids.map(({ image, name, ...props }, index) => (
             <ProgressionCard
-              name={name}
               image={image}
               key={name}
+              name={name}
               reverse={index % 2 === 0}
               {...props}
             />
