@@ -1,12 +1,16 @@
 import FetchDiscordData from "@/components/FetchDiscord";
 
+const envInviteLink = process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string;
+
 export const getServerSideProps = async () => {
   const discordData = await FetchDiscordData();
 
-  if (discordData.instant_invite) {
+  const instant_invite = discordData.instant_invite || envInviteLink;
+
+  if (instant_invite) {
     return {
       redirect: {
-        destination: discordData.instant_invite,
+        destination: instant_invite,
         permanent: false,
       },
     };

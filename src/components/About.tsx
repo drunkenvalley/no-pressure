@@ -3,15 +3,11 @@ import Link from "./Link";
 import NextLink from "next/link";
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
-  inviteLink?: string;
   wowMadeEasy?: string;
 }
 
-const envInviteLink = process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string;
-
 export const About = ({
   className = "",
-  inviteLink = envInviteLink,
   wowMadeEasy = "https://www.wowmadeeasy.com/",
   ...rest
 }: Props) => (
@@ -62,7 +58,7 @@ export const About = ({
       flex flex-col items-center justify-center
       transition-all duration-300
       `}
-      href={inviteLink}
+      href="/invite"
       rel="noreferrer"
       target="_blank"
     >
