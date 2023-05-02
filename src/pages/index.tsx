@@ -42,7 +42,7 @@ const Home = ({ discordData }: Props) => {
         <HeroBanner />
         <FeatureList />
         <GridSection id="join-us">
-          <About inviteLink={discordData.instant_invite} />
+          <About />
           <DiscordWidget value={discordData} />
         </GridSection>
         <RaidProgression />
