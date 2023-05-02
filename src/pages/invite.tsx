@@ -1,6 +1,6 @@
 import FetchDiscordData from "@/components/FetchDiscord";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const discordData = await FetchDiscordData();
 
   if (discordData.instant_invite) {
