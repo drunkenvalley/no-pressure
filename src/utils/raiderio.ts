@@ -75,8 +75,12 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
         })),
       });
 
-      if (fetchedRaiders) {
-        setRaiders(fetchedRaiders);
+      const filteredRaiders = fetchedRaiders?.filter(
+        (raider) => !!raider?.name
+      );
+
+      if (filteredRaiders?.length) {
+        setRaiders(filteredRaiders);
       }
 
       setLoading(false);
