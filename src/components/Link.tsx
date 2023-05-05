@@ -6,7 +6,7 @@ type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
   variant?: "link";
 };
 type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
-  isActive: boolean;
+  isActive?: boolean;
   onClick: () => void;
   variant: "nav";
 };
