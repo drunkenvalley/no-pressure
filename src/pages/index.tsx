@@ -5,7 +5,6 @@ import FeatureList from "../components/FeatureList";
 import FetchDiscordData from "@/components/FetchDiscord";
 import GridSection from "@/components/GridSection";
 import Head from "next/head";
-import HeroBanner from "../components/HeroBanner";
 import RaidProgression from "../components/RaidProgression";
 import pagetitle from "@/utils/pagetitle";
 
@@ -33,7 +32,6 @@ const Home = ({ discordData }: Props) => {
         <meta content={title} property="og:title" />
         <meta content={title} name="twitter:title" />
       </Head>
-      <HeroBanner />
       <FeatureList />
       <GridSection id="join-us">
         <About />
