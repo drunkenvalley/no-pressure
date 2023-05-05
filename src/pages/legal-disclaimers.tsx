@@ -1,10 +1,31 @@
 import Blockquote from "@/components/Blockquote";
 import Head from "next/head";
 import Link from "@/components/Link";
+import NextImage from "next/image";
 import pagetitle from "@/utils/pagetitle";
+
+interface UsedImageProps {
+  alt?: string;
+  src: string;
+  title?: string;
+}
 
 const Legal = () => {
   const title = pagetitle("Legal");
+
+  const UsedImage = ({ alt = "", src, title = "" }: UsedImageProps) => (
+    <Link className="w-full pb-1" href={src}>
+      <div className="w-full aspect-video relative">
+        <NextImage
+          alt={alt}
+          className="object-cover rounded-lg drop-shadow-lg"
+          fill
+          src={src}
+        />
+      </div>
+      <div className="mt-2">{title}</div>
+    </Link>
+  );
 
   return (
     <>
@@ -13,8 +34,13 @@ const Legal = () => {
         <meta content={title} property="og:title" />
         <meta content={title} name="twitter:title" />
       </Head>
-      <article className="text-left flex flex-col gap-4">
-        <h1 className="text-3xl font-bold">Legal disclaimers</h1>
+      <article className="text-left flex flex-col gap-4 mx-8 xl:mx-0">
+        <h1 className="text-3xl font-bold mt-6" id="start">
+          <Link href="/legal-disclaimers#start">Legal disclaimers</Link>
+        </h1>
+        <h2 className="text-2xl font-bold mt-6" id="blizzard">
+          <Link href="/legal-disclaimers#blizzard">Blizzard</Link>
+        </h2>
         <p>
           This website uses images and content from World of Warcraft and
           associated materials. All rights to such images and content are
@@ -27,19 +53,14 @@ const Legal = () => {
         </p>
         <Blockquote
           cite={
-            <>
-              <Link
-                className="text-green"
-                href="https://www.blizzard.com/en-us/legal/28d5ebbf-c245-4408-8ba9-043dd5f056bf/legal-faq#1662876719"
-              >
-                Blizzard Entertainment - Legal FAQ
-              </Link>{" "}
-              <small className="flex-grow text-right">
-                Snapshot from 2023-04-27
-              </small>
-            </>
+            <Link
+              className="text-green"
+              href="https://www.blizzard.com/en-us/legal/28d5ebbf-c245-4408-8ba9-043dd5f056bf/legal-faq#1662876719"
+            >
+              Blizzard Entertainment - Legal FAQ
+            </Link>
           }
-          className="text-light"
+          snapshot="Snapshot from 2023-04-27"
         >
           <p>
             Blizzard Entertainment® hereby grants you a personal, non-exclusive,
@@ -72,9 +93,82 @@ const Legal = () => {
           some space below to mapping out the images and content used on this
           website and their sources.
         </p>
-        <h2 className="text-2xl">
-          <Link href="#images">Images</Link>
-        </h2>
+        <h3 className="text-xl font-bold mt-6" id="blizzard-copyright">
+          <Link href="/legal-disclaimers#blizzard-copyright">
+            Copyright notices
+          </Link>
+        </h3>
+
+        <p>
+          The following images are used on this website and are the property of
+        </p>
+
+        <Blockquote
+          cite={
+            <Link
+              className="text-green font-bold mt-6"
+              href="https://www.blizzard.com/en-us/legal/5515ca11-1c96-42a0-b853-e7876a0d19bf/copyright-notices#977300007"
+            >
+              Blizzard Entertainment - Legal - Copyright Notices
+            </Link>
+          }
+          snapshot="Snapshot from 2023-05-05"
+        >
+          <h4 className="text-lg">World of Warcraft®</h4>
+          <p>
+            ©2004 Blizzard Entertainment, Inc. All rights reserved. World of
+            Warcraft, Warcraft and Blizzard Entertainment are trademarks or
+            registered trademarks of Blizzard Entertainment, Inc. in the U.S.
+            and/or other countries.
+          </p>
+        </Blockquote>
+
+        <h3 className="text-lg font-bold mt-6" id="blizzard-images">
+          <Link href="/legal-disclaimers#blizzard-images">Images</Link>
+        </h3>
+
+        <p>
+          At the time of writing, the following include all images on the
+          website that require the copyright notice above.
+        </p>
+
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+          <UsedImage
+            alt="Stairs leading to the entrance of Aberrus, the Shadow Crucible raid, surrounded by humanoid-sized liquid containers glowing green-cyan tones."
+            src="/images/raids/aberrus.png"
+            title="Aberrus, the Shadowed Crucible"
+          />
+          <UsedImage
+            alt="Alexstraza, the Life-Binder and Queen of the Dragons, portrayed both in her humanoid and dragon forms, watching flights of dragon returning to the Dragon Isles."
+            src="/images/hero.png"
+            title="Alexstraza, the Life-Binder"
+          />
+          <UsedImage
+            alt="Raszageth the Storm Incarnate, an enormous proto-dragon infused with the power of the storm, chasing smaller dragon-like creatures."
+            src="/images/features/raids.png"
+            title="Cinematic: Raszageth"
+          />
+          <UsedImage
+            alt="A Watcher standing alone on the Waking Shore of the Dragon Isles, awaiting the dragons' return."
+            src="/images/raids/placeholder.png"
+            title="Cinematic: Waking Shore"
+          />
+          <UsedImage
+            alt="Iskaara, a village in the Azure Span, featuring several tuskar standing at the entrance. One is riding an ottusk. A tuskar is a humanoid walrus. An ottusk is a rideable otter mount."
+            src="/images/features/people.jpg"
+            title="Iskaara, Azure Span"
+          />
+          <UsedImage
+            alt="The last boss of Ruby Life Pools, a proto-dragon and their companion, unleashing fire on the dungoneering adventurers."
+            src="/images/features/dungeons.png"
+            title="Ruby Life Pools"
+          />
+          <UsedImage
+            alt="Raiding group battling Raszageth the Storm Incarnate, a proto-dragon, in the Vault of the Incarnates raid."
+            src="/images/raids/voti.png"
+            title="Vault of the Incarnates"
+          />
+        </div>
       </article>
     </>
   );
