@@ -4,7 +4,7 @@ import Image from "@/components/Image";
 import pagetitle from "@/utils/pagetitle";
 import { useRouter } from "next/router";
 
-const BASE_ILVL = 330;
+const BASE_ILVL = 346;
 const ILVL_STEP = 4;
 const DEFAULT_KEY = 10;
 const DEFAULT_ILVL = BASE_ILVL + DEFAULT_KEY * ILVL_STEP;
@@ -137,8 +137,8 @@ const Home = () => {
             undergeared to Divine (10) being overgeared.
           </p>
           <p>
-            For example, bringing a 384 ilvl into a +20 dungeon would give you a
-            score of Loth (0). On the other hand, requiring a 420 ilvl for a +16
+            For example, bringing a 400 ilvl into a +20 dungeon would give you a
+            score of Loth (0). On the other hand, requiring a 436 ilvl for a
             dungeon would give you a score of Divine (10).
           </p>
           <p>

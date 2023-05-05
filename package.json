@@ -2,6 +2,44 @@
   "name": "no-pressure",
   "version": "0.1.0",
   "private": false,
+  "contributors": [
+    {
+      "name": "Sveinung Tørresdal",
+      "email": "drunkenvalley@gmail.com",
+      "url": "https://github.com/drunkenvalley"
+    },
+    {
+      "name": "Iain Brookes",
+      "email": "me@iainbrux.com",
+      "url": "https://github.com/iainbrux"
+    },
+    {
+      "name": "Alex Mazurenko",
+      "url": "https://github.com/thatssosanya"
+    },
+    {
+      "name": "EmmaMaybe",
+      "url": "https://github.com/EmmaMaybe"
+    },
+    {
+      "name": "Jure Zajc",
+      "email": "Jure.Zajc.95@Gmail.Com",
+      "url": "https://github.com/JureZajc"
+    },
+    {
+      "name": "Rohit Gurav",
+      "email": "realrohiteth@gmail.com",
+      "url": "https://github.com/realrohitgurav"
+    },
+    {
+      "name": "Dominik",
+      "url": "https://github.com/bdbch"
+    },
+    {
+      "name": "amish89",
+      "url": "https://github.com/amish89"
+    }
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
