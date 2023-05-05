@@ -2,15 +2,10 @@ import Image from "./Image";
 import Link from "./Link";
 import NextLink from "next/link";
 
-interface Props extends React.HTMLProps<HTMLDivElement> {
-  wowMadeEasy?: string;
-}
-
 export const About = ({
   className = "",
-  wowMadeEasy = "https://www.wowmadeeasy.com/",
   ...rest
-}: Props) => (
+}: React.HTMLProps<HTMLDivElement>) => (
   <div
     className={`w-full h-full bg-gradient-to-b from-purple via-purple to-blue/25 bg-[length:150%_100%] bg-center flex flex-col gap-8 p-8 md:p-12 rounded-lg ${className}`.trim()}
     {...rest}
@@ -43,7 +38,7 @@ export const About = ({
       <p>
         Join us today and find out what it&apos;s like to play with a no
         pressure community. If you&apos;re in the US check out{" "}
-        <Link className="text-green" href={wowMadeEasy}>
+        <Link className="text-green" href="https://www.wowmadeeasy.com/">
           WoW Made Easy
         </Link>{" "}
         - the original that inspired No Pressure.
