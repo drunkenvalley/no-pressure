@@ -1,19 +1,28 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 
 interface Props
   extends PropsWithChildren<React.HTMLAttributes<HTMLQuoteElement>> {
-  cite?: JSX.Element;
+  cite?: ReactNode;
+  snapshot?: ReactNode;
 }
 
-const Blockquote = ({ cite, children, className }: Props) => {
+const Blockquote = ({
+  cite = "",
+  children,
+  className,
+  snapshot = "",
+}: Props) => {
   return (
     <figure
-      className={`flex flex-col gap-4 border border-l-8 p-8 ${className}`.trim()}
+      className={`flex flex-col gap-4 border border-l-8 p-8 bg-dark ${className}`.trim()}
     >
       <blockquote className="flex flex-col gap-4">{children}</blockquote>
       {cite && (
-        <figcaption className="flex flex-row items-center gap-2">
-          — {cite}
+        <figcaption className="flex flex-col md:flex-row gap-2">
+          <span className="place-self-start">— {cite}</span>
+          <small className="flex-grow text-right text-gold/50 place-self-end">
+            {snapshot}
+          </small>
         </figcaption>
       )}
     </figure>
