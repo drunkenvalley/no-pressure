@@ -1,6 +1,6 @@
 # No Pressure
 
-Welcome to the No Pressure website repository. This is a [React](https://react.dev/) & [TypeScript](https://www.typescriptlang.org/) project built on [Vite](https://vitejs.dev/), with [SCSS](https://sass-lang.com/) and [Tailwind CSS](https://tailwindcss.com/) available for use.
+Welcome to the No Pressure website repository. This is a [React](https://react.dev/) & [TypeScript](https://www.typescriptlang.org/) project built on [NEXT.js](https://nextjs.org/), with [SCSS](https://sass-lang.com/) and [Tailwind CSS](https://tailwindcss.com/) available for use.
 
 ## Contributing
 
@@ -8,11 +8,13 @@ If you want to join the team reach out in [Issues](https://github.com/drunkenval
 
 ## Requirements
 
-This project uses [Vite](https://vitejs.dev/), so to run one needs to meet the minimum requirements set forth there.
+This project uses [NEXT.js](https://nextjs.org/), so to run one needs to meet the minimum requirements set forth there.
 
-With that in mind, the currently known requirements are:
+With that in mind, the currently known minimum requirements are:
 
-* Node version 14.18+, 16+
+* Node version 14.6.0
+
+We recommend using the latest LTS versions.
 
 ## Getting started
 

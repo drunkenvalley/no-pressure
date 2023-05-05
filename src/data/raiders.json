@@ -1,12 +1,42 @@
 [
-  { "name": "Bruxy", "realm": "Silvermoon" },
-  { "name": "Hyrrvorð", "realm": "Wrathbringer" },
-  { "name": "Liquidora", "realm": "Silvermoon" },
-  { "name": "Luciferaél", "realm": "Draenor" },
-  { "name": "Thornormu", "realm": "Twisting Nether" },
-  { "name": "Altalock", "realm": "Outland" },
-  { "name": "Tabibrave", "realm": "Defias Brotherhood" },
-  { "name": "Thoggo", "realm": "Ragnaros" },
-  { "name": "Villish", "realm": "Silvermoon" },
-  { "name": "Xamona", "realm": "Turalyon" }
+  {
+    "characterName": "Bruxy",
+    "realm": "Silvermoon"
+  },
+  {
+    "characterName": "Hyrrvorð",
+    "realm": "Wrathbringer"
+  },
+  {
+    "characterName": "Liquidora",
+    "realm": "Silvermoon"
+  },
+  {
+    "characterName": "Luciferaél",
+    "realm": "Draenor"
+  },
+  {
+    "characterName": "Thornormu",
+    "realm": "Twisting Nether"
+  },
+  {
+    "characterName": "Altalock",
+    "realm": "Outland"
+  },
+  {
+    "characterName": "Tabibrave",
+    "realm": "Defias Brotherhood"
+  },
+  {
+    "characterName": "Thoggo",
+    "realm": "Ragnaros"
+  },
+  {
+    "characterName": "Villish",
+    "realm": "Silvermoon"
+  },
+  {
+    "characterName": "Xamona",
+    "realm": "Turalyon"
+  }
 ]
