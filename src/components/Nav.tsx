@@ -6,13 +6,6 @@ import { useRouter } from "next/router";
 const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
   const router = useRouter();
 
-  const scrollToView = (id: (typeof navItems)[number]["id"]) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const [visibleNavItems, setVisibleNavItems] = useState<string[]>([]);
   const [activeNavItem, setActiveNavItem] = useState<string | null>(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -63,12 +56,11 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
   const navItemEls = navItems.map(({ name, id }) => (
     <li className="mx-4" key={id}>
       <Link
+        href={`/#${id}`}
         isActive={activeNavItem === id}
         onClick={() => {
-          scrollToView(id);
           setShowMobileMenu(false);
         }}
-        variant="nav"
       >
         {name}
       </Link>

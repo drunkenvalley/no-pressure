@@ -1,34 +1,36 @@
-import NextLink from "next/link";
+import NextLink, { LinkProps as TLink } from "next/link";
+import { PropsWithChildren } from "react";
 import React from "react";
+import { useRouter } from "next/router";
 
-type LinkVariantProps = React.HTMLProps<HTMLAnchorElement> & {
-  href: string;
-  variant?: "link";
-};
-type NavVariantProps = React.HTMLProps<HTMLLIElement> & {
-  isActive: boolean;
-  onClick: () => void;
-  variant: "nav";
-};
-type Props = LinkVariantProps | NavVariantProps;
+type TButton = Omit<React.HTMLProps<HTMLButtonElement>, "type">;
+
+interface IProps {
+  className?: string;
+  isActive?: boolean;
+}
+
+interface BtnProps extends TButton, IProps, PropsWithChildren {}
+interface LinkProps extends TLink, IProps, PropsWithChildren {}
 
 /**
  * A reusable link component with animated underline when the link is active.
  *
- * Has two variants:
- *  1. "link" (default): renders a <Link> component with hover/focus styling.
- *  2. "nav": renders a <button> with an onClick callback. Active state styling
- *     is handled by an isActive prop, rather than directly by hover/focus.
+ * If href is present it uses NextLink, otherwise it uses a button.
  */
-const Link = (props: Props) => {
-  const { children, className: additionalClassNames = "", variant } = props;
+const Link = (props: BtnProps | LinkProps) => {
+  const {
+    children,
+    className: additionalClassNames = "",
+    isActive = false,
+    onClick,
+    ...rest
+  } = props;
 
   const getActiveStyle = (): string => `
   ${
     // Non-hover/focus state: no underline unless link is the active nav variant
-    variant === "nav" && props.isActive
-      ? "bg-[length:100%_0.1em]"
-      : "bg-[length:1em_0.1em]"
+    isActive ? "bg-[length:100%_0.1em]" : "bg-[length:1em_0.1em]"
   }
 `;
 
@@ -51,26 +53,50 @@ const Link = (props: Props) => {
     .join(" ")
     .trim();
 
-  let element: JSX.Element;
-  switch (variant) {
-    case "nav": {
-      element = (
-        <button className={className} onClick={props.onClick}>
-          {children}
-        </button>
-      );
-      break;
+  const router = useRouter();
+
+  const scrollToView = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    const anchorFn = onClick as React.MouseEventHandler<HTMLAnchorElement>;
+
+    const target = event?.target as HTMLAnchorElement;
+    const href = target?.href;
+    const url = new URL(href) || null;
+
+    if (href && url?.pathname !== window.location.pathname) {
+      return router.push(href);
     }
-    default: {
-      element = (
-        <NextLink className={className} href={props.href as string}>
-          {children}
-        </NextLink>
-      );
+
+    const id = target?.href?.split("#").pop() ?? "";
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", `#${id}`);
     }
+
+    if (anchorFn) {
+      anchorFn(event);
+    }
+  };
+
+  if (props.href) {
+    const anchorProps = rest as LinkProps;
+    return (
+      <NextLink className={className} onClick={scrollToView} {...anchorProps}>
+        {children}
+      </NextLink>
+    );
   }
 
-  return element;
+  const buttonProps = rest as BtnProps;
+  const buttonFn = onClick as React.MouseEventHandler<HTMLButtonElement>;
+  return (
+    <button className={className} onClick={buttonFn} {...buttonProps}>
+      {children}
+    </button>
+  );
 };
 
 export default Link;

@@ -101,7 +101,7 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
           "aberrus-the-shadowed-crucible",
           "heroic"
         ),
-        image: "/raids/placeholder.png",
+        image: "/raids/aberrus.png",
         mythic: generateMaxTotalFor(
           raiders,
           "aberrus-the-shadowed-crucible",
