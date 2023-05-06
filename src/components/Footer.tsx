@@ -4,7 +4,7 @@ import NextLink from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple text-gold text-center py-4">
+    <footer className="w-full max-w-full md:max-w-5xl mx-auto bg-purple text-gold text-center py-4">
       <p className="text-sm">
         <Link
           href="https://github.com/drunkenvalley/no-pressure"
@@ -14,10 +14,22 @@ const Footer = () => {
           Made with 🦶 by members of the No Pressure community.
         </Link>
       </p>
+      <p className="text-xs md:max-w-3xl mx-auto my-3">
+        <span className="text-light/70">
+          World of Warcraft® ©2004 Blizzard Entertainment, Inc. All rights
+          reserved. World of Warcraft, Warcraft and Blizzard Entertainment are
+          trademarks or registered trademarks of Blizzard Entertainment, Inc. in
+          the U.S. and/or other countries.
+        </span>
+        <br />
+        <Link href="/legal-disclaimers">
+          Read more about legal disclaimers and copyright notices.
+        </Link>
+      </p>
       <div className="flex items-center justify-center mt-4">
         <NextLink
           aria-label="Join our Discord server"
-          href={process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string}
+          href="/invite"
           rel="noreferrer"
           target="_blank"
         >

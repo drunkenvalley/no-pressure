@@ -5,9 +5,8 @@ import FeatureList from "../components/FeatureList";
 import FetchDiscordData from "@/components/FetchDiscord";
 import GridSection from "@/components/GridSection";
 import Head from "next/head";
-import HeroBanner from "../components/HeroBanner";
-import Nav from "../components/Nav";
 import RaidProgression from "../components/RaidProgression";
+import pagetitle from "@/utils/pagetitle";
 
 export const getStaticProps = async () => {
   const discordData = await FetchDiscordData();
@@ -25,28 +24,20 @@ interface Props {
 }
 
 const Home = ({ discordData }: Props) => {
+  const title = pagetitle("Home");
   return (
     <>
       <Head>
-        <title>No Pressure Community</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>{title}</title>
+        <meta content={title} property="og:title" />
+        <meta content={title} name="twitter:title" />
       </Head>
-      <Nav
-        navItems={[
-          { id: "home", name: "Home" },
-          { id: "join-us", name: "Join us" },
-          { id: "raid-progression", name: "Raid Progression" },
-        ]}
-      />
-      <main className="max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
-        <HeroBanner />
-        <FeatureList />
-        <GridSection id="join-us">
-          <About />
-          <DiscordWidget value={discordData} />
-        </GridSection>
-        <RaidProgression />
-      </main>
+      <FeatureList />
+      <GridSection id="join-us">
+        <About />
+        <DiscordWidget value={discordData} />
+      </GridSection>
+      <RaidProgression />
     </>
   );
 };
