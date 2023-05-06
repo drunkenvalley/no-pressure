@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "./Image";
 import Link from "./Link";
 import { useRouter } from "next/router";
