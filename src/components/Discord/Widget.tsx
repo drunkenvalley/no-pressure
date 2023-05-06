@@ -27,9 +27,7 @@ export const Widget = ({ value }: Props) => {
         </div>
         {!memberOverflow && (
           <div className="absolute text-gold bottom-0 right-0 w-full p-8 bg-purple/80 backdrop-blur-sm">
-            <Link onClick={() => setMemberOverflow(true)} variant="nav">
-              Show more
-            </Link>
+            <Link onClick={() => setMemberOverflow(true)}>Show more</Link>
           </div>
         )}
       </div>
