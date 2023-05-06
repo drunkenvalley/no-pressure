@@ -16,10 +16,7 @@ interface LinkProps extends TLink, IProps, PropsWithChildren {}
 /**
  * A reusable link component with animated underline when the link is active.
  *
- * Has two variants:
- *  1. "link" (default): renders a <Link> component with hover/focus styling.
- *  2. "nav": renders a <button> with an onClick callback. Active state styling
- *     is handled by an isActive prop, rather than directly by hover/focus.
+ * If href is present it uses NextLink, otherwise it uses a button.
  */
 const Link = (props: BtnProps | LinkProps) => {
   const {
