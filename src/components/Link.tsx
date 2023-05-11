@@ -1,7 +1,7 @@
 import NextLink, { LinkProps as TLink } from "next/link";
+import { NextRouter, useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import React from "react";
-import { useRouter } from "next/router";
 
 type TButton = Omit<React.HTMLProps<HTMLButtonElement>, "type">;
 
@@ -21,82 +21,83 @@ interface LinkProps extends TLink, IProps, PropsWithChildren {}
 const Link = (props: BtnProps | LinkProps) => {
   const {
     children,
-    className: additionalClassNames = "",
+    className: extraClassName = "",
     isActive = false,
-    onClick,
+    onClick: extraOnClick,
     ...rest
   } = props;
 
-  const getActiveStyle = (): string => `
-  ${
-    // Non-hover/focus state: no underline unless link is the active nav variant
-    isActive ? "bg-[length:100%_0.1em]" : "bg-[length:1em_0.1em]"
-  }
-`;
-
   const className = [
-    `
-    outline-offset-2
-    cursor-pointer
-    relative
-
-    bg-gradient-to-r from-current to-current bg-no-repeat
-    hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
-    bg-[left_top_100%]
-
-    transition-[background-size] duration-300 ease-in-out
-
-    ${getActiveStyle()}
-  `,
-    additionalClassNames,
+    defaultClassName,
+    // Non-hover/focus state: no underline unless link is the active nav variant
+    isActive ? "bg-[length:100%_0.1em]" : "bg-[length:1em_0.1em]",
+    extraClassName,
   ]
     .join(" ")
     .trim();
 
   const router = useRouter();
 
-  const scrollToView = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    const anchorFn = onClick as React.MouseEventHandler<HTMLAnchorElement>;
-
-    const target = event?.target as HTMLAnchorElement;
-    const href = target?.href;
-    const url = new URL(href) || null;
-
-    if (href && url?.pathname !== window.location.pathname) {
-      return router.push(href);
-    }
-
-    const id = target?.href?.split("#").pop() ?? "";
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      history.replaceState(null, "", `#${id}`);
-    }
-
-    if (anchorFn) {
-      anchorFn(event);
-    }
-  };
-
   if (props.href) {
-    const anchorProps = rest as LinkProps;
     return (
-      <NextLink className={className} onClick={scrollToView} {...anchorProps}>
+      <NextLink
+        className={className}
+        onClick={(e) => {
+          onClick(e, router);
+          (extraOnClick as React.MouseEventHandler<HTMLAnchorElement>)?.(e);
+        }}
+        {...(rest as LinkProps)}
+      >
         {children}
       </NextLink>
     );
   }
 
-  const buttonProps = rest as BtnProps;
-  const buttonFn = onClick as React.MouseEventHandler<HTMLButtonElement>;
   return (
-    <button className={className} onClick={buttonFn} {...buttonProps}>
+    <button
+      className={className}
+      onClick={extraOnClick as React.MouseEventHandler<HTMLButtonElement>}
+      {...(rest as BtnProps)}
+    >
       {children}
     </button>
   );
+};
+
+const defaultClassName = `
+  outline-offset-2
+  cursor-pointer
+  relative
+
+  bg-gradient-to-r from-current to-current bg-no-repeat
+  hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
+  bg-[left_top_100%]
+
+  transition-[background-size] duration-300 ease-in-out
+`;
+
+const onClick = (
+  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  router: NextRouter
+) => {
+  const target = e.target as HTMLAnchorElement;
+  const href = target.href;
+  if (!href || href.startsWith("http")) {
+    return;
+  }
+
+  e.preventDefault();
+
+  if (new URL(href).pathname !== window.location.pathname) {
+    return router.push(href);
+  }
+
+  const id = href.split("#").pop() as string;
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  }
 };
 
 export default Link;
