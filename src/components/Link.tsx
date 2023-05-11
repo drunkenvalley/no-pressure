@@ -39,6 +39,7 @@ const Link = (props: BtnProps | LinkProps) => {
   const router = useRouter();
 
   if (props.href) {
+    const isExternal = (props.href as string).startsWith("http");
     return (
       <NextLink
         className={className}
@@ -46,6 +47,7 @@ const Link = (props: BtnProps | LinkProps) => {
           onClick(e, router);
           (extraOnClick as React.MouseEventHandler<HTMLAnchorElement>)?.(e);
         }}
+        target={isExternal ? "_blank" : undefined}
         {...(rest as LinkProps)}
       >
         {children}
