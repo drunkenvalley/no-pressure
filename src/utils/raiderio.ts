@@ -95,7 +95,9 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
 
     return [
       {
-        bosses: 9,
+        bosses:
+          raiders[0].raid_progression["aberrus-the-shadowed-crucible"]
+            .total_bosses,
         heroic: generateMaxTotalFor(
           raiders,
           "aberrus-the-shadowed-crucible",
@@ -116,7 +118,8 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
         raiders,
       },
       {
-        bosses: 8,
+        bosses:
+          raiders[0].raid_progression["vault-of-the-incarnates"].total_bosses,
         heroic: generateMaxTotalFor(
           raiders,
           "vault-of-the-incarnates",

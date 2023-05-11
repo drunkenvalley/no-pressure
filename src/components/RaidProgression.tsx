@@ -12,6 +12,7 @@ export type RaiderIOCharacter = {
       mythic_bosses_killed: number;
       normal_bosses_killed: number;
       summary: string;
+      total_bosses: number;
     };
   };
   realm: string;
