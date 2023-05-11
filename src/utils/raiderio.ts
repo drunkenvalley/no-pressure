@@ -95,7 +95,7 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
 
     return [
       {
-        bosses: 8,
+        bosses: 9,
         heroic: generateMaxTotalFor(
           raiders,
           "aberrus-the-shadowed-crucible",
