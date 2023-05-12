@@ -16,6 +16,10 @@
     "realm": "Wrathbringer"
   },
   {
+    "characterName": "Lascielle",
+    "realm": "Draenor"
+  },
+  {
     "characterName": "Liquidora",
     "realm": "Silvermoon"
   },
@@ -24,12 +28,16 @@
     "realm": "Draenor"
   },
   {
-    "characterName": "Thornormu",
-    "realm": "Twisting Nether"
+    "characterName": "Mordure",
+    "realm": "Frostmane"
   },
   {
-    "characterName": "Altalock",
-    "realm": "Outland"
+    "characterName": "Puppykin",
+    "realm": "Defias Brotherhood"
+  },
+  {
+    "characterName": "Thornormu",
+    "realm": "Twisting Nether"
   },
   {
     "characterName": "Tabibrave",
