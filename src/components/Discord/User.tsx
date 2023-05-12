@@ -13,6 +13,7 @@ export const User = ({ avatar_url, game, username }: Props): JSX.Element => {
         className="rounded-full"
         height={16}
         src={avatar_url}
+        unoptimized
         width={16}
       />
       <span className="grow text-left">{username}</span>
