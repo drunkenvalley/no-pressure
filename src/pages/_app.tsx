@@ -16,7 +16,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <link href="/images/no-pressure-logo-icon.png" rel="icon" type="image/svg+xml" />
+        <link
+          href="/images/no-pressure-logo-icon.png"
+          rel="icon"
+          type="image/svg+xml"
+        />
         <meta content={description} name="description" />
         <meta content={description} property="og:description" />
         <meta content={description} name="twitter:description" />

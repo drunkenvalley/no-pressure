@@ -83,7 +83,6 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
             alt="No Pressure logo"
             className="cursor-pointer"
             height={64}
-            width={291}
             onClick={() => {
               if (router.pathname === "/") {
                 window.scrollTo({ behavior: "smooth", top: 0 });
@@ -93,7 +92,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
               }
             }}
             src={"/no-pressure-logo-text.png"}
-            
+            width={291}
           />
           {navItems.length ? (
             <div
