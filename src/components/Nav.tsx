@@ -80,9 +80,10 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
           id="nav"
         >
           <Image
-            alt="Frostwolf pup"
-            className="cursor-pointer rounded-full w-16 h-16"
+            alt="No Pressure logo"
+            className="cursor-pointer"
             height={64}
+            width={291}
             onClick={() => {
               if (router.pathname === "/") {
                 window.scrollTo({ behavior: "smooth", top: 0 });
@@ -91,8 +92,8 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
                 router.push("/");
               }
             }}
-            src={"/frostwolfpup.jpg"}
-            width={64}
+            src={"/no-pressure-logo-text.png"}
+            
           />
           {navItems.length ? (
             <div
