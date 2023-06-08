@@ -3,16 +3,6 @@ import { PropsWithChildren } from "react";
 import React from "react";
 import { useRouter } from "next/router";
 
-type TButton = Omit<React.HTMLProps<HTMLButtonElement>, "type">;
-
-interface IProps {
-  className?: string;
-  isActive?: boolean;
-}
-
-interface BtnProps extends TButton, IProps, PropsWithChildren {}
-interface LinkProps extends TLink, IProps, PropsWithChildren {}
-
 /**
  * A reusable link component with animated underline when the link is active.
  *
@@ -98,5 +88,15 @@ const Link = (props: BtnProps | LinkProps) => {
     </button>
   );
 };
+
+type TButton = Omit<React.HTMLProps<HTMLButtonElement>, "type">;
+
+interface IProps {
+  className?: string;
+  isActive?: boolean;
+}
+
+interface BtnProps extends TButton, IProps, PropsWithChildren {}
+interface LinkProps extends TLink, IProps, PropsWithChildren {}
 
 export default Link;
