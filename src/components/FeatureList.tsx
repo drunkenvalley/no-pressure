@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Feature from "./Feature";
+import Feature from "@/components/Feature";
 import axios from "axios";
 
 const FeatureList = () => {

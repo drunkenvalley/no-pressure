@@ -1,4 +1,4 @@
-import Image from "./Image";
+import Image from "@/components/Image";
 
 const HeroBanner = () => (
   <div className="relative h-96 scroll-mt-[136px]" id="home">

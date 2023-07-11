@@ -1,13 +1,13 @@
-import Image from "./Image";
+import Image from "@/components/Image";
 import NextLink from "next/link";
-import { RaiderIOCharacter } from "./RaidProgression";
+import { RioProfile } from "@/utils/raiderio";
 
 const RaiderCard = ({
   currentRaid,
   raider,
 }: {
   currentRaid: string;
-  raider: RaiderIOCharacter;
+  raider: RioProfile;
 }) => {
   const raid = raider.raid_progression[currentRaid];
 

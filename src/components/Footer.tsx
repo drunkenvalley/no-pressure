@@ -1,5 +1,5 @@
-import Image from "./Image";
-import Link from "./Link";
+import Image from "@/components/Image";
+import Link from "@/components/Link";
 import NextLink from "next/link";
 
 const Footer = () => {

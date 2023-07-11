@@ -1,11 +1,5 @@
 import { PropsWithChildren, ReactNode } from "react";
 
-interface Props
-  extends PropsWithChildren<React.HTMLAttributes<HTMLQuoteElement>> {
-  cite?: ReactNode;
-  snapshot?: ReactNode;
-}
-
 const Blockquote = ({
   cite = "",
   children,
@@ -28,5 +22,11 @@ const Blockquote = ({
     </figure>
   );
 };
+
+interface Props
+  extends PropsWithChildren<React.HTMLAttributes<HTMLQuoteElement>> {
+  cite?: ReactNode;
+  snapshot?: ReactNode;
+}
 
 export default Blockquote;

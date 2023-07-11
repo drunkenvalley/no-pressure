@@ -1,10 +1,5 @@
-import Image from "./Image";
+import Image from "@/components/Image";
 import { PropsWithChildren } from "react";
-
-interface Props {
-  src: string;
-  title: string;
-}
 
 const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
   <article className="text-center flex-grow w-full flex flex-col gap-y-3">
@@ -22,5 +17,10 @@ const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
     </section>
   </article>
 );
+
+interface Props {
+  src: string;
+  title: string;
+}
 
 export default Feature;

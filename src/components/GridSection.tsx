@@ -1,7 +1,3 @@
-interface Props
-  extends React.HTMLProps<HTMLDivElement>,
-    React.PropsWithChildren {}
-
 export const GridSection = ({ children, className = "", ...rest }: Props) => {
   return (
     <div
@@ -12,5 +8,9 @@ export const GridSection = ({ children, className = "", ...rest }: Props) => {
     </div>
   );
 };
+
+interface Props
+  extends React.HTMLProps<HTMLDivElement>,
+    React.PropsWithChildren {}
 
 export default GridSection;

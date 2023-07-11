@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { RaiderIOCharacter } from "@/components/RaidProgression";
 
 export const generateMaxTotalFor = (
-  raiders: RaiderIOCharacter[],
+  raiders: RioProfile[],
   raid: string,
   type: "normal" | "heroic" | "mythic"
 ) => {
@@ -17,71 +16,47 @@ export const generateMaxTotalFor = (
   return 0;
 };
 
-export type FetchRaiderIoProfileOptions = {
-  realm: string;
-  characterName: string;
-};
-
-export const fetchRaiderIoProfile = async (
-  options: FetchRaiderIoProfileOptions
-) => {
-  const { characterName, realm } = options;
-
-  const res = await fetch(
-    `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`
-  );
-
-  const json = (await res.json()) as RaiderIOCharacter;
-
-  return json;
-};
-
-export type FetchRaiderIoProfilesOptions = {
-  raiders: Array<FetchRaiderIoProfileOptions>;
-};
-
-export const fetchRaiderIoProfiles = async (
-  options: FetchRaiderIoProfilesOptions
-) => {
+export const fetchRioProfile = async ({
+  characterName,
+  realm,
+}: FetchRioProfileOptions) => {
   try {
-    const { raiders } = options;
-    return Promise.all(
-      raiders.map(
-        async (raider) =>
-          await fetchRaiderIoProfile({
-            characterName: raider.characterName,
-            realm: raider.realm,
-          })
-      )
+    const res = await fetch(
+      `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`
     );
+
+    const json = (await res.json()) as RioProfile;
+    return json;
   } catch (e) {
     return null;
   }
 };
 
-export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
+export const fetchRioProfiles = async ({
+  raiders,
+}: FetchRioProfilesOptions) => {
+  return Promise.all(raiders.map(fetchRioProfile)).then((r) =>
+    r.filter((c) => !!c?.name)
+  ) as Promise<RioProfile[]>;
+};
+
+export const useRaiders = (options: FetchRioProfilesOptions) => {
   const { raiders: inputRaiders } = options;
   const [loading, setLoading] = useState<boolean>(false);
-  const [raiders, setRaiders] = useState<Array<RaiderIOCharacter> | null>(null);
+  const [raiders, setRaiders] = useState<Array<RioProfile> | null>(null);
 
   const refetchRaiders = useCallback(
-    async (characters: FetchRaiderIoProfilesOptions["raiders"]) => {
+    async (characters: FetchRioProfilesOptions["raiders"]) => {
       setLoading(true);
 
-      const fetchedRaiders = await fetchRaiderIoProfiles({
+      const fetchedRaiders = await fetchRioProfiles({
         raiders: characters.map((character) => ({
           characterName: character.characterName,
           realm: character.realm,
         })),
       });
 
-      const filteredRaiders = fetchedRaiders?.filter(
-        (raider) => !!raider?.name
-      );
-
-      if (filteredRaiders?.length) {
-        setRaiders(filteredRaiders);
-      }
+      setRaiders(fetchedRaiders);
 
       setLoading(false);
     },
@@ -89,57 +64,7 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
   );
 
   const raids = useMemo(() => {
-    if (!raiders) {
-      return null;
-    }
-
-    return [
-      {
-        bosses:
-          raiders[0].raid_progression["aberrus-the-shadowed-crucible"]
-            .total_bosses,
-        heroic: generateMaxTotalFor(
-          raiders,
-          "aberrus-the-shadowed-crucible",
-          "heroic"
-        ),
-        image: "/raids/aberrus.png",
-        mythic: generateMaxTotalFor(
-          raiders,
-          "aberrus-the-shadowed-crucible",
-          "mythic"
-        ),
-        name: "Aberrus, the Shadowed Crucible",
-        normal: generateMaxTotalFor(
-          raiders,
-          "aberrus-the-shadowed-crucible",
-          "normal"
-        ),
-        raiders,
-      },
-      {
-        bosses:
-          raiders[0].raid_progression["vault-of-the-incarnates"].total_bosses,
-        heroic: generateMaxTotalFor(
-          raiders,
-          "vault-of-the-incarnates",
-          "heroic"
-        ),
-        image: "/raids/voti.png",
-        mythic: generateMaxTotalFor(
-          raiders,
-          "vault-of-the-incarnates",
-          "mythic"
-        ),
-        name: "Vault of the Incarnates",
-        normal: generateMaxTotalFor(
-          raiders,
-          "vault-of-the-incarnates",
-          "normal"
-        ),
-        raiders,
-      },
-    ];
+    return buildRaids(raiders);
   }, [raiders]);
 
   useEffect(() => {
@@ -147,4 +72,81 @@ export const useRaiders = (options: FetchRaiderIoProfilesOptions) => {
   }, [inputRaiders]);
 
   return { loading, raiders, raids, refetchRaiders };
+};
+
+export const buildRaids = (raiders: RioProfile[] | null) => {
+  if (!raiders?.length) {
+    return null;
+  }
+
+  return [
+    {
+      bosses:
+        raiders[0].raid_progression["aberrus-the-shadowed-crucible"]
+          .total_bosses,
+      heroic: generateMaxTotalFor(
+        raiders,
+        "aberrus-the-shadowed-crucible",
+        "heroic"
+      ),
+      image: "/raids/aberrus.png",
+      mythic: generateMaxTotalFor(
+        raiders,
+        "aberrus-the-shadowed-crucible",
+        "mythic"
+      ),
+      name: "Aberrus, the Shadowed Crucible",
+      normal: generateMaxTotalFor(
+        raiders,
+        "aberrus-the-shadowed-crucible",
+        "normal"
+      ),
+      raiders,
+    },
+    {
+      bosses:
+        raiders[0].raid_progression["vault-of-the-incarnates"].total_bosses,
+      heroic: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "heroic"),
+      image: "/raids/voti.png",
+      mythic: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "mythic"),
+      name: "Vault of the Incarnates",
+      normal: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "normal"),
+      raiders,
+    },
+  ];
+};
+
+export type RioProfile = {
+  name: string;
+  profile_url: string;
+  thumbnail_url: string;
+  raid_progression: {
+    [raid: string]: {
+      heroic_bosses_killed: number;
+      mythic_bosses_killed: number;
+      normal_bosses_killed: number;
+      summary: string;
+      total_bosses: number;
+    };
+  };
+  realm: string;
+};
+
+export type FetchRioProfileOptions = {
+  realm: string;
+  characterName: string;
+};
+
+export type FetchRioProfilesOptions = {
+  raiders: Array<FetchRioProfileOptions>;
+};
+
+export type Raid = {
+  bosses: number;
+  heroic: number;
+  image: string;
+  mythic: number;
+  name: string;
+  normal: number;
+  raiders: RioProfile[];
 };
