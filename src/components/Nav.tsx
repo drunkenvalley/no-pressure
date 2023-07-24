@@ -80,8 +80,8 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
           id="nav"
         >
           <Image
-            alt="Frostwolf pup"
-            className="cursor-pointer rounded-full w-16 h-16"
+            alt="No Pressure logo"
+            className="cursor-pointer"
             height={64}
             onClick={() => {
               if (router.pathname === "/") {
@@ -91,8 +91,8 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
                 router.push("/");
               }
             }}
-            src={"/frostwolfpup.jpg"}
-            width={64}
+            src={"/no-pressure-logo-text.png"}
+            width={291}
           />
           {navItems.length ? (
             <div

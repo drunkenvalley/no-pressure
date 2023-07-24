@@ -59,10 +59,10 @@ export const About = ({
       target="_blank"
     >
       <Image
-        alt="Frostwolf pup"
+        alt="No Pressure icon"
         className="w-16 h-16 rounded-full"
         height={64}
-        src="/frostwolfpup.jpg"
+        src="/no-pressure-logo-icon.png"
         width={64}
       />
       <div className="flex flex-col align-center">

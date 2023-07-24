@@ -18,7 +18,10 @@ We recommend using the latest LTS versions.
 
 ## Getting started
 
-Clone this repo using HTTPS, and navigate to the cloned folder. From within the folder you can run the following commands:
+Clone this repo using HTTPS, and navigate to the cloned folder. 
 
-1. `npm ci` to install the node modules.
+Inside the cloned folder, you must create a `.env` file which will contain the environment variables to use for this project. You can find an `.env.example` to show you which variables you will need. Then, simply ask a web dev over in #webdev-nerds to send you the correct values.
+
+Once this is set up, you can run the following commands:
+1. `npm ci` to install the node modules. 
 2. `npm run dev` to run a local server.
