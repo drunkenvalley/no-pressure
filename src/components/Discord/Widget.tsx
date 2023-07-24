@@ -17,9 +17,7 @@ export const Widget = ({ value }: Props) => {
             memberOverflow ? "pointer-events-auto" : "pointer-events-none"
           }`}
         >
-          {members.map((item) => (
-            <User key={item.id} {...item} />
-          ))}
+          {members && members.map((item) => <User key={item.id} {...item} />)}
         </div>
         {!memberOverflow && (
           <div className="absolute text-gold bottom-0 right-0 w-full p-8 bg-purple/80 backdrop-blur-sm">
