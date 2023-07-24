@@ -42,7 +42,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "prisma migrate deploy && next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint . --fix --max-warnings=0",
     "format": "prettier . --write"
