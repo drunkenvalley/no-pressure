@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Image from "./Image";
-import Link from "./Link";
+import Image from "@/components/Image";
+import Link from "@/components/Link";
 import { useRouter } from "next/router";
 
 const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {

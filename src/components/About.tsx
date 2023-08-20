@@ -1,5 +1,5 @@
-import Image from "./Image";
-import Link from "./Link";
+import Image from "@/components/Image";
+import Link from "@/components/Link";
 import NextLink from "next/link";
 
 export const About = ({
@@ -7,7 +7,7 @@ export const About = ({
   ...rest
 }: React.HTMLProps<HTMLDivElement>) => (
   <div
-    className={`w-full h-full bg-gradient-to-b from-purple via-purple to-blue/25 bg-[length:150%_100%] bg-center flex flex-col gap-8 p-8 md:p-12 rounded-lg ${className}`.trim()}
+    className={`max-w-full h-full bg-gradient-to-b from-purple via-purple to-blue/25 bg-[length:150%_100%] bg-center flex flex-col gap-8 p-8 md:p-12 rounded-lg ${className}`.trim()}
     {...rest}
   >
     <article className="text-left text-yellow-400 flex flex-col gap-6">
@@ -52,6 +52,7 @@ export const About = ({
       aspect-[16/9]
       flex flex-col items-center justify-center
       transition-all duration-300
+      w-full
       `}
       href="/invite"
       rel="noreferrer"
