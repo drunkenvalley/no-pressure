@@ -1,18 +1,7 @@
-import Image from "./Image";
-import RaiderCard from "./RaiderCard";
-import { RaiderIOCharacter } from "./RaidProgression";
+import Image from "@/components/Image";
+import RaiderCard from "@/components/RaiderCard";
+import { RioProfile } from "@/utils/raiderio";
 import { paramCase } from "change-case";
-
-export interface ProgressionCardProps {
-  bosses: number;
-  heroic: number;
-  image: string;
-  mythic: number;
-  name: string;
-  normal: number;
-  raiders: readonly RaiderIOCharacter[];
-  reverse?: boolean;
-}
 
 const ProgressionCard = ({
   bosses,
@@ -71,5 +60,16 @@ const ProgressionCard = ({
     </div>
   </div>
 );
+
+export interface ProgressionCardProps {
+  bosses: number;
+  heroic: number;
+  image: string;
+  mythic: number;
+  name: string;
+  normal: number;
+  raiders: readonly RioProfile[];
+  reverse?: boolean;
+}
 
 export default ProgressionCard;

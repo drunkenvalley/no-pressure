@@ -1,11 +1,7 @@
 import DiscordResponse from "@/interfaces/DiscordData";
-import Link from "../Link";
-import User from "./User";
+import Link from "@/components/Link";
+import User from "@/components/Discord/User";
 import { useState } from "react";
-
-interface Props extends Omit<React.HTMLProps<HTMLDivElement>, "value"> {
-  value: DiscordResponse;
-}
 
 export const Widget = ({ value }: Props) => {
   const [memberOverflow, setMemberOverflow] = useState(false);
@@ -32,5 +28,9 @@ export const Widget = ({ value }: Props) => {
     </section>
   );
 };
+
+interface Props extends Omit<React.HTMLProps<HTMLDivElement>, "value"> {
+  value: DiscordResponse;
+}
 
 export default Widget;

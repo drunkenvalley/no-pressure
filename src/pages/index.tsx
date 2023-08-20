@@ -1,29 +1,19 @@
+import { buildRaids, fetchRioProfiles } from "@/utils/raiderio";
 import About from "@/components/About";
-import DiscordResponse from "@/interfaces/DiscordData";
 import DiscordWidget from "@/components/Discord/Widget";
-import FeatureList from "../components/FeatureList";
-import FetchDiscordData from "@/components/FetchDiscord";
+import FeatureList from "@/components/FeatureList";
 import GridSection from "@/components/GridSection";
 import Head from "next/head";
-import RaidProgression from "../components/RaidProgression";
+import { InferGetStaticPropsType } from "next/types";
+import RaidProgression from "@/components/RaidProgression";
+import fetchDiscordData from "@/components/FetchDiscord";
 import pagetitle from "@/utils/pagetitle";
+import { prisma } from "@/utils/db";
 
-export const getStaticProps = async () => {
-  const discordData = await FetchDiscordData();
-
-  return {
-    props: {
-      discordData,
-    },
-    revalidate: 5 * 60, // 5 minutes
-  };
-};
-
-interface Props {
-  discordData: DiscordResponse;
-}
-
-const Home = ({ discordData }: Props) => {
+const Home = ({
+  discordData,
+  raids,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = pagetitle("Home");
   return (
     <>
@@ -37,9 +27,31 @@ const Home = ({ discordData }: Props) => {
         <About />
         <DiscordWidget value={discordData} />
       </GridSection>
-      <RaidProgression />
+      <RaidProgression raids={raids} />
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const discordData = await fetchDiscordData();
+  const raiders = await prisma.raider.findMany();
+  const uniqueRaiders = raiders.filter(
+    (r, i) =>
+      i ===
+      raiders.findIndex(
+        (rr) => rr.characterName === r.characterName && rr.realm === r.realm
+      )
+  );
+  const rioProfiles = await fetchRioProfiles({ raiders: uniqueRaiders });
+  const raids = buildRaids(rioProfiles);
+
+  return {
+    props: {
+      discordData,
+      raids,
+    },
+    revalidate: 5 * 60, // 5 minutes
+  };
 };
 
 export default Home;
