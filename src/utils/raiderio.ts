@@ -82,6 +82,28 @@ export const buildRaids = (raiders: RioProfile[] | null) => {
   return [
     {
       bosses:
+        raiders[0].raid_progression["amirdrassil-the-dreams-hope"].total_bosses,
+      heroic: generateMaxTotalFor(
+        raiders,
+        "amirdrassil-the-dreams-hope",
+        "heroic"
+      ),
+      image: "/raids/amirdrassil2.png",
+      mythic: generateMaxTotalFor(
+        raiders,
+        "amirdrassil-the-dreams-hope",
+        "mythic"
+      ),
+      name: "Amirdrassil, the Dream's Hope",
+      normal: generateMaxTotalFor(
+        raiders,
+        "amirdrassil-the-dreams-hope",
+        "normal"
+      ),
+      raiders,
+    },
+    {
+      bosses:
         raiders[0].raid_progression["aberrus-the-shadowed-crucible"]
           .total_bosses,
       heroic: generateMaxTotalFor(
