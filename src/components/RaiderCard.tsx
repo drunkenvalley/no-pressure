@@ -11,6 +11,15 @@ const RaiderCard = ({
 }) => {
   const raid = raider.raid_progression[currentRaid];
 
+  // Hotfix to hide raiders who have not killed any bosses in the current raid
+  if (
+    !raid.normal_bosses_killed &&
+    !raid.heroic_bosses_killed &&
+    !raid.mythic_bosses_killed
+  ) {
+    return null;
+  }
+
   return (
     <div>
       <NextLink
