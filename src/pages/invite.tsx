@@ -5,7 +5,7 @@ const envInviteLink = process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string;
 export const getServerSideProps = async () => {
   const discordData = await FetchDiscordData();
 
-  const instant_invite = discordData.instant_invite || envInviteLink;
+  const instant_invite = envInviteLink || discordData.instant_invite;
 
   if (instant_invite) {
     return {
