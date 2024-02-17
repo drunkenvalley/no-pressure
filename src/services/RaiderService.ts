@@ -10,8 +10,8 @@ export default class RaiderService {
   }: character): Promise<raider[]> {
     const characters = await prisma.raider.findMany({
       where: {
-        characterName,
-        realm,
+        characterName: characterName || undefined,
+        realm: realm || undefined,
       },
     });
 
