@@ -13,7 +13,7 @@ export type KeysOf<KnownValues> = keyof KnownValues;
 /**
  * Helper type for autocomplete when accessing object properties via string literals, while allowing any string.
  *
- * **Example:** We should hint to users what icons are defined.
+ * **Example:** An icon pack with a known set of keys, but also allowing any string to be used as a key.
  * ```typescript
  * export let name: HintedKeys<KeysOf<typeof icons>>;
  * ```
