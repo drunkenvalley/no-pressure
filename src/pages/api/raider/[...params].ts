@@ -9,63 +9,60 @@ type ServiceMethod = Exclude<KeysOf<typeof RaiderService>, "prototype">;
  * @swagger
  * /api/raider/{realm}/{characterName}:
  *   get:
- *     summary: Retrieves all raiders/a raider
- *     description: Retrieves all raiders with no parameters or a single raider with characterName and realm.
+ *     summary: Retrieves raider with characterName and realm.
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: realm
  *         description: Realm of the character
- *         in: query
+ *         in: path
+ *         required: true
  *         type: string
  *       - name: characterName
  *         description: Name of the character
- *         in: query
+ *         in: path
+ *         required: true
  *         type: string
  *     responses:
  *       200:
  *         description: Returns the requested raider/raiders.
- *       400:
- *         description: Invalid request method.
- *       404:
- *         description: Raider not found.
- *       500:
- *         description: An error occurred while retrieving raiders.
+ *       401:
+ *         description: Unauthorized.
  *   post:
- *     summary: Creates a new raider
- *     description: Creates a new raider. Returns the created raider.
+ *     summary: Add a new raider with characterName and realm.
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: realm
  *         description: Realm of the character
- *         in: body
+ *         in: path
  *         required: true
  *         type: string
  *       - name: characterName
  *         description: Name of the character
- *         in: body
+ *         in: path
  *         required: true
  *         type: string
  *     responses:
  *       200:
- *         description: Successfully created raider. Returns the created raider.
+ *         description: Created raider successfully.
  *       400:
  *         description: Bad request, likely missing character name or realm.
+ *       401:
+ *         description: Unauthorized.
  *   delete:
- *     summary: Deletes an existing raider
- *     description: Deletes an existing raider.
+ *     summary: Deletes a raider with characterName and realm.
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: realm
  *         description: Realm of the character
- *         in: body
+ *         in: path
  *         required: true
  *         type: string
  *       - name: characterName
  *         description: Name of the character
- *         in: body
+ *         in: path
  *         required: true
  *         type: string
  *     responses:
