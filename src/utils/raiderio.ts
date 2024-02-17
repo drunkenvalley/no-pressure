@@ -20,6 +20,7 @@ export const fetchRioProfile = async ({
   characterName,
   realm,
 }: FetchRioProfileOptions) => {
+  realm = realm.split(" ").join("-").toLowerCase();
   try {
     const res = await fetch(
       `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`
