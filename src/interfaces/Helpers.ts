@@ -20,7 +20,6 @@ export type KeysOf<KnownValues> = keyof KnownValues;
  * @param KnownValues Type of literals to hint
  * @returns Type containing literals and string
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type HintedKeys<KnownValues extends string> =
   // eslint-disable-next-line @typescript-eslint/ban-types
   (string & {}) | KnownValues;
