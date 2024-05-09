@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { paramCase } from "change-case";
 
 export const generateMaxTotalFor = (
   raiders: RioProfile[],
@@ -20,6 +21,7 @@ export const fetchRioProfile = async ({
   characterName,
   realm,
 }: FetchRioProfileOptions) => {
+  realm = paramCase(realm.replace("'", ""));
   try {
     const res = await fetch(
       `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`
