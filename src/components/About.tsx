@@ -28,9 +28,9 @@ export const About = ({
         enjoy{" "}
         <Link
           className="text-green"
-          href="https://dragonflight.blizzard.com/en-us/"
+          href="https://worldofwarcraft.blizzard.com/en-gb/"
         >
-          World of Warcraft: Dragonflight
+          World of Warcraft
         </Link>{" "}
         together without stress from players. To have fun and learn together,
         and do content of every difficulty level.

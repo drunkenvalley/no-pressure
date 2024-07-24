@@ -22,13 +22,13 @@ const FeatureList = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full gap-x-4 gap-y-6 px-4 md:px-0">
-      <Feature src="/features/people.jpg" title="Meet people!">
+      <Feature src="/features/tww_people.png" title="Meet people!">
         Relax with {userCount || "thousands of"} people
       </Feature>
-      <Feature src="/features/dungeons.png" title="Dungeoneer!">
+      <Feature src="/features/tww_dungeon.png" title="Dungeoneer!">
         Group up with no pressure
       </Feature>
-      <Feature src="/features/raids.png" title="Raid with us!">
+      <Feature src="/features/tww_raid.png" title="Raid with us!">
         Enjoy good company & prog
       </Feature>
     </div>
