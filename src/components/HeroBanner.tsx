@@ -8,7 +8,7 @@ const HeroBanner = () => (
         className="w-full h-full object-cover"
         height={384}
         responsive
-        src="/hero.png"
+        src="/tww_hero.png"
         width={{ lg: 1280, md: 1023, sm: 767 }}
       />
     </div>
