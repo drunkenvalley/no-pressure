@@ -79,7 +79,7 @@ const raiderApi = async (req: NextApiRequest, res: NextApiResponse) => {
   const [realm = "", characterName = ""] = params as string[];
 
   try {
-    const data = await RaiderService[method as ServiceMethod]({
+    const data = await RaiderDbService[method as ServiceMethod]({
       characterName,
       realm,
     });
