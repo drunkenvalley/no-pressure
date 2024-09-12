@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { KeysOf } from "@/interfaces/Helpers";
-import RaiderService from "@/services/RaiderService";
+import RaiderDbService from "@/services/RaiderDbService";
 import withAuthorization from "@/utils/withAuthorization";
 
-type ServiceMethod = Exclude<KeysOf<typeof RaiderService>, "prototype">;
+type ServiceMethod = Exclude<KeysOf<typeof RaiderDbService>, "prototype">;
 
 /**
  * @swagger
