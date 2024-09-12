@@ -86,7 +86,7 @@ export const buildRaids = (raiders: RioProfile[] | null) => {
       bosses:
         raiders[0].raid_progression["nerubar-palace"]?.total_bosses ?? null,
       heroic: generateMaxTotalFor(raiders, "nerubar-palace", "heroic"),
-      image: "/raids/placeholder.png",
+      image: "/raids/nerubar-palace.png",
       mythic: generateMaxTotalFor(raiders, "nerubar-palace", "mythic"),
       name: "Nerub'ar Palace",
       normal: generateMaxTotalFor(raiders, "nerubar-palace", "normal"),
