@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithFallback from "../ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
 import Raiders from "./Raiders";
 import { RioProfile } from "@/interfaces/RaiderIo";
@@ -36,12 +36,13 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
 
   return (
     <>
-      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left">
-        <Image
+      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left border border-gold shadow-xl">
+        <ImageWithFallback
           alt=""
           className="object-cover"
+          fallbackSrc="/images/raids/placeholder.png"
           fill={true}
-          src="/images/raids/nerubar-palace.png"
+          src={`/images/raids/${raid}.png`}
         />
         <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
           <div className="my-4 mx-1">

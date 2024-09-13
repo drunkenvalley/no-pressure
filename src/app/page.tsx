@@ -2,7 +2,7 @@ import About from "@/components/About";
 import DiscordWidget from "@/components/Discord/Widget";
 import FeatureList from "@/components/FeatureList";
 import GridSection from "@/components/GridSection";
-import RaidProgression from "@/components/Raid/RaidProgression";
+import RaidProgression from "@/components/Raid/Progression";
 import fetchDiscordData from "@/components/FetchDiscord";
 
 const Page = async () => {

@@ -28,9 +28,9 @@ const RaidProgression = async () => {
   return (
     <div className="flex flex-col gap-2">
       <div className="p-3">
-        <h3 className="text-left text-2xl">Raid leaders</h3>
+        <h3 className="text-left text-2xl">Raid progress</h3>
         <p className="text-left text-orange">
-          These are the characters used for measuring raid progress.
+          See how far we&apos;ve made it this tier!
         </p>
       </div>
       {raids.map((raid) => (
