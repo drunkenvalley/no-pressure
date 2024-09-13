@@ -1,22 +1,21 @@
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
-import RaidLeader from "./RaidLeader";
+import Raid from "./Raid";
 import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
 
 const RaidProgression = async () => {
   const raiders = await RaiderDbService.get();
   const fetchedProfiles = await Promise.all(
-    raiders.map(
-      async ({ characterName, realm }) =>
-        await RaiderIoService.get({
-          characterName: characterName,
-          realm: realm,
-        }),
-    ),
+    raiders.map(async (raider) => await RaiderIoService.get(raider)),
   );
+
   const leaders = (
     fetchedProfiles.filter((profile) => !!profile.profile_url) as RioProfile[]
   ).sort((a, b) => a.name.localeCompare(b.name));
+
+  const raids = Object.entries(leaders[0]?.raid_progression).map(
+    ([key, value]) => ({ bosses: value.total_bosses, raid: key }),
+  );
 
   // sometimes a character goes missing; this is to help know who
   // rather than them asking why they don't appear
@@ -34,10 +33,12 @@ const RaidProgression = async () => {
           These are the characters used for measuring raid progress.
         </p>
       </div>
-      <RaidLeader profiles={leaders} />
+      {raids.map((raid) => (
+        <Raid key={raid.raid} profiles={leaders} {...raid} />
+      ))}
       {(missing.length && (
         <div className="p-3 text-right text-sm ">
-          <p>We could not resolve these:</p>
+          <p>Could not find / resolve characters:</p>
           <ul className="list-disc flex flex-row justify-end gap-5 pl-4 text-light/70">
             {missing.map((profile) => (
               <li key={`${profile.name}-${profile.realm}`}>
