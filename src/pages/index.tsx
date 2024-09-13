@@ -39,8 +39,8 @@ export const getStaticProps = async () => {
     (r, i) =>
       i ===
       raiders.findIndex(
-        (rr) => rr.characterName === r.characterName && rr.realm === r.realm
-      )
+        (rr) => rr.characterName === r.characterName && rr.realm === r.realm,
+      ),
   );
   const rioProfiles = await fetchRioProfiles({ raiders: uniqueRaiders });
   const raids = buildRaids(rioProfiles);

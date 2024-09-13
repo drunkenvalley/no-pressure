@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { KeysOf } from "@/interfaces/Helpers";
-import RaiderService from "@/services/RaiderService";
+import RaiderDbService from "@/services/RaiderDbService";
 import withAuthorization from "@/utils/withAuthorization";
 
-type ServiceMethod = Exclude<KeysOf<typeof RaiderService>, "prototype">;
+type ServiceMethod = Exclude<KeysOf<typeof RaiderDbService>, "prototype">;
 
 /**
  * @swagger
@@ -79,7 +79,7 @@ const raiderApi = async (req: NextApiRequest, res: NextApiResponse) => {
   const [realm = "", characterName = ""] = params as string[];
 
   try {
-    const data = await RaiderService[method as ServiceMethod]({
+    const data = await RaiderDbService[method as ServiceMethod]({
       characterName,
       realm,
     });
