@@ -3,7 +3,7 @@ import { raider } from "@prisma/client";
 
 type character = Omit<raider, "id">;
 
-export default class RaiderService {
+export default class RaiderDbService {
   public static async get({
     characterName,
     realm,

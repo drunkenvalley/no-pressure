@@ -1,7 +1,7 @@
 import Image from "@/components/Image";
 import RaiderCard from "@/components/RaiderCard";
 import { RioProfile } from "@/utils/raiderio";
-import { paramCase } from "change-case";
+import { kebabCase as paramCase } from "change-case";
 
 const ProgressionCard = ({
   bosses,

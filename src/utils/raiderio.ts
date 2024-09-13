@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { paramCase } from "change-case";
+import { kebabCase as paramCase } from "change-case";
 
 export const generateMaxTotalFor = (
   raiders: RioProfile[],
   raid: string,
-  type: "normal" | "heroic" | "mythic"
+  type: "normal" | "heroic" | "mythic",
 ) => {
   if (raiders.some((raider) => raider.raid_progression[raid])) {
     return Math.max(
       ...raiders.map(
-        (raider) => raider.raid_progression[raid][`${type}_bosses_killed`]
-      )
+        (raider) => raider.raid_progression[raid][`${type}_bosses_killed`],
+      ),
     );
   }
 
@@ -24,7 +24,7 @@ export const fetchRioProfile = async ({
   realm = paramCase(realm.replace("'", ""));
   try {
     const res = await fetch(
-      `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`
+      `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`,
     );
 
     const json = (await res.json()) as RioProfile;
@@ -38,7 +38,7 @@ export const fetchRioProfiles = async ({
   raiders,
 }: FetchRioProfilesOptions) => {
   return Promise.all(raiders.map(fetchRioProfile)).then((r) =>
-    r.filter((c) => !!c?.name)
+    r.filter((c) => !!c?.name),
   ) as Promise<RioProfile[]>;
 };
 
@@ -62,7 +62,7 @@ export const useRaiders = (options: FetchRioProfilesOptions) => {
 
       setLoading(false);
     },
-    []
+    [],
   );
 
   const raids = useMemo(() => {
@@ -84,57 +84,12 @@ export const buildRaids = (raiders: RioProfile[] | null) => {
   return [
     {
       bosses:
-        raiders[0].raid_progression["amirdrassil-the-dreams-hope"].total_bosses,
-      heroic: generateMaxTotalFor(
-        raiders,
-        "amirdrassil-the-dreams-hope",
-        "heroic"
-      ),
-      image: "/raids/amirdrassil2.png",
-      mythic: generateMaxTotalFor(
-        raiders,
-        "amirdrassil-the-dreams-hope",
-        "mythic"
-      ),
-      name: "Amirdrassil, the Dream's Hope",
-      normal: generateMaxTotalFor(
-        raiders,
-        "amirdrassil-the-dreams-hope",
-        "normal"
-      ),
-      raiders,
-    },
-    {
-      bosses:
-        raiders[0].raid_progression["aberrus-the-shadowed-crucible"]
-          .total_bosses,
-      heroic: generateMaxTotalFor(
-        raiders,
-        "aberrus-the-shadowed-crucible",
-        "heroic"
-      ),
-      image: "/raids/aberrus.png",
-      mythic: generateMaxTotalFor(
-        raiders,
-        "aberrus-the-shadowed-crucible",
-        "mythic"
-      ),
-      name: "Aberrus, the Shadowed Crucible",
-      normal: generateMaxTotalFor(
-        raiders,
-        "aberrus-the-shadowed-crucible",
-        "normal"
-      ),
-      raiders,
-    },
-    {
-      bosses:
-        raiders[0].raid_progression["vault-of-the-incarnates"].total_bosses,
-      heroic: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "heroic"),
-      image: "/raids/voti.png",
-      mythic: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "mythic"),
-      name: "Vault of the Incarnates",
-      normal: generateMaxTotalFor(raiders, "vault-of-the-incarnates", "normal"),
+        raiders[0].raid_progression["nerubar-palace"]?.total_bosses ?? null,
+      heroic: generateMaxTotalFor(raiders, "nerubar-palace", "heroic"),
+      image: "/raids/nerubar-palace.png",
+      mythic: generateMaxTotalFor(raiders, "nerubar-palace", "mythic"),
+      name: "Nerub'ar Palace",
+      normal: generateMaxTotalFor(raiders, "nerubar-palace", "normal"),
       raiders,
     },
   ];
