@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Head from "next/head";
 import HeroBanner from "@/components/HeroBanner";
 import Nav from "@/components/Nav";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { asPath } = useRouter();

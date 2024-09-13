@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import Feature from "@/components/Feature";
 import axios from "axios";
@@ -9,7 +11,7 @@ const FeatureList = () => {
   useEffect(() => {
     axios
       .get(
-        `https://discord.com/api/v9/invites/${server}?with_counts=true&with_expiration=true`
+        `https://discord.com/api/v9/invites/${server}?with_counts=true&with_expiration=true`,
       )
       .then((res: { data: { approximate_member_count: number } }) => {
         setUserCount(res.data.approximate_member_count);
