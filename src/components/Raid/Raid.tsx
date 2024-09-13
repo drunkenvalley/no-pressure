@@ -41,9 +41,9 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
           alt=""
           className="object-cover"
           fill={true}
-          src="/images/raids/nerubar-palace.jpg"
+          src="/images/raids/nerubar-palace.png"
         />
-        <div className="relative p-4 pt-32 bg-gradient-to-t from-dark via-dark/20 to-dark/10">
+        <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
           <div className="my-4 mx-1">
             <h3 className="text-3xl relative">
               <span className="absolute text-dark [text-shadow:_0_0_4px_rgb(0_0_0_/_40%)]">
