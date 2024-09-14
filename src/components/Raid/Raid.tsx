@@ -44,6 +44,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
           className="object-cover"
           fallbackSrc="/images/raids/placeholder.png"
           fill={true}
+          quality={90}
           src={`/images/raids/${raid}.png`}
         />
         <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
