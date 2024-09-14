@@ -37,34 +37,32 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
   }));
 
   return (
-    <>
-      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
-        <ImageWithFallback
-          alt=""
-          className="object-cover"
-          fallbackSrc="/images/raids/placeholder.png"
-          fill={true}
-          quality={90}
-          src={`/images/raids/${raid}.png`}
-        />
-        <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
-          <div className="my-4 mx-1">
-            <Shinytext as="h3" className="text-3xl">
-              {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
-            </Shinytext>
-            <div className="flex flex-row gap-4">
-              {difficulties.map(({ prog, name }) => (
-                <Shinytext key={name}>
-                  {name}: {prog}/{bosses}
-                </Shinytext>
-              ))}
-            </div>
+    <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
+      <ImageWithFallback
+        alt=""
+        className="object-cover"
+        fallbackSrc="/images/raids/placeholder.png"
+        fill={true}
+        quality={90}
+        src={`/images/raids/${raid}.png`}
+      />
+      <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
+        <div className="my-4 mx-1">
+          <Shinytext as="h3" className="text-3xl">
+            {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
+          </Shinytext>
+          <div className="flex flex-row gap-4">
+            {difficulties.map(({ prog, name }) => (
+              <Shinytext key={name}>
+                {name}: {prog}/{bosses}
+              </Shinytext>
+            ))}
           </div>
-
-          <Raiders filter={raid} profiles={filteredProfiles} />
         </div>
+
+        <Raiders filter={raid} profiles={filteredProfiles} />
       </div>
-    </>
+    </div>
   );
 };
 
