@@ -2,7 +2,9 @@ import ImageWithFallback from "../ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
 import Raiders from "./Raiders";
 import { RioProfile } from "@/interfaces/RaiderIo";
+import Shinytext from "../Shinytext";
 import { capitalCase } from "change-case";
+import raidnames from "./raidnames.json";
 
 type Props = {
   bosses: number;
@@ -36,7 +38,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
 
   return (
     <>
-      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left border border-gold shadow-xl">
+      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left border-y lg:border-x border-gold shadow-xl">
         <ImageWithFallback
           alt=""
           className="object-cover"
@@ -46,24 +48,14 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
         />
         <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
           <div className="my-4 mx-1">
-            <h3 className="text-3xl relative">
-              <span className="absolute text-dark [text-shadow:_0_0_4px_rgb(0_0_0_/_40%)]">
-                {raid}
-              </span>
-              <span className="relative bg-gradient-to-b from-gold via-gold to-orange text-transparent bg-clip-text">
-                {raid}
-              </span>
-            </h3>
+            <Shinytext as="h3" className="text-3xl">
+              {(raidnames as Record<string, string>)[raid] ?? raid}
+            </Shinytext>
             <div className="flex flex-row gap-4">
               {difficulties.map(({ prog, name }) => (
-                <p className="relative" key={name}>
-                  <span className="absolute text-dark [text-shadow:_0_0_4px_rgb(0_0_0_/_40%)]">
-                    {name}: {prog}/{bosses}
-                  </span>
-                  <span className="relative bg-gradient-to-b from-gold via-gold to-orange text-transparent bg-clip-text">
-                    {name}: {prog}/{bosses}
-                  </span>
-                </p>
+                <Shinytext key={name}>
+                  {name}: {prog}/{bosses}
+                </Shinytext>
               ))}
             </div>
           </div>
