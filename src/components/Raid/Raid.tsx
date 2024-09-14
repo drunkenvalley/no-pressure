@@ -49,7 +49,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
         <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
           <div className="my-4 mx-1">
             <Shinytext as="h3" className="text-3xl">
-              {(raidnames as Record<string, string>)[raid] ?? raid}
+              {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
             </Shinytext>
             <div className="flex flex-row gap-4">
               {difficulties.map(({ prog, name }) => (
