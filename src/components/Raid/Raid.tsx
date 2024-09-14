@@ -38,7 +38,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
 
   return (
     <>
-      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left border-y lg:border-x border-gold shadow-xl">
+      <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
         <ImageWithFallback
           alt=""
           className="object-cover"
