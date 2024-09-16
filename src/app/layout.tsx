@@ -6,7 +6,11 @@ import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   description: `Welcome to No Pressure - a community built on enjoying World of Warcraft: Dragonflight together, with no pressure`,
-  openGraph: { images: "/images/og.png" },
+  openGraph: {
+    images: "/images/og.png",
+    siteName: "No Pressure",
+    url: "https://no-pressure.eu",
+  },
   title: {
     default: "No Pressure",
     template: "No Pressure | %s",
