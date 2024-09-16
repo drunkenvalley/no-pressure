@@ -28,7 +28,7 @@ const RaidProgression = async () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="p-4 lg:rounded-xl">
+      <div className="p-4 lg:rounded-xl" id="raiding">
         <h3 className="mt-2 text-left text-2xl">Raiding</h3>
         <p className="mt-4 text-left text-light/70 max-w-prose">
           Being part of No Pressure need not stop you from enjoying raids. Raids
