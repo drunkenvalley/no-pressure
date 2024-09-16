@@ -21,10 +21,6 @@ const Footer = () => {
           trademarks or registered trademarks of Blizzard Entertainment, Inc. in
           the U.S. and/or other countries.
         </span>
-        <br />
-        <Link href="/legal-disclaimers">
-          Read more about legal disclaimers and copyright notices.
-        </Link>
       </p>
       <div className="flex items-center justify-center mt-4">
         <NextLink

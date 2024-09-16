@@ -1,3 +1,5 @@
+"use client";
+
 import DiscordResponse from "@/interfaces/DiscordData";
 import Link from "@/components/Link";
 import User from "@/components/Discord/User";
