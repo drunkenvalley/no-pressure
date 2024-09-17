@@ -1,10 +1,14 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import Image from "@/components/Image";
 import Link from "@/components/Link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [visibleNavItems, setVisibleNavItems] = useState<string[]>([]);
   const [activeNavItem, setActiveNavItem] = useState<string | null>(null);
@@ -29,7 +33,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
       },
       {
         threshold: 0.85,
-      }
+      },
     )) as IntersectionObserver;
   // observer is currently only used inside useEffect, which never runs on the server.
   // that means we're safe to do "as ..." on the whole thing, and the browser/node discrepancy ends here
@@ -49,7 +53,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
   // Thanks to https://stackoverflow.com/a/64664382/104380
   useEffect(() => {
     return setActiveNavItem(
-      navItems.find(({ id }) => visibleNavItems.includes(id))?.id || null
+      navItems.find(({ id }) => visibleNavItems.includes(id))?.id || null,
     );
   }, [visibleNavItems]);
 
@@ -84,7 +88,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
             className="cursor-pointer"
             height={64}
             onClick={() => {
-              if (router.pathname === "/") {
+              if (pathname === "/") {
                 window.scrollTo({ behavior: "smooth", top: 0 });
                 setShowMobileMenu(false);
               } else {

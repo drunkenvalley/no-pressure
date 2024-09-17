@@ -5,9 +5,9 @@ type character = Omit<raider, "id">;
 
 export default class RaiderDbService {
   public static async get({
-    characterName,
-    realm,
-  }: character): Promise<raider[]> {
+    characterName = "",
+    realm = "",
+  }: Partial<character> = {}): Promise<raider[]> {
     const characters = await prisma.raider.findMany({
       where: {
         characterName: characterName || undefined,

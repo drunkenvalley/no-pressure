@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 const withAuthorization = (
-  handle: (req: NextApiRequest, res: NextApiResponse) => Promise<void>
+  handle: (req: NextApiRequest, res: NextApiResponse) => Promise<void>,
 ) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     if (

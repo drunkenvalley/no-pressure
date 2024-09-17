@@ -1,7 +1,9 @@
+"use client";
+
 import NextLink, { LinkProps as TLink } from "next/link";
 import { PropsWithChildren } from "react";
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 /**
  * A reusable link component with animated underline when the link is active.
@@ -46,7 +48,7 @@ const Link = (props: BtnProps | LinkProps) => {
   const router = useRouter();
 
   const scrollToView = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     event.preventDefault();
     const anchorFn = onClick as React.MouseEventHandler<HTMLAnchorElement>;
