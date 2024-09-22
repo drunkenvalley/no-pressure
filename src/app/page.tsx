@@ -5,7 +5,7 @@ import GridSection from "@/components/GridSection";
 import RaidProgression from "@/components/Raid/Progression";
 import fetchDiscordData from "@/components/FetchDiscord";
 
-export const revalidate = 60;
+export const revalidate = 1800;
 
 const Page = async () => {
   const discordData = await fetchDiscordData();
