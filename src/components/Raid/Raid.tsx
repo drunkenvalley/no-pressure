@@ -4,7 +4,7 @@ import Raiders from "./Raiders";
 import { RioProfile } from "@/interfaces/RaiderIo";
 import Shinytext from "../Shinytext";
 import { capitalCase } from "change-case";
-import raidnames from "./raidnames.json";
+import raidnames from "./raidnames.json"; // Only needs entries for raids like "Nerub-ar Palace" where change-case would interpret slug as "Nerubar Palace"
 
 type Props = {
   bosses: number;
@@ -17,24 +17,27 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
   const filteredProfiles = profiles.filter((profile) => {
     const prog = profile.raid_progression[raid];
     return (
-      prog.normal_bosses_killed ||
-      prog.heroic_bosses_killed ||
-      prog.mythic_bosses_killed
+      prog?.normal_bosses_killed ||
+      prog?.heroic_bosses_killed ||
+      prog?.mythic_bosses_killed
     );
   });
 
   const getProg = (difficulty: Literals<typeof availableDifficulties>) => {
-    return Math.max(
-      ...filteredProfiles.map(
-        (profile) =>
-          profile.raid_progression[raid][`${difficulty}_bosses_killed`],
-      ),
+    const prog = filteredProfiles.map(
+      (profile) =>
+        profile?.raid_progression?.[raid]?.[`${difficulty}_bosses_killed`],
     );
+
+    return (prog.length && Math.max(...prog)) ?? 0;
   };
-  const difficulties = availableDifficulties.map((key) => ({
-    name: capitalCase(key),
-    prog: getProg(key),
-  }));
+  const difficulties = availableDifficulties.map((key) => {
+    const obj = {
+      name: capitalCase(key),
+      prog: getProg(key),
+    };
+    return obj;
+  });
 
   return (
     <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
