@@ -29,7 +29,7 @@ const Image = ({ responsive = false, src, width, ...props }: Props) => {
 
   _width = Math.min(_width, screenWidth);
 
-  return <NextImage src={_src} width={_width} {...props} />;
+  return <NextImage src={_src} width={_width} {...props} unoptimized={true} />;
 };
 
 type SizeLabelMapping = {
