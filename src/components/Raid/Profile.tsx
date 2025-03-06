@@ -17,6 +17,7 @@ const Profile = ({ filter, profile }: Props) => (
           alt={`${profile.name}-${profile.realm}`}
           height={32}
           src={profile.thumbnail_url}
+          unoptimized={true}
           width={32}
         />
       </div>
