@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { RioProfile } from "@/interfaces/RaiderIo";
+import writeSummary from "@/utils/writeSummary";
 
 type Props = {
   profile: RioProfile;
@@ -27,7 +28,7 @@ const Profile = ({ filter, profile }: Props) => (
         </div>
         {filter && (
           <div className="px-2 text-xs">
-            {profile.raid_progression[filter].summary}
+            {writeSummary(profile.raid_progression[filter])}
           </div>
         )}
       </strong>
