@@ -54,11 +54,14 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
             {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
           </Shinytext>
           <div className="flex flex-row gap-4">
-            {difficulties.map(({ prog, name }) => (
-              <Shinytext key={name}>
-                {name}: {prog}/{bosses}
-              </Shinytext>
-            ))}
+            {difficulties.map(
+              ({ prog, name }) =>
+                !!prog && (
+                  <Shinytext key={name}>
+                    {name}: {prog}/{bosses}
+                  </Shinytext>
+                ),
+            )}
           </div>
         </div>
       </div>
