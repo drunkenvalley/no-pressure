@@ -1,6 +1,5 @@
 import ImageWithFallback from "../ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
-import Raiders from "./Raiders";
 import { RioProfile } from "@/interfaces/RaiderIo";
 import Shinytext from "../Shinytext";
 import { capitalCase } from "change-case";
@@ -62,8 +61,6 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
             ))}
           </div>
         </div>
-
-        <Raiders filter={raid} profiles={filteredProfiles} />
       </div>
     </div>
   );
