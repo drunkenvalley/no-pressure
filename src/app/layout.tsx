@@ -15,9 +15,6 @@ export const metadata: Metadata = {
     default: "No Pressure",
     template: "No Pressure | %s",
   },
-  twitter: {
-    images: "/images/og.png",
-  },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
