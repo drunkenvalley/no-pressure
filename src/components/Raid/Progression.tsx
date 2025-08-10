@@ -3,6 +3,7 @@ import Link from "@/components/Link";
 import Raid from "@/components/Raid/Raid";
 import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
+import Raiders from "./Raiders";
 
 const RaidProgression = async () => {
   const raiders = await RaiderDbService.get();
@@ -26,6 +27,10 @@ const RaidProgression = async () => {
     ) as IncompleteRioProfile[]
   ).sort((a, b) => a.name?.localeCompare(b.name));
 
+  const profiles = (
+    fetchedProfiles.filter((profile) => profile.profile_url) as RioProfile[]
+  ).sort((a, b) => a.name?.localeCompare(b.name));
+
   return (
     <div className="flex flex-col gap-4">
       <div className="p-4 lg:rounded-xl" id="raiding">
@@ -43,6 +48,14 @@ const RaidProgression = async () => {
       {raids.map((raid) => (
         <Raid key={raid.raid} profiles={leaders} {...raid} />
       ))}
+      {fetchedProfiles && (
+        <>
+          <p className="mt-4 text-left text-light/70 max-w-prose">
+            The following characters were used in the above. Thank you!
+          </p>
+          <Raiders profiles={profiles} />
+        </>
+      )}
       {(missing.length && (
         <div className="p-3 text-right text-sm ">
           <p>Could not find / resolve characters:</p>

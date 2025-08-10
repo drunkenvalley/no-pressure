@@ -37,11 +37,7 @@ export const About = ({
       </p>
       <p>
         Join us today and find out what it&apos;s like to play with a no
-        pressure community. If you&apos;re in the US check out{" "}
-        <Link className="text-green" href="https://www.wowmadeeasy.com/">
-          WoW Made Easy
-        </Link>{" "}
-        - the original that inspired No Pressure.
+        pressure community.
       </p>
     </article>
     <NextLink
@@ -67,7 +63,7 @@ export const About = ({
       />
       <div className="flex flex-col align-center">
         <h3 className="text-xl mb-1">No Pressure Community</h3>
-        <p className="text-green">Join us</p>
+        <p className="text-green">Join our discord</p>
       </div>
     </NextLink>
   </div>

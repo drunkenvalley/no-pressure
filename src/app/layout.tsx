@@ -4,19 +4,25 @@ import HeroBanner from "@/components/HeroBanner";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 
-export const metadata: Metadata = {
+const meta = {
   description: `Welcome to No Pressure - a community built on enjoying World of Warcraft: Dragonflight together, with no pressure`,
+  images: "/images/og.png",
+  title: "No Pressure",
+  url: "https://no-pressure.eu",
+};
+
+export const metadata: Metadata = {
+  description: meta.description,
   openGraph: {
-    images: "/images/og.png",
-    siteName: "No Pressure",
-    url: "https://no-pressure.eu",
+    images: meta.images,
+    url: meta.url,
   },
   title: {
-    default: "No Pressure",
-    template: "No Pressure | %s",
+    default: meta.title,
+    template: `${meta.title} | %s`,
   },
   twitter: {
-    images: "/images/og.png",
+    images: meta.images,
   },
 };
 
