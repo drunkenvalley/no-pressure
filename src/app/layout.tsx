@@ -13,14 +13,16 @@ const meta = {
 
 export const metadata: Metadata = {
   description: meta.description,
-  other: {
-    "og:image": meta.images,
-    "og:title": meta.title,
-    "og:url": "https://no-pressure.eu",
+  openGraph: {
+    images: meta.images,
+    url: meta.url,
   },
   title: {
     default: meta.title,
     template: `${meta.title} | %s`,
+  },
+  twitter: {
+    images: meta.images,
   },
 };
 
