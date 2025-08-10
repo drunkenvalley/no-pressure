@@ -30,13 +30,15 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
 
     return (prog.length && Math.max(...prog)) ?? 0;
   };
-  const difficulties = availableDifficulties.map((key) => {
-    const obj = {
-      name: capitalCase(key),
-      prog: getProg(key),
-    };
-    return obj;
-  });
+  const difficulties = availableDifficulties
+    .map((key) => {
+      const obj = {
+        name: capitalCase(key),
+        prog: getProg(key),
+      };
+      return obj;
+    })
+    .filter((a) => !!a.prog);
 
   return (
     <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
@@ -54,14 +56,15 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
             {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
           </Shinytext>
           <div className="flex flex-row gap-4">
-            {difficulties.map(
-              ({ prog, name }) =>
-                !!prog && (
-                  <Shinytext key={name}>
-                    {name}: {prog}/{bosses}
-                  </Shinytext>
-                ),
-            )}
+            {(difficulties.length &&
+              difficulties.map(
+                ({ prog, name }) =>
+                  !!prog && (
+                    <Shinytext key={name}>
+                      {name}: {prog}/{bosses}
+                    </Shinytext>
+                  ),
+              )) || <Shinytext>✨ New raid!</Shinytext>}
           </div>
         </div>
       </div>
