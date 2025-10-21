@@ -10,8 +10,11 @@ export const heroBannerType = defineType({
       type: "string",
     }),
     defineField({
-      name: "url",
-      title: "URL",
+      name: "active",
+      type: "boolean",
+    }),
+    defineField({
+      name: "image",
       type: "image",
       validation: (rule) => rule.assetRequired(),
     }),
