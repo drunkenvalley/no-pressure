@@ -19,4 +19,7 @@ export const heroBannerType = defineType({
       validation: (rule) => rule.assetRequired(),
     }),
   ],
+  initialValue: {
+    active: false
+  }
 });
