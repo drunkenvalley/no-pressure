@@ -55,7 +55,7 @@ const Link = (props: BtnProps | LinkProps) => {
 
     const target = event?.target as HTMLAnchorElement;
     const href = target?.href;
-    const url = new URL(href) || null;
+    const url = new URL(href);
 
     if (href && url?.pathname !== window.location.pathname) {
       return router.push(href);
