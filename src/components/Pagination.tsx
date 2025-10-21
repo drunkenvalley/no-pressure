@@ -29,7 +29,7 @@ export const Pagination = <T extends IdentifiedData>({
 
   useEffect(() => {
     setData(value.slice((page - 1) * per, page * per));
-  }, [page]);
+  }, [page, per, value]);
 
   const current = `${page} / ${maxPage}`;
   const btnClass =

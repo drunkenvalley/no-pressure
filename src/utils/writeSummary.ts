@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys */
 import { RioProfile } from "@/interfaces/RaiderIo";
 
 const writeSummary = (raid: RioProfile["raid_progression"][string]) => {

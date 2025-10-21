@@ -1,28 +1,39 @@
-import globals from "globals";
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig } from "eslint/config";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const nextFlatCompat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 const eslintConfig = defineConfig([
-  globalIgnores([
-    "node_modules",
-    "dist",
-    "**/*.{cjs,json,html,md,css,scss}",
-    "src/assets/**/*",
-    "public/**/*",
-    ".gitignore",
-    ".github",
-    "readme.md",
-  ]),
+  ...nextFlatCompat.config({
+    extends: ["next", "next/core-web-vitals", "next/typescript"],
+  }),
   {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
+    rules: {
+      "func-style": [
+        "error",
+        "expression",
+        {
+          allowArrowFunctions: true,
         },
-      },
+      ],
+      "@typescript-eslint/no-unused-vars": "error",
+      "prefer-arrow-callback": "error",
+      "prefer-const": "error",
+      "no-console": "error",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-sort-props": "error",
     },
+  },
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
   },
 ]);
 

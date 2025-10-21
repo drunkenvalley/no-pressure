@@ -17,8 +17,8 @@ export default class RaiderIoService {
       }
       const json = (await response.json()) as RioProfile;
       return json;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
-      console.error(e);
       const missing: IncompleteRioProfile = {
         name: characterName,
         realm: realm,

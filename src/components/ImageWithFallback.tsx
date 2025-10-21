@@ -8,12 +8,13 @@ interface ImageWithFallbackProps extends ImageProps {
 }
 
 const ImageWithFallback = (props: ImageWithFallbackProps) => {
-  const { src, fallbackSrc, ...rest } = props;
+  const { alt, src, fallbackSrc, ...rest } = props;
   const [imgSrc, setImgSrc] = useState(src);
 
   return (
     <Image
       {...rest}
+      alt={alt}
       onError={() => {
         setImgSrc(fallbackSrc);
       }}
