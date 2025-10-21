@@ -4,8 +4,8 @@ import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { authorType } from "./authorType";
-import { heroBannerType } from "./herobannerType";
+import { herobannerType } from "./herobannerType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, categoryType, postType, authorType, heroBannerType],
+  types: [blockContentType, categoryType, postType, authorType, herobannerType],
 };

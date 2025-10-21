@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const herobannerType = defineType({
-  name: "herobanner",
-  title: "Hero Banner",
+export const featureType = defineType({
+  name: "feature",
+  title: "Feature",
   type: "document",
   fields: [
     defineField({
@@ -11,9 +11,9 @@ export const herobannerType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "active",
-      description: "Whether this is the currently active hero banner.",
-      type: "boolean",
+      name: "content",
+      type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "image",
@@ -28,7 +28,4 @@ export const herobannerType = defineType({
       validation: (rule) => rule.required(),
     }),
   ],
-  initialValue: {
-    active: false,
-  },
 });
