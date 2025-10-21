@@ -56,13 +56,19 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.10.3",
     "@tailwindcss/postcss": "^4.1.15",
     "axios": "^1.12.2",
     "change-case": "^5.4.4",
     "eslint-config-next": "^15.5.6",
     "next": "^15.5.6",
+    "next-sanity": "^11.5.5",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "sanity": "^4.10.3",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.5.6",
