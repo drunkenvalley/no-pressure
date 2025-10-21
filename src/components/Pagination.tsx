@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 
 interface IdentifiedData {
@@ -6,7 +7,7 @@ interface IdentifiedData {
 
 interface Props<T>
   extends Omit<React.HTMLProps<HTMLDivElement>, "id" | "value"> {
-  component: (props: T) => JSX.Element;
+  component: (props: T) => React.JSX.Element;
   value: T[];
   per: number;
   page: number;
