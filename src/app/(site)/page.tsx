@@ -6,6 +6,7 @@ import HeroBanner from "@/components/HeroBanner";
 import RaidProgression from "@/components/Raid/Progression";
 import fetchDiscordData from "@/components/FetchDiscord";
 import { client } from "@/sanity/lib/client";
+import Feature from "@/components/Feature";
 
 export const revalidate = 1800;
 
@@ -14,11 +15,18 @@ const Page = async () => {
   const herobanner = await client.fetch(
     `*[_type=="herobanner" && active][0]{alt, "src": image.asset->url}`,
   );
+  const features = await client.fetch(
+    `*[_type == "feature"][0...3]{_id, title, content, alt, "src": image.asset->url}`,
+  );
 
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
       <HeroBanner {...herobanner} />
-      <FeatureList />
+      <FeatureList>
+        {features.map((feature) => (
+          <Feature key={feature._id} {...feature} />
+        ))}
+      </FeatureList>
       <GridSection id="join-us">
         <About />
         <DiscordWidget value={discordData} />

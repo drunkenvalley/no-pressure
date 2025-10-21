@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const featureType = defineType({
   name: "feature",
-  title: "Feature",
+  title: "Features",
   type: "document",
   fields: [
     defineField({
@@ -18,14 +18,16 @@ export const featureType = defineType({
     defineField({
       name: "image",
       type: "image",
-      validation: (rule) => rule.required().assetRequired(),
     }),
     defineField({
       name: "alt",
       title: "Description",
       description: `Describe in brief the image contents, such as "hero banner picturing the heroic cast of the game in front of a haunting villain"`,
       type: "text",
-      validation: (rule) => rule.required(),
+      hidden: ({ document }) => !document?.image,
     }),
   ],
+  initialValue: {
+    alt: "",
+  },
 });

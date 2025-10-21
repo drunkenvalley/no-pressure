@@ -1,24 +1,26 @@
-import Image from "@/components/Image";
-import { PropsWithChildren } from "react";
+import Image from "next/image";
 
-const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
+const Feature = ({ alt, content, src, title }: Props) => (
   <article className="text-center flex-grow w-full flex flex-col gap-y-3">
-    <Image
-      alt={title}
-      className="w-full h-[160px] object-cover rounded"
-      height={160}
-      responsive
-      src={src}
-      width={{ lg: 167, md: 167, sm: 283 }}
-    />
+    <div className="w-full h-[160px] relative">
+      <Image
+        alt={alt}
+        className="w-full h-full top-0 left-0 object-cover rounded"
+        fill
+        src={src}
+        unoptimized
+      />
+    </div>
     <section>
       <h2 className="text-2xl">{title && title}</h2>
-      <p className="text-green">{children && children}</p>
+      <p className="text-green">{content && content}</p>
     </section>
   </article>
 );
 
 interface Props {
+  alt: string;
+  content: string;
   src: string;
   title: string;
 }
