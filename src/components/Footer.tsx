@@ -4,7 +4,7 @@ import NextLink from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full max-w-full md:max-w-5xl mx-auto bg-purple text-gold text-center py-4">
+    <footer className="w-full max-w-full md:max-w-5xl mx-auto bg-purple text-center py-4">
       <p className="text-sm">
         <Link
           href="https://github.com/drunkenvalley/no-pressure"
@@ -15,7 +15,7 @@ const Footer = () => {
         </Link>
       </p>
       <p className="text-xs md:max-w-3xl mx-auto my-3">
-        <span className="text-light/70">
+        <span>
           World of Warcraft® ©2004 Blizzard Entertainment, Inc. All rights
           reserved. World of Warcraft, Warcraft and Blizzard Entertainment are
           trademarks or registered trademarks of Blizzard Entertainment, Inc. in

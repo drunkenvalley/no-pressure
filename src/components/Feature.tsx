@@ -12,8 +12,8 @@ const Feature = ({ alt, content, src, title }: Props) => (
       />
     </div>
     <section>
-      <h2 className="text-2xl">{title && title}</h2>
-      <p className="text-green">{content && content}</p>
+      <h2 className="text-2xl text-gold">{title && title}</h2>
+      <p>{content && content}</p>
     </section>
   </article>
 );

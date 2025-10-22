@@ -40,7 +40,7 @@ const RootLayout = ({
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta charSet="UTF-8" />
       </head>
-      <body className="font-nunito bg-purple text-gold">{children}</body>
+      <body className="font-nunito bg-purple text-green">{children}</body>
     </html>
   );
 };

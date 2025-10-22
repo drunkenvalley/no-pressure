@@ -21,7 +21,7 @@ const Profile = ({ profile }: Props) => (
           width={32}
         />
       </div>
-      <strong className="flex flex-row justify-between flex-grow text-left">
+      <strong className="flex flex-row justify-between flex-grow text-left text-gold">
         <div className="truncate flex-grow min-w-px w-px max-w-full">
           {profile.name}-{profile.realm}
         </div>

@@ -32,10 +32,10 @@ const RaidProgression = async () => {
   ).sort((a, b) => a.name?.localeCompare(b.name));
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="p-4 lg:rounded-xl" id="raiding">
-        <h3 className="mt-2 text-left text-2xl">Raiding</h3>
-        <p className="mt-4 text-left text-light/70 max-w-prose">
+    <div className="flex flex-col gap-4" id="raiding">
+      <div className="p-4 lg:rounded-xl">
+        <h3 className="mt-2 text-left text-2xl text-gold">Raiding</h3>
+        <p className="mt-4 text-left max-w-prose">
           Being part of No Pressure need not stop you from enjoying raids. Raids
           are organized by members throughout the week with{" "}
           <Link className="text-gold" href="https://raid-helper.dev/">
@@ -50,7 +50,7 @@ const RaidProgression = async () => {
       ))}
       {fetchedProfiles && (
         <>
-          <p className="mt-4 text-left text-light/70 max-w-prose">
+          <p className="mt-4 text-left max-w-prose">
             The following characters were used in the above. Thank you!
           </p>
           <Raiders profiles={profiles} />
@@ -58,8 +58,8 @@ const RaidProgression = async () => {
       )}
       {(missing.length && (
         <div className="p-3 text-right text-sm ">
-          <p>Could not find / resolve characters:</p>
-          <ul className="list-disc flex flex-row justify-end gap-5 pl-4 text-light/70">
+          <p className="text-gold">Could not find / resolve characters:</p>
+          <ul className="list-disc flex flex-row justify-end gap-5 pl-4">
             {missing.map((profile) => (
               <li key={`${profile.name}-${profile.realm}`}>
                 {profile.name}-{profile.realm}

@@ -28,6 +28,7 @@ const Link = (props: BtnProps | LinkProps) => {
 
   const className = [
     `
+    text-gold
     outline-offset-2
     cursor-pointer
     relative

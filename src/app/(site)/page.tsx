@@ -1,36 +1,39 @@
+import { ComponentProps } from "react";
 import About from "@/components/About";
-import DiscordWidget from "@/components/Discord/Widget";
 import FeatureList from "@/components/FeatureList";
-import GridSection from "@/components/GridSection";
 import HeroBanner from "@/components/HeroBanner";
 import RaidProgression from "@/components/Raid/Progression";
-import fetchDiscordData from "@/components/FetchDiscord";
-import { client } from "@/sanity/lib/client";
 import Feature from "@/components/Feature";
+import { client } from "@/sanity/lib/client";
 
 export const revalidate = 1800;
 
 const Page = async () => {
-  const discordData = await fetchDiscordData();
-  const herobanner = await client.fetch(
-    `*[_type=="herobanner" && active][0]{alt, "src": image.asset->url}`,
-  );
-  const features = await client.fetch(
-    `*[_type == "feature"][0...3]{_id, title, content, alt, "src": image.asset->url}`,
+  const { herobanner, features } = await client.fetch(`
+    *[_type=="homepage"][0]{
+      "herobanner": {
+        "alt": herobanner->alt,
+      "src": herobanner->image.asset->url
+      },
+      "features": features[]->{
+        _id,
+        alt,
+        content,
+        "src": image.asset->url,
+        title,
+      }
+    }`
   );
 
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
       <HeroBanner {...herobanner} />
       <FeatureList>
-        {features.map((feature) => (
+        {features.map((feature: ComponentProps<typeof Feature> & {_id: string}) => (
           <Feature key={feature._id} {...feature} />
         ))}
       </FeatureList>
-      <GridSection id="join-us">
-        <About />
-        <DiscordWidget value={discordData} />
-      </GridSection>
+      <About />
       <RaidProgression />
     </main>
   );
