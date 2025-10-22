@@ -16,6 +16,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     authorType,
     herobannerType,
     featureType,
-    homepageType
+    homepageType,
   ],
 };

@@ -22,16 +22,17 @@ const Page = async () => {
         "src": image.asset->url,
         title,
       }
-    }`
-  );
+    }`);
 
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
       <HeroBanner {...herobanner} />
       <FeatureList>
-        {features.map((feature: ComponentProps<typeof Feature> & {_id: string}) => (
-          <Feature key={feature._id} {...feature} />
-        ))}
+        {features.map(
+          (feature: ComponentProps<typeof Feature> & { _id: string }) => (
+            <Feature key={feature._id} {...feature} />
+          ),
+        )}
       </FeatureList>
       <About />
       <RaidProgression />
