@@ -1,8 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import Feature from "@/components/Feature";
-import axios from "axios";
+import { ReactNode } from "react";
 
 const FeatureList = ({ children }: { children?: ReactNode[] }) => {
   /**
