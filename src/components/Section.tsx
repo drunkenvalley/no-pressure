@@ -9,29 +9,30 @@ interface Props {
 }
 
 const Section = ({ title, content }: Props) => {
-  const textBlockComponents: Partial<PortableTextReactComponents> | undefined = {
-    marks: {
-      link: ({ children, value }) => {
-        return <Link href={value.href}>{children}</Link>;
+  const textBlockComponents: Partial<PortableTextReactComponents> | undefined =
+    {
+      marks: {
+        link: ({ children, value }) => {
+          return <Link href={value.href}>{children}</Link>;
+        },
+        strong: ({ children }) => {
+          return <strong className="font-black">{children}</strong>;
+        },
+        p: ({ children }) => (
+          <p className="mt-4 text-left max-w-prose">{children}</p>
+        ),
       },
-      strong: ({ children }) => {
-        return <strong className="font-black">{children}</strong>;
+      block: {
+        normal: Paragraph,
       },
-      p: ({ children }) => (
-        <p className="mt-4 text-left max-w-prose">{children}</p>
-      ),
-    },
-    block: {
-      normal: Paragraph,
-    },
-  };
+    };
 
   return (
     <div className="flex flex-col gap-4">
-        <div className="p-4">
-            <h3 className="mt-2 text-left text-2xl text-gold">{title}</h3>
-            <PortableText components={textBlockComponents} value={content} />
-        </div>
+      <div className="p-4">
+        <h3 className="mt-2 text-left text-2xl text-gold">{title}</h3>
+        <PortableText components={textBlockComponents} value={content} />
+      </div>
     </div>
   );
 };

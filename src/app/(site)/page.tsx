@@ -43,7 +43,7 @@ const Page = async () => {
         ({
           title,
           _id,
-          content
+          content,
         }: ComponentProps<typeof Section> & { _id: string }) => (
           <Section content={content} key={_id} title={title} />
         ),

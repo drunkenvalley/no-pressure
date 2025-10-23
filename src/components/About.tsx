@@ -50,7 +50,8 @@ export const About = ({
             src="/images/no-pressure-logo-icon.png"
             width={24}
           />
-          <span className="
+          <span
+            className="
             text-gold
             outline-offset-2
             cursor-pointer
@@ -63,7 +64,8 @@ export const About = ({
             transition-[background-size] duration-300 ease-in-out
               
             bg-[length:1em_0.1em]
-          ">
+          "
+          >
             Join our <strong className="font-bold">Discord</strong> today!
           </span>
         </NextLink>
