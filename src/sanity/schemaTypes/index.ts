@@ -7,6 +7,7 @@ import { authorType } from "./authorType";
 import { herobannerType } from "./herobannerType";
 import { featureType } from "./featureType";
 import { homepageType } from "./homepageType";
+import { sectionType } from "./sectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -17,5 +18,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     herobannerType,
     featureType,
     homepageType,
+    sectionType,
   ],
 };

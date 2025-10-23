@@ -40,7 +40,7 @@ export const About = ({
       </div>
       <div className="flex flex-row justify-center items-center">
         <NextLink
-          className="p-4 border text-gold border-gold rounded-md relative flex flex-row gap-3 items-center"
+          className="p-4 border text-gold border-gold rounded-md relative flex flex-row gap-3 items-center group"
           href="/invite"
         >
           <Image
@@ -50,7 +50,20 @@ export const About = ({
             src="/images/no-pressure-logo-icon.png"
             width={24}
           />
-          <span>
+          <span className="
+            text-gold
+            outline-offset-2
+            cursor-pointer
+            relative
+
+            bg-gradient-to-r from-current to-current bg-no-repeat
+            group-hover:bg-[length:100%_0.1em] group-focus:bg-[length:100%_0.1em]
+            bg-[left_top_100%]
+
+            transition-[background-size] duration-300 ease-in-out
+              
+            bg-[length:1em_0.1em]
+          ">
             Join our <strong className="font-bold">Discord</strong> today!
           </span>
         </NextLink>

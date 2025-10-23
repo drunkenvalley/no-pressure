@@ -1,5 +1,4 @@
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
-import Link from "@/components/Link";
 import Raid from "@/components/Raid/Raid";
 import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
@@ -32,19 +31,7 @@ const RaidProgression = async () => {
   ).sort((a, b) => a.name?.localeCompare(b.name));
 
   return (
-    <div className="flex flex-col gap-4" id="raiding">
-      <div className="p-4 lg:rounded-xl">
-        <h3 className="mt-2 text-left text-2xl text-gold">Raiding</h3>
-        <p className="mt-4 text-left max-w-prose">
-          Being part of No Pressure need not stop you from enjoying raids. Raids
-          are organized by members throughout the week with{" "}
-          <Link className="text-gold" href="https://raid-helper.dev/">
-            Raid-Helper
-          </Link>
-          ! Since the start of Dragonflight the community has organized hundreds
-          of events, and intending hundreds more.
-        </p>
-      </div>
+    <>
       {raids.map((raid) => (
         <Raid key={raid.raid} profiles={leaders} {...raid} />
       ))}
@@ -69,7 +56,7 @@ const RaidProgression = async () => {
         </div>
       )) ||
         undefined}
-    </div>
+    </>
   );
 };
 export default RaidProgression;

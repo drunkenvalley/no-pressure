@@ -23,5 +23,12 @@ export const homepageType = defineType({
       of: [{ type: "reference", to: [{ type: "feature" }] }],
       validation: (rule) => rule.max(3).unique(),
     }),
+    defineField({
+      name: "sections",
+      title: "Sections",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "section" }] }],
+      validation: (rule) => rule.unique(),
+    }),
   ],
 });
