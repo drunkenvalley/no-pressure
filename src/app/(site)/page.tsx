@@ -9,7 +9,7 @@ import Section from "@/components/Section";
 export const revalidate = 1800;
 
 const Page = async () => {
-  const { herobanner, features } = await client.fetch(`
+  const { herobanner, features, sections } = await client.fetch(`
     *[_type=="homepage"][0]{
       "herobanner": {
         "alt": herobanner->alt,
@@ -21,11 +21,9 @@ const Page = async () => {
         content,
         "src": image.asset->url,
         title,
-      }
+      },
+      "sections": sections[]->
     }`);
-  const sections = await client.fetch(`
-    *[_type == "section"]
-    `);
 
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
