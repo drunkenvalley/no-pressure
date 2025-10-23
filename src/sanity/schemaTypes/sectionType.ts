@@ -21,8 +21,16 @@ export const sectionType = defineType({
     }),
     defineField({
       name: "mechanic",
-      type: "reference",
-      to: { type: "block" },
+      title: "Mechanism",
+      type: "string",
+      options: {
+        list: [
+          {
+            title: "Raid progression",
+            value: "progression"
+          }
+        ]
+      }
     }),
   ],
 });

@@ -31,7 +31,7 @@ export const About = ({
         </p>
       </article>
     </div>
-    <article className="bg-dark p-8 lg:p-6 rounded-md flex flex-col lg:flex-row gap-6">
+    <article className="bg-dark p-8 lg:p-6 rounded-lg flex flex-col lg:flex-row gap-6">
       <div className="grow text-left flex flex-row flex-wrap items-center justify-center">
         <Shinytext as="p" className="w-full text-center text-xl">
           Scared to touch &quot;Join queue&quot; in LFG? We won&apos;t bite.

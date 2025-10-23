@@ -2,14 +2,22 @@ import { PortableText, PortableTextReactComponents } from "next-sanity";
 import Link from "@/components/Link";
 import { TypedObject } from "sanity";
 import Paragraph from "./Paragraph";
+import React from "react";
+import Progress from "@/components/Raid/Progression"
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const mechanics = {
+  "progression": Progress
+} as const;
 
 interface Props {
   title: string;
   content: TypedObject | TypedObject[];
+  mechanic?: keyof typeof mechanics
 }
 
-const Section = ({ title, content }: Props) => {
-  const textBlockComponents: Partial<PortableTextReactComponents> | undefined =
+const Section = ({ title, content, mechanic }: Props) => {
+  const components: Partial<PortableTextReactComponents> | undefined =
     {
       marks: {
         link: ({ children, value }) => {
@@ -31,8 +39,9 @@ const Section = ({ title, content }: Props) => {
     <div className="flex flex-col gap-4">
       <div className="p-4">
         <h3 className="mt-2 text-left text-2xl text-gold">{title}</h3>
-        <PortableText components={textBlockComponents} value={content} />
+        <PortableText {...components} value={content} />
       </div>
+      {mechanic == "progression" && <Progress />}
     </div>
   );
 };

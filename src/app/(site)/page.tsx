@@ -2,7 +2,6 @@ import { ComponentProps } from "react";
 import About from "@/components/About";
 import FeatureList from "@/components/FeatureList";
 import HeroBanner from "@/components/HeroBanner";
-import RaidProgression from "@/components/Raid/Progression";
 import Feature from "@/components/Feature";
 import { client } from "@/sanity/lib/client";
 import Section from "@/components/Section";
@@ -41,14 +40,12 @@ const Page = async () => {
       <About />
       {sections.map(
         ({
-          title,
           _id,
-          content,
+          ...props
         }: ComponentProps<typeof Section> & { _id: string }) => (
-          <Section content={content} key={_id} title={title} />
+          <Section key={_id} {...props} />
         ),
       )}
-      <RaidProgression />
     </main>
   );
 };
