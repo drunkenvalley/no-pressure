@@ -27,10 +27,16 @@ export const sectionType = defineType({
         list: [
           {
             title: "Raid progression",
-            value: "progression"
-          }
-        ]
-      }
+            value: "progression",
+          },
+        ],
+      },
+    }),
+    defineField({
+      name: "components",
+      title: "Components",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "raid_progress" }] }],
     }),
   ],
 });
