@@ -1,9 +1,9 @@
-import FetchDiscordData from "@/components/FetchDiscord";
+import { getData } from "@/services/DiscordService";
 
 const envInviteLink = process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK as string;
 
 export const getServerSideProps = async () => {
-  const discordData = await FetchDiscordData();
+  const discordData = await getData();
 
   const instant_invite = envInviteLink || discordData.instant_invite;
 

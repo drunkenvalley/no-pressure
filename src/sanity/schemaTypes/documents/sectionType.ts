@@ -11,6 +11,15 @@ export const sectionType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "id",
+      title: "Identifier",
+      description: `Enables linking directly to it ala "https://example.com/#id" to directly bring a user to this section.`,
+      type: "slug",
+      options: {
+        source: "title",
+      },
+    }),
+    defineField({
       name: "content",
       type: "array",
       of: [
@@ -31,12 +40,6 @@ export const sectionType = defineType({
           },
         ],
       },
-    }),
-    defineField({
-      name: "components",
-      title: "Components",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "raid_progress" }] }],
     }),
   ],
 });

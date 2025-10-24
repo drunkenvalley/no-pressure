@@ -1,19 +1,15 @@
 import { type SchemaTypeDefinition } from "sanity";
 
 import { blockContentType } from "./blocks/blockContentType";
-import { categoryType } from "./documents/categoryType";
-import { postType } from "./documents/postType";
-import { authorType } from "./documents/authorType";
 import { herobannerType } from "./documents/herobannerType";
 import { featureType } from "./documents/featureType";
 import { homepageType } from "./documents/homepageType";
 import { sectionType } from "./documents/sectionType";
+import { featureListType } from "./documents/featureListType";
 
 const documentTypes: SchemaTypeDefinition[] = [
-  categoryType,
-  postType,
-  authorType,
   herobannerType,
+  featureListType,
   featureType,
   homepageType,
   sectionType,

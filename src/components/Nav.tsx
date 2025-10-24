@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "@/components/Image";
 import Link from "@/components/Link";
 import { usePathname } from "next/navigation";
@@ -10,58 +10,12 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [visibleNavItems, setVisibleNavItems] = useState<string[]>([]);
-  const [activeNavItem, setActiveNavItem] = useState<string | null>(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  const observedNavItems = (entry: IntersectionObserverEntry) => {
-    const id = entry.target.id;
-    if (entry.isIntersecting) {
-      return setVisibleNavItems((items) => [...items, id]);
-    }
-    return setVisibleNavItems((items) => items.filter((item) => item !== id));
-  };
-
-  // typeof window === 'undefined' when component is being rendered on the server.
-  // node env doesn't have IntersectionObserver, so we have to account for it not being available
-  const observer = (typeof window !== "undefined" &&
-    new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
-        entries.forEach((entry) => {
-          observedNavItems(entry);
-        });
-      },
-      {
-        threshold: 0.85,
-      },
-    )) as IntersectionObserver;
-  // observer is currently only used inside useEffect, which never runs on the server.
-  // that means we're safe to do "as ..." on the whole thing, and the browser/node discrepancy ends here
-
-  // This effect is to observe the start and nav items
-  useEffect(() => {
-    observer.observe(document.getElementById("start") as HTMLDivElement);
-    navItems.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-  }, [navItems, observer]);
-
-  // This effect is to update the active nav item when the visible nav items change
-  // Thanks to https://stackoverflow.com/a/64664382/104380
-  useEffect(() => {
-    return setActiveNavItem(
-      navItems.find(({ id }) => visibleNavItems.includes(id))?.id || null,
-    );
-  }, [navItems, visibleNavItems]);
 
   const navItemEls = navItems.map(({ name, id }) => (
     <li className="mx-4" key={id}>
       <Link
         href={`/#${id}`}
-        isActive={activeNavItem === id}
         onClick={() => {
           setShowMobileMenu(false);
         }}

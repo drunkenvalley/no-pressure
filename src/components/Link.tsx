@@ -14,17 +14,9 @@ const Link = (props: BtnProps | LinkProps) => {
   const {
     children,
     className: additionalClassNames = "",
-    isActive = false,
     onClick,
     ...rest
   } = props;
-
-  const getActiveStyle = (): string => `
-  ${
-    // Non-hover/focus state: no underline unless link is the active nav variant
-    isActive ? "bg-[length:100%_0.1em]" : "bg-[length:1em_0.1em]"
-  }
-`;
 
   const className = [
     `
@@ -34,12 +26,10 @@ const Link = (props: BtnProps | LinkProps) => {
     relative
 
     bg-gradient-to-r from-current to-current bg-no-repeat
-    hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
+    bg-[length:1em_0.1em] hover:bg-[length:100%_0.1em] focus:bg-[length:100%_0.1em]
     bg-[left_top_100%]
 
     transition-[background-size] duration-300 ease-in-out
-
-    ${getActiveStyle()}
   `,
     additionalClassNames,
   ]

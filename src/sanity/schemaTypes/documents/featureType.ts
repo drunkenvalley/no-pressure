@@ -1,3 +1,4 @@
+import { UserCountPreview } from "@/components/Discord/UserCount";
 import { defineField, defineType } from "sanity";
 
 export const featureType = defineType({
@@ -12,8 +13,21 @@ export const featureType = defineType({
     }),
     defineField({
       name: "content",
-      type: "string",
-      validation: (rule) => rule.required(),
+      type: "array",
+      of: [
+        {
+          type: "block",
+          marks: {
+            decorators: [
+              {
+                title: "Discord User Count",
+                value: "discordUserCount",
+                component: UserCountPreview,
+              },
+            ],
+          },
+        },
+      ],
     }),
     defineField({
       name: "image",
