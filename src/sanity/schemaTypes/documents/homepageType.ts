@@ -27,7 +27,12 @@ export const homepageType = defineType({
       name: "sections",
       title: "Sections",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "section" }] }],
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "section" }, { type: "feature_list" }],
+        },
+      ],
       validation: (rule) => rule.unique(),
     }),
   ],

@@ -27,7 +27,7 @@ const UserCount = ({
 
   return (
     <strong className={style} {...props}>
-      {userCount}
+      {userCount || "many"}
     </strong>
   );
 };
