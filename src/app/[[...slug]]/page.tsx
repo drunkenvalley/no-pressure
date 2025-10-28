@@ -6,12 +6,22 @@ import { client } from "@/sanity/lib/client";
 import Section from "@/components/Section";
 import { PortableText, PortableTextReactComponents } from "next-sanity";
 import { ComponentProps } from "react";
+import Recruitment from "@/components/Recruitment";
+import { notFound } from "next/navigation";
 
 export const revalidate = 1800;
 
-const Page = async () => {
-  const { herobanner, sections } = await client.fetch(`
-    *[_type=="homepage"][0]
+interface PageProps {
+  // we want to catch both "/", "/index", and "/other-page"
+  params: Promise<{ slug: string[] }>;
+}
+
+const Page = async ({ params }: PageProps) => {
+  const { slug } = await params;
+  const page = slug?.length ? slug[0] : "index";
+
+  const sanityData = await client.fetch(`
+    *[_type=="page" && slug.current =="${page}"][0]
     {
       "herobanner": {
         "alt": herobanner->alt,
@@ -29,6 +39,11 @@ const Page = async () => {
       },
     }
 `);
+  if (!sanityData) {
+    notFound();
+  }
+
+  const { herobanner, sections } = sanityData;
 
   const components: Partial<PortableTextReactComponents> | undefined = {
     types: {
@@ -46,6 +61,7 @@ const Page = async () => {
           </FeatureList>
         );
       },
+      recruitment: ({ value }) => <Recruitment {...value} />,
       section: ({ value }) => <Section {...value} />,
     },
   };

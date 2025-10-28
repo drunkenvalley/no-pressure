@@ -1,5 +1,5 @@
 import { PortableText, PortableTextReactComponents } from "next-sanity";
-import Link from "@/components/Link";
+import Link from "@/components/Text/Link";
 import { TypedObject } from "sanity";
 import React, { PropsWithChildren } from "react";
 import Progress from "@/components/Raid/Progression";

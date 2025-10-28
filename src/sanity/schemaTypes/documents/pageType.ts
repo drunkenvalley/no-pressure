@@ -1,13 +1,22 @@
 import { defineField, defineType } from "sanity";
 
-export const homepageType = defineType({
-  name: "homepage",
-  title: "Homepage",
+export const pageType = defineType({
+  name: "page",
+  title: "Pages",
   type: "document",
   fields: [
     defineField({
       name: "title",
       type: "string",
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      description: `How the page title appears in the address bar.`,
+      type: "slug",
+      options: {
+        source: "title",
+      },
     }),
     defineField({
       name: "herobanner",
@@ -30,7 +39,11 @@ export const homepageType = defineType({
       of: [
         {
           type: "reference",
-          to: [{ type: "section" }, { type: "feature_list" }],
+          to: [
+            { type: "section" },
+            { type: "feature_list" },
+            { type: "recruitment" },
+          ],
         },
       ],
       validation: (rule) => rule.unique(),

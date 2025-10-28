@@ -2,6 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const featureListType = defineType({
   name: "feature_list",
+  title: "Feature Lists",
   type: "document",
   fields: [
     defineField({

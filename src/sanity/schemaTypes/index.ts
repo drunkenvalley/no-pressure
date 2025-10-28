@@ -3,15 +3,17 @@ import { type SchemaTypeDefinition } from "sanity";
 import { blockContentType } from "./blocks/blockContentType";
 import { herobannerType } from "./documents/herobannerType";
 import { featureType } from "./documents/featureType";
-import { homepageType } from "./documents/homepageType";
 import { sectionType } from "./documents/sectionType";
 import { featureListType } from "./documents/featureListType";
+import { recruitmentType } from "./documents/recruitmentType";
+import { pageType } from "./documents/pageType";
 
 const documentTypes: SchemaTypeDefinition[] = [
-  herobannerType,
   featureListType,
   featureType,
-  homepageType,
+  herobannerType,
+  pageType,
+  recruitmentType,
   sectionType,
 ];
 

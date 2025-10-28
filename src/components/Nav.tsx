@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "@/components/Image";
-import Link from "@/components/Link";
+import Link from "@/components/Text/Link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
