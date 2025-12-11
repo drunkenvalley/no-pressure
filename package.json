@@ -55,7 +55,7 @@
     "lint": "prettier . --write && eslint . --fix --max-warnings=0"
   },
   "dependencies": {
-    "@prisma/client": "^7.1.0",
+    "@prisma/client": "^6.19.1",
     "@tailwindcss/postcss": "^4.1.17",
     "axios": "^1.13.2",
     "change-case": "^5.4.4",
