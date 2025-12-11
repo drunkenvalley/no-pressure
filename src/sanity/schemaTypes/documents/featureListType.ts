@@ -3,6 +3,8 @@ import { defineField, defineType } from "sanity";
 export const featureListType = defineType({
   name: "feature_list",
   title: "Feature Lists",
+  description:
+    "Displays a row of features in a line, or in a column when the viewport is small.",
   type: "document",
   fields: [
     defineField({

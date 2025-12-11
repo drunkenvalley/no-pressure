@@ -32,7 +32,7 @@ const Section = ({ id, title, content, mechanic }: Props) => {
   return (
     <div className="flex flex-col gap-4">
       <section className="p-4" id={id.current}>
-        <h3 className="mt-2 text-left text-2xl text-gold">{title}</h3>
+        <h3 className="mt-2 text-left text-2xl text-gold"> {title}</h3>
         <PortableText {...components} value={content} />
       </section>
       {mechanic == "progression" && <Progress />}

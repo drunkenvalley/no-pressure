@@ -62,7 +62,10 @@ const Page = async ({ params }: PageProps) => {
         );
       },
       recruitment: ({ value }) => <Recruitment {...value} />,
-      section: ({ value }) => <Section {...value} />,
+      section: (args) => {
+        console.log(args);
+        return <Section {...args.value} />;
+      },
     },
   };
 
