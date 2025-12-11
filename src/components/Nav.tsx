@@ -47,7 +47,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
         observer.observe(element);
       }
     });
-  }, []);
+  }, [navItems, observer]);
 
   // This effect is to update the active nav item when the visible nav items change
   // Thanks to https://stackoverflow.com/a/64664382/104380
@@ -55,7 +55,7 @@ const Nav = ({ navItems }: { navItems: Record<string, string>[] }) => {
     return setActiveNavItem(
       navItems.find(({ id }) => visibleNavItems.includes(id))?.id || null,
     );
-  }, [visibleNavItems]);
+  }, [navItems, visibleNavItems]);
 
   const navItemEls = navItems.map(({ name, id }) => (
     <li className="mx-4" key={id}>

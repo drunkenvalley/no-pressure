@@ -1,6 +1,5 @@
 import ImageWithFallback from "../ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
-import Raiders from "./Raiders";
 import { RioProfile } from "@/interfaces/RaiderIo";
 import Shinytext from "../Shinytext";
 import { capitalCase } from "change-case";
@@ -31,13 +30,15 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
 
     return (prog.length && Math.max(...prog)) ?? 0;
   };
-  const difficulties = availableDifficulties.map((key) => {
-    const obj = {
-      name: capitalCase(key),
-      prog: getProg(key),
-    };
-    return obj;
-  });
+  const difficulties = availableDifficulties
+    .map((key) => {
+      const obj = {
+        name: capitalCase(key),
+        prog: getProg(key),
+      };
+      return obj;
+    })
+    .filter((a) => !!a.prog);
 
   return (
     <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
@@ -46,8 +47,8 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
         className="object-cover"
         fallbackSrc="/images/raids/placeholder.png"
         fill={true}
-        quality={90}
         src={`/images/raids/${raid}.png`}
+        unoptimized
       />
       <div className="relative p-4 pt-32 bg-gradient-to-r from-dark/50 via-dark/30 to-dark/10">
         <div className="my-4 mx-1">
@@ -55,15 +56,17 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
             {(raidnames as Record<string, string>)[raid] ?? capitalCase(raid)}
           </Shinytext>
           <div className="flex flex-row gap-4">
-            {difficulties.map(({ prog, name }) => (
-              <Shinytext key={name}>
-                {name}: {prog}/{bosses}
-              </Shinytext>
-            ))}
+            {(difficulties.length &&
+              difficulties.map(
+                ({ prog, name }) =>
+                  !!prog && (
+                    <Shinytext key={name}>
+                      {name}: {prog}/{bosses}
+                    </Shinytext>
+                  ),
+              )) || <Shinytext>✨ New raid!</Shinytext>}
           </div>
         </div>
-
-        <Raiders filter={raid} profiles={filteredProfiles} />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 
 interface IdentifiedData {
@@ -6,7 +7,7 @@ interface IdentifiedData {
 
 interface Props<T>
   extends Omit<React.HTMLProps<HTMLDivElement>, "id" | "value"> {
-  component: (props: T) => JSX.Element;
+  component: (props: T) => React.JSX.Element;
   value: T[];
   per: number;
   page: number;
@@ -28,7 +29,7 @@ export const Pagination = <T extends IdentifiedData>({
 
   useEffect(() => {
     setData(value.slice((page - 1) * per, page * per));
-  }, [page]);
+  }, [page, per, value]);
 
   const current = `${page} / ${maxPage}`;
   const btnClass =

@@ -1,6 +1,6 @@
 {
   "name": "no-pressure",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "contributors": [
     {
@@ -52,45 +52,34 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint . --fix --max-warnings=0",
-    "format": "prettier . --write"
+    "lint": "prettier . --write && eslint . --fix --max-warnings=0"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
-    "axios": "^1.7.7",
+    "@prisma/client": "^6.17.1",
+    "@tailwindcss/postcss": "^4.1.15",
+    "axios": "^1.12.2",
     "change-case": "^5.4.4",
-    "next": "^14.2.10",
-    "next-swagger-doc": "^0.4.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-slider": "^2.0.6",
-    "swagger-ui-react": "^5.17.14"
+    "eslint-config-next": "^15.5.6",
+    "next": "^15.5.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.2.10",
-    "@types/node": "22.5.4",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@types/swagger-ui-react": "^4.18.3",
-    "@typescript-eslint/eslint-plugin": "^7.0.0-alpha.0",
-    "@typescript-eslint/parser": "^7.0.0-alpha.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.10",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-n": "^17.10.2",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-promise": "^7.1.0",
-    "eslint-plugin-react": "^7.36.1",
-    "lint-staged": "^15.2.10",
-    "postcss": "^8.4.45",
-    "prettier": "3.3.3",
-    "prisma": "^5.19.1",
-    "sass": "^1.78.0",
-    "tailwindcss": "^3.4.11",
-    "typescript": "^5.6.2"
+    "@next/eslint-plugin-next": "^15.5.6",
+    "@types/node": "24.9.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.38.0",
+    "lint-staged": "^16.2.5",
+    "postcss": "^8.5.6",
+    "prettier": "3.6.2",
+    "prisma": "^6.17.1",
+    "sass": "^1.93.2",
+    "tailwindcss": "^4.1.15",
+    "typescript": "^5.9.3"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

@@ -1,7 +1,12 @@
 import { DiscordUser } from "@/interfaces/DiscordData";
 import Image from "next/image";
+import React from "react";
 
-export const User = ({ avatar_url, game, username }: Props): JSX.Element => {
+export const User = ({
+  avatar_url,
+  game,
+  username,
+}: Props): React.JSX.Element => {
   return (
     <div className="flex flex-row justify-start gap-2 text-xs">
       <Image

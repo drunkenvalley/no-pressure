@@ -1,7 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap");
+
+@theme {
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-gold: #fcc251;
+  --color-green: #a4cd70;
+  --color-orange: #f46514;
+  --color-dark: #1e1e1e;
+  --color-purple: #28272f;
+  --color-blue: #484878;
+  --color-light: #d1c7d4;
+
+  --font-nunito: "Nunito", sans-serif;
+}
 
 html {
   text-align: center;
