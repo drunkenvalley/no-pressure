@@ -9,6 +9,13 @@ const mechanics = {
   progression: Progress,
 } as const;
 
+interface Props {
+  title: string;
+  id: { _type: "slug"; current: string };
+  content: TypedObject | TypedObject[];
+  mechanic?: keyof typeof mechanics;
+}
+
 const Section = ({ id, title, content, mechanic }: Props) => {
   const components: Partial<PortableTextReactComponents> | undefined = {
     marks: {
@@ -18,9 +25,6 @@ const Section = ({ id, title, content, mechanic }: Props) => {
       strong: ({ children }) => {
         return <strong className="font-black">{children}</strong>;
       },
-      p: ({ children }) => (
-        <p className="mt-4 text-left max-w-prose">{children}</p>
-      ),
     },
     block: {
       normal: ({ children }: PropsWithChildren) => (
@@ -31,9 +35,13 @@ const Section = ({ id, title, content, mechanic }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <section className="p-4" id={id.current}>
+      <section className="p-4  scroll-mt-32" id={id.current}>
         <h3 className="mt-2 text-left text-2xl text-gold"> {title}</h3>
-        <PortableText {...components} value={content} />
+        <PortableText
+          components={components}
+          value={content}
+          onMissingComponent={(e) => console.warn(e)}
+        />
       </section>
       {mechanic == "progression" && <Progress />}
     </div>
@@ -41,10 +49,3 @@ const Section = ({ id, title, content, mechanic }: Props) => {
 };
 
 export default Section;
-
-interface Props {
-  title: string;
-  id: { _type: "slug"; current: string };
-  content: TypedObject | TypedObject[];
-  mechanic?: keyof typeof mechanics;
-}
