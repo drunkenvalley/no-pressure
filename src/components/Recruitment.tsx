@@ -4,6 +4,7 @@ import { PortableText, PortableTextReactComponents } from "next-sanity";
 import { TypedObject } from "sanity";
 import Shinytext from "./Text/Shinytext";
 import Small from "./Text/Small";
+import { client } from "@/sanity/lib/client";
 
 const components: Partial<PortableTextReactComponents> | undefined = {
   block: {
@@ -18,9 +19,19 @@ const components: Partial<PortableTextReactComponents> | undefined = {
   },
 };
 
-const Recruitment = ({ content, linkText }: Props) => (
+interface Props {
+  title: string;
+  id: { _type: "slug"; current: string };
+  content: TypedObject | TypedObject[];
+  linkText: TypedObject | TypedObject[];
+}
+
+const Recruitment = async ({ id, content, linkText }: Props) => (
   <article className="bg-dark p-8 lg:p-6 lg:rounded-lg flex flex-col lg:flex-row gap-6">
-    <div className="grow text-left flex flex-row flex-wrap items-center justify-center">
+    <div
+      id={id.current}
+      className="grow text-left flex flex-row flex-wrap items-center justify-center scroll-mt-32"
+    >
       <PortableText components={components} value={content} />
     </div>
     <div className="flex flex-row justify-center items-center">
@@ -44,8 +55,3 @@ const Recruitment = ({ content, linkText }: Props) => (
 );
 
 export default Recruitment;
-
-interface Props {
-  content: TypedObject | TypedObject[];
-  linkText: TypedObject | TypedObject[];
-}

@@ -8,7 +8,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <Nav
         navItems={[
           { id: "home", name: "Home" },
-          { id: "join-us", name: "Join us" },
+          { id: "join-discord", name: "Join us" },
           { id: "raiding", name: "Raiding" },
         ]}
       />

@@ -41,7 +41,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
     .filter((a) => !!a.prog);
 
   return (
-    <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
+    <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left">
       <ImageWithFallback
         alt=""
         className="object-cover"

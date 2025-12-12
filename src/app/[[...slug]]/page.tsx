@@ -25,7 +25,7 @@ const Page = async ({ params }: PageProps) => {
     {
       "herobanner": {
         "alt": herobanner->alt,
-      "src": herobanner->image.asset->url
+        "src": herobanner->image.asset->url
       },
       "sections": sections[]->{
         ...,
@@ -63,7 +63,6 @@ const Page = async ({ params }: PageProps) => {
       },
       recruitment: ({ value }) => <Recruitment {...value} />,
       section: (args) => {
-        console.log(args);
         return <Section {...args.value} />;
       },
     },
