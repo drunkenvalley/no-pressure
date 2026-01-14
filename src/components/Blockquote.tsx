@@ -23,8 +23,9 @@ const Blockquote = ({
   );
 };
 
-interface Props
-  extends PropsWithChildren<React.HTMLAttributes<HTMLQuoteElement>> {
+interface Props extends PropsWithChildren<
+  React.HTMLAttributes<HTMLQuoteElement>
+> {
   cite?: ReactNode;
   snapshot?: ReactNode;
 }
