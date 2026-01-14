@@ -50,7 +50,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "prettier . --write && eslint . --fix --max-warnings=0"
   },

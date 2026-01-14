@@ -1,13 +1,15 @@
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
-import { raider } from "@prisma/client";
 
-type character = Omit<raider, "id">;
+interface Raider {
+  characterName: string;
+  realm: string;
+}
 
 export default class RaiderIoService {
   public static async get({
     characterName,
     realm,
-  }: character): Promise<RioProfile | IncompleteRioProfile> {
+  }: Raider): Promise<RioProfile | IncompleteRioProfile> {
     try {
       const response = await fetch(
         `https://raider.io/api/v1/characters/profile?region=eu&realm=${realm}&name=${characterName}&fields=guild,raid_progression`,
