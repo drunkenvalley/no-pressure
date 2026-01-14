@@ -7,8 +7,10 @@ import { sectionType } from "./documents/sectionType";
 import { featureListType } from "./documents/featureListType";
 import { recruitmentType } from "./documents/recruitmentType";
 import { pageType } from "./documents/pageType";
+import { characterType } from "./documents/characterType";
 
 const documentTypes: SchemaTypeDefinition[] = [
+  characterType,
   featureListType,
   featureType,
   herobannerType,

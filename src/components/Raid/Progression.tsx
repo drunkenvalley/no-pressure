@@ -3,9 +3,32 @@ import Raid from "@/components/Raid/Raid";
 import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
 import Raiders from "./Raiders";
+import { client } from "@/sanity/lib/client";
+
+interface SanityRaider {
+  _id: string;
+  character_name: string;
+}
+interface Raider {
+  id: string;
+  characterName: string;
+  realm: string;
+}
 
 const RaidProgression = async () => {
-  const raiders = await RaiderDbService.get();
+  const raiders: Array<Raider> = (
+    (await client.fetch(`
+    *[_type=="character"]
+    `)) as SanityRaider[]
+  ).map((c) => {
+    const [characterName, realm] = c.character_name?.split("-");
+    return {
+      id: c._id,
+      characterName,
+      realm,
+    };
+  });
+
   const fetchedProfiles = await Promise.all(
     raiders.map(async (raider) => await RaiderIoService.get(raider)),
   );

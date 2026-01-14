@@ -4,12 +4,19 @@ import { RioProfile } from "@/interfaces/RaiderIo";
 type Props = {
   profile: RioProfile;
   filter?: string;
+  search?: boolean;
 };
 
-const Profile = ({ profile }: Props) => (
-  <li className="md:max-w-[50%] w-full min-w-0" key={profile.profile_url}>
+const Profile = ({ profile, search = false }: Props) => (
+  <li
+    className={[!search && "md:max-w-[50%]", " w-full min-w-0"].join(" ")}
+    key={profile.profile_url}
+  >
     <a
-      className="group flex flex-row items-center gap-3 p-1 m-1 rounded-md bg-dark/60 bg-[length:200%_200%] bg-[center_top_0%] hover:bg-[center_top_100%] focus:bg-[center_top_100%] focus:outline-none bg-gradient-to-b from-blue/25 via-blue/25 to-gold/10 border border-blue hover:border-gold focus:border-gold transition-all"
+      className={[
+        !search && "m-1",
+        "group flex flex-row items-center gap-3 p-1 rounded-md bg-dark/60 bg-[length:200%_200%] bg-[center_top_0%] hover:bg-[center_top_100%] focus:bg-[center_top_100%] focus:outline-none bg-gradient-to-b from-blue/25 via-blue/25 to-gold/10 border border-blue hover:border-gold focus:border-gold transition-all",
+      ].join(" ")}
       href={profile.profile_url}
     >
       <div className="rounded-sm border border-blue group-hover:border-gold group-focus:border-gold transition-all relative flex-shrink-0">
