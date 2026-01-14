@@ -37,11 +37,7 @@ const Section = ({ id, title, content, mechanic }: Props) => {
     <div className="flex flex-col gap-4">
       <section className="p-4  scroll-mt-32" id={id.current}>
         <h3 className="mt-2 text-left text-2xl text-gold"> {title}</h3>
-        <PortableText
-          components={components}
-          value={content}
-          onMissingComponent={(e) => console.warn(e)}
-        />
+        <PortableText components={components} value={content} />
       </section>
       {mechanic == "progression" && <Progress />}
     </div>

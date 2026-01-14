@@ -1,6 +1,5 @@
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
 import Raid from "@/components/Raid/Raid";
-import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
 import Raiders from "./Raiders";
 import { client } from "@/sanity/lib/client";

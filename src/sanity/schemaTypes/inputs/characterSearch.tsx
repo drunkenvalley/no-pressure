@@ -1,10 +1,10 @@
-import { ComponentType, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RaiderIoService from "@/services/RaiderIoService";
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
 import Profile from "@/components/Raid/Profile";
 import { StringInputProps } from "sanity";
 
-export default function characterSearch(props: StringInputProps) {
+export default function CharacterSearch(props: StringInputProps) {
   const { value } = props;
   const [debouncedValue, setDebouncedValue] = useState(value);
   const [loading, setPromise] =
@@ -50,8 +50,8 @@ export default function characterSearch(props: StringInputProps) {
             <svg
               aria-hidden="true"
               className="w-8 h-8 text-neutral-tertiary animate-spin fill-brand"
-              viewBox="0 0 100 101"
               fill="none"
+              viewBox="0 0 100 101"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -70,7 +70,7 @@ export default function characterSearch(props: StringInputProps) {
           <ul className="list-none p-0 m-0">
             {profile?.thumbnail_url && (
               <>
-                <Profile search profile={profile} />
+                <Profile profile={profile} search />
               </>
             )}
           </ul>

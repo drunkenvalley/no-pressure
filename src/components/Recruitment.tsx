@@ -4,7 +4,6 @@ import { PortableText, PortableTextReactComponents } from "next-sanity";
 import { TypedObject } from "sanity";
 import Shinytext from "./Text/Shinytext";
 import Small from "./Text/Small";
-import { client } from "@/sanity/lib/client";
 
 const components: Partial<PortableTextReactComponents> | undefined = {
   block: {
@@ -29,8 +28,8 @@ interface Props {
 const Recruitment = async ({ id, content, linkText }: Props) => (
   <article className="bg-dark p-8 lg:p-6 lg:rounded-lg flex flex-col lg:flex-row gap-6">
     <div
-      id={id.current}
       className="grow text-left flex flex-row flex-wrap items-center justify-center scroll-mt-32"
+      id={id.current}
     >
       <PortableText components={components} value={content} />
     </div>
