@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { ComponentType, useEffect, useState } from "react";
 import RaiderIoService from "@/services/RaiderIoService";
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
 import Profile from "@/components/Raid/Profile";
+import { StringInputProps } from "sanity";
 
-export default function characterSearch(props) {
+export default function characterSearch(props: StringInputProps) {
   const { value } = props;
   const [debouncedValue, setDebouncedValue] = useState(value);
   const [loading, setPromise] =
-    useState<Promise<RioProfile | IncompleteRioProfile>>();
+    useState<Promise<RioProfile | IncompleteRioProfile | void>>();
   const [profile, setProfile] = useState<RioProfile>();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function characterSearch(props) {
 
     setPromise(
       RaiderIoService.get({ characterName, realm })
-        .then((json) => setProfile(json))
+        .then((json) => setProfile(json as RioProfile))
         .finally(() => setPromise(undefined)),
     );
   }, [debouncedValue]);
