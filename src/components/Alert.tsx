@@ -4,6 +4,7 @@ import {
   EyeOpenIcon,
   FeedbackIcon,
   InboxIcon,
+  InfoOutlineIcon,
   LinkIcon,
   WarningOutlineIcon,
 } from "@sanity/icons";
@@ -14,6 +15,7 @@ export const Icon = [
   "Eye",
   "Feedback",
   "Inbox",
+  "Info",
   "Link",
   "Warning",
 ] as const;
@@ -31,10 +33,7 @@ interface AlertProps {
   icon: IconNames;
 }
 
-const Alert = ({
-  icon = "Feedback",
-  children,
-}: PropsWithChildren<AlertProps>) => {
+const Alert = ({ icon = "Info", children }: PropsWithChildren<AlertProps>) => {
   const useIcon = iconResponse.bind(icon);
   return (
     <div className="border border-gold bg-blue/12 p-6 lg:p-4 lg:rounded-lg flex flex-col lg:flex-row gap-6 items-center">
@@ -44,6 +43,7 @@ const Alert = ({
           Eye: <EyeOpenIcon />,
           Feedback: <FeedbackIcon />,
           Inbox: <InboxIcon />,
+          Info: <InfoOutlineIcon />,
           Link: <LinkIcon />,
           Warning: <WarningOutlineIcon />,
         })}
