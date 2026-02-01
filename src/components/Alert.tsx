@@ -37,7 +37,7 @@ const Alert = ({
 }: PropsWithChildren<AlertProps>) => {
   const useIcon = iconResponse.bind(icon);
   return (
-    <div className="border border-gold p-6 lg:p-4 lg:rounded-lg flex flex-col lg:flex-row gap-6 items-center">
+    <div className="border border-gold bg-blue/12 p-6 lg:p-4 lg:rounded-lg flex flex-col lg:flex-row gap-6 items-center">
       <div className="text-4xl text-gold">
         {useIcon({
           Case: <CaseIcon />,
