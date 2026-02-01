@@ -9,9 +9,11 @@ import { recruitmentType } from "./documents/recruitmentType";
 import { pageType } from "./documents/pageType";
 import { characterType } from "./documents/characterType";
 import { aboutType } from "./documents/aboutType";
+import { alertType } from "./documents/alertType";
 
 const documentTypes: SchemaTypeDefinition[] = [
   aboutType,
+  alertType,
   characterType,
   featureListType,
   featureType,

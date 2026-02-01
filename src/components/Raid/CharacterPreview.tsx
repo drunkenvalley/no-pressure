@@ -7,13 +7,12 @@ type Props = {
   loading?: boolean;
 };
 type CharacterStatus = "Found" | "Missing" | "Loading";
-// eslint-disable-next-line func-style
-function statusResponse<ResponseType>(
+const statusResponse = function <ResponseType>(
   this: CharacterStatus,
   responses: Partial<Record<CharacterStatus, ResponseType>>,
 ) {
   return responses[this] as ResponseType;
-}
+};
 
 const ProfileImage = ({
   profile,
@@ -60,7 +59,7 @@ const Status = ({
   </div>
 );
 
-const Character = (props: Props) => {
+const CharacterPreview = (props: Props) => {
   const { profile, loading = false } = props;
   let status: CharacterStatus = "Found";
   if (!profile?.thumbnail_url) {
@@ -118,4 +117,4 @@ const Character = (props: Props) => {
   );
 };
 
-export default Character;
+export default CharacterPreview;

@@ -34,6 +34,7 @@ export const pageType = defineType({
           type: "reference",
           to: [
             { type: "about" },
+            { type: "alert" },
             { type: "section" },
             { type: "feature_list" },
             { type: "recruitment" },

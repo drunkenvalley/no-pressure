@@ -1,13 +1,9 @@
-import FeatureList from "@/components/FeatureList";
 import HeroBanner from "@/components/HeroBanner";
-import Feature from "@/components/Feature";
 import { client } from "@/sanity/lib/client";
-import Section from "@/components/Section";
-import { PortableText, PortableTextReactComponents } from "next-sanity";
-import { ComponentProps } from "react";
-import Recruitment from "@/components/Recruitment";
+import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
-import About from "@/components/About";
+import pageComponents from "@/components/PortableText/pageComponents";
+import Alert from "@/components/Alert";
 
 export const revalidate = 1800;
 
@@ -45,34 +41,10 @@ const Page = async ({ params }: PageProps) => {
 
   const { herobanner, sections } = sanityData;
 
-  const components: Partial<PortableTextReactComponents> | undefined = {
-    types: {
-      about: ({ value }) => <About {...value} />,
-      feature_list: ({ value }) => {
-        return (
-          <FeatureList>
-            {value.features.map(
-              ({
-                _id,
-                ...feature
-              }: ComponentProps<typeof Feature> & { _id: string }) => (
-                <Feature key={_id} {...feature} />
-              ),
-            )}
-          </FeatureList>
-        );
-      },
-      recruitment: ({ value }) => <Recruitment {...value} />,
-      section: (args) => {
-        return <Section {...args.value} />;
-      },
-    },
-  };
-
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
       <HeroBanner {...herobanner} />
-      <PortableText components={components} value={sections} />
+      <PortableText components={pageComponents} value={sections} />
     </main>
   );
 };
