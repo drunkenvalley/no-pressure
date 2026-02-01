@@ -1,12 +1,12 @@
 import { PortableText, PortableTextReactComponents } from "next-sanity";
 import { ComponentProps } from "react";
 import About from "@/components/About";
+import Alert from "@/components/Alert";
 import Feature from "@/components/Feature";
 import FeatureList from "@/components/FeatureList";
 import Recruitment from "@/components/Recruitment";
 import Section from "@/components/Section";
 import textComponents from "./textComponents";
-import Alert from "../Alert";
 
 const pageComponents: Partial<PortableTextReactComponents> | undefined = {
   types: {
