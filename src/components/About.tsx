@@ -1,30 +1,43 @@
 import Link from "@/components/Text/Link";
+import { PortableText, PortableTextReactComponents } from "next-sanity";
+import { TypedObject } from "sanity";
+import Shinytext from "./Text/Shinytext";
+import Small from "./Text/Small";
 
-export const About = ({
-  className = "",
-  ...rest
-}: React.HTMLProps<HTMLDivElement>) => (
+const components: Partial<PortableTextReactComponents> | undefined = {
+  marks: {
+    link: ({ children, value }) => {
+      return <Link href={value.href}>{children}</Link>;
+    },
+    strong: ({ children }) => {
+      return <strong className="font-black">{children}</strong>;
+    },
+  },
+  block: {
+    shiny: (props) => (
+      <Shinytext as="p" className="w-full text-xl text-center" {...props} />
+    ),
+    small: ({ children }) => (
+      <Small as="p" className="w-full text-center">
+        {children}
+      </Small>
+    ),
+  },
+};
+
+interface Props {
+  title: string;
+  id: { _type: "slug"; current: string };
+  content: TypedObject | TypedObject[];
+}
+
+export const About = ({ id, content }: Props) => (
   <div
-    className={`max-w-full h-full bg-gradient-to-b from-purple via-purple to-blue/25 bg-[length:150%_100%] bg-center flex flex-col gap-8 p-8 md:p-12 rounded-lg ${className}`.trim()}
-    {...rest}
+    className="max-w-full h-full bg-gradient-to-b from-purple via-purple to-blue/25 bg-[length:150%_100%] bg-center flex flex-col gap-8 p-8 md:p-12 rounded-lg"
+    id={id.current}
   >
     <article className="text-left flex flex-col gap-6">
-      <p>
-        <strong className="font-bold text-center">No Pressure</strong> started
-        with a Reddit post that read:{" "}
-        <Link href="https://www.reddit.com/r/wow/comments/zqzmhx/now_for_eu_community_for_players_too_nervous_to/">
-          NOW FOR EU: Community for Players Too Nervous to Try Dungeons
-        </Link>
-      </p>
-      <p>
-        This is the basis for our community&apos;s ethos — to enable players to
-        enjoy{" "}
-        <Link href="https://worldofwarcraft.blizzard.com/en-gb/">
-          World of Warcraft
-        </Link>{" "}
-        together without stress from players. To have fun and learn together,
-        and do content of every difficulty level.
-      </p>
+      <PortableText components={components} value={content} />
     </article>
   </div>
 );

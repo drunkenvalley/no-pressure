@@ -1,4 +1,3 @@
-import About from "@/components/About";
 import FeatureList from "@/components/FeatureList";
 import HeroBanner from "@/components/HeroBanner";
 import Feature from "@/components/Feature";
@@ -8,6 +7,7 @@ import { PortableText, PortableTextReactComponents } from "next-sanity";
 import { ComponentProps } from "react";
 import Recruitment from "@/components/Recruitment";
 import { notFound } from "next/navigation";
+import About from "@/components/About";
 
 export const revalidate = 1800;
 
@@ -47,6 +47,7 @@ const Page = async ({ params }: PageProps) => {
 
   const components: Partial<PortableTextReactComponents> | undefined = {
     types: {
+      about: ({ value }) => <About {...value} />,
       feature_list: ({ value }) => {
         return (
           <FeatureList>
@@ -71,7 +72,6 @@ const Page = async ({ params }: PageProps) => {
   return (
     <main className="w-full max-w-full md:max-w-5xl mx-auto flex flex-col gap-y-8 pb-8 pt-24">
       <HeroBanner {...herobanner} />
-      <About />
       <PortableText components={components} value={sections} />
     </main>
   );

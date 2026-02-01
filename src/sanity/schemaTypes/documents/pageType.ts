@@ -26,13 +26,6 @@ export const pageType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "features",
-      title: "Feature List",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "feature" }] }],
-      validation: (rule) => rule.max(3).unique(),
-    }),
-    defineField({
       name: "sections",
       title: "Sections",
       type: "array",
@@ -40,6 +33,7 @@ export const pageType = defineType({
         {
           type: "reference",
           to: [
+            { type: "about" },
             { type: "section" },
             { type: "feature_list" },
             { type: "recruitment" },

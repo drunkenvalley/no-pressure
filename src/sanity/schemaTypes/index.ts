@@ -8,8 +8,10 @@ import { featureListType } from "./documents/featureListType";
 import { recruitmentType } from "./documents/recruitmentType";
 import { pageType } from "./documents/pageType";
 import { characterType } from "./documents/characterType";
+import { aboutType } from "./documents/aboutType";
 
 const documentTypes: SchemaTypeDefinition[] = [
+  aboutType,
   characterType,
   featureListType,
   featureType,
