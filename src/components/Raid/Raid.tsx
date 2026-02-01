@@ -1,7 +1,7 @@
-import ImageWithFallback from "../ImageWithFallback";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
 import { RioProfile } from "@/interfaces/RaiderIo";
-import Shinytext from "../Text/Shinytext";
+import Shinytext from "@/components/Text/Shinytext";
 import { capitalCase } from "change-case";
 import raidnames from "./raidnames.json"; // Only needs entries for raids like "Nerub-ar Palace" where change-case would interpret slug as "Nerubar Palace"
 

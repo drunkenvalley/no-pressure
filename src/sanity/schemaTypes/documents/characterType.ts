@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import characterSearch from "../inputs/characterSearch";
+import characterSearch from "@/sanity/schemaTypes/inputs/characterSearch";
 
 export const characterType = defineType({
   name: "character",

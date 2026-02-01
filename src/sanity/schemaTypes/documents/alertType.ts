@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
-import ShinyTextStyle from "../styles/ShinyTextStyle";
-import SmallTextStyle from "../styles/SmallTextStyle";
+import ShinyTextStyle from "@/sanity/schemaTypes/styles/ShinyTextStyle";
+import SmallTextStyle from "@/sanity/schemaTypes/styles/SmallTextStyle";
 import { Icon } from "@/components/Alert";
 
 export const alertType = defineType({
