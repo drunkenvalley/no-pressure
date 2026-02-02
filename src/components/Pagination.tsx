@@ -5,8 +5,10 @@ interface IdentifiedData {
   id: string;
 }
 
-interface Props<T>
-  extends Omit<React.HTMLProps<HTMLDivElement>, "id" | "value"> {
+interface Props<T> extends Omit<
+  React.HTMLProps<HTMLDivElement>,
+  "id" | "value"
+> {
   component: (props: T) => React.JSX.Element;
   value: T[];
   per: number;

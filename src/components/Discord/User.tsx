@@ -24,7 +24,6 @@ export const User = ({
 };
 
 interface Props
-  extends Omit<React.HTMLProps<HTMLDivElement>, "id">,
-    DiscordUser {}
+  extends Omit<React.HTMLProps<HTMLDivElement>, "id">, DiscordUser {}
 
 export default User;

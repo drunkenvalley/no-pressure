@@ -1,7 +1,7 @@
-import ImageWithFallback from "../ImageWithFallback";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import { Literals } from "@/interfaces/Literals";
 import { RioProfile } from "@/interfaces/RaiderIo";
-import Shinytext from "../Shinytext";
+import Shinytext from "@/components/Text/Shinytext";
 import { capitalCase } from "change-case";
 import raidnames from "./raidnames.json"; // Only needs entries for raids like "Nerub-ar Palace" where change-case would interpret slug as "Nerubar Palace"
 
@@ -41,7 +41,7 @@ const Raid = ({ bosses, raid, profiles }: Props) => {
     .filter((a) => !!a.prog);
 
   return (
-    <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left shadow-xl">
+    <div className="bg-dark lg:rounded-lg relative w-full overflow-hidden flex flex-col justify-end text-left">
       <ImageWithFallback
         alt=""
         className="object-cover"
