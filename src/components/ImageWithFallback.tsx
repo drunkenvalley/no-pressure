@@ -19,7 +19,7 @@ const ImageWithFallback = (props: ImageWithFallbackProps) => {
         setImgSrc(fallbackSrc);
       }}
       src={imgSrc}
-      unoptimized={true}
+      unoptimized
     />
   );
 };
