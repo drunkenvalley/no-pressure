@@ -3,7 +3,6 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import pageComponents from "@/components/PortableText/pageComponents";
-import Alert from "@/components/Alert";
 
 export const revalidate = 1800;
 
