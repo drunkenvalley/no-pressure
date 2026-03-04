@@ -1,12 +1,33 @@
 import { IncompleteRioProfile, RioProfile } from "@/interfaces/RaiderIo";
-import Link from "@/components/Link";
 import Raid from "@/components/Raid/Raid";
-import RaiderDbService from "@/services/RaiderDbService";
 import RaiderIoService from "@/services/RaiderIoService";
 import Raiders from "./Raiders";
+import { client } from "@/sanity/lib/client";
+
+interface SanityRaider {
+  _id: string;
+  character_name: string;
+}
+interface Raider {
+  id: string;
+  characterName: string;
+  realm: string;
+}
 
 const RaidProgression = async () => {
-  const raiders = await RaiderDbService.get();
+  const raiders: Array<Raider> = (
+    (await client.fetch(`
+    *[_type=="character"]
+    `)) as SanityRaider[]
+  ).map((c) => {
+    const [characterName, realm] = c.character_name?.split("-");
+    return {
+      id: c._id,
+      characterName,
+      realm,
+    };
+  });
+
   const fetchedProfiles = await Promise.all(
     raiders.map(async (raider) => await RaiderIoService.get(raider)),
   );
@@ -32,25 +53,13 @@ const RaidProgression = async () => {
   ).sort((a, b) => a.name?.localeCompare(b.name));
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="p-4 lg:rounded-xl" id="raiding">
-        <h3 className="mt-2 text-left text-2xl">Raiding</h3>
-        <p className="mt-4 text-left text-light/70 max-w-prose">
-          Being part of No Pressure need not stop you from enjoying raids. Raids
-          are organized by members throughout the week with{" "}
-          <Link className="text-gold" href="https://raid-helper.dev/">
-            Raid-Helper
-          </Link>
-          ! Since the start of Dragonflight the community has organized hundreds
-          of events, and intending hundreds more.
-        </p>
-      </div>
+    <>
       {raids.map((raid) => (
         <Raid key={raid.raid} profiles={leaders} {...raid} />
       ))}
       {fetchedProfiles && (
         <>
-          <p className="mt-4 text-left text-light/70 max-w-prose">
+          <p className="mt-4 text-left max-w-prose">
             The following characters were used in the above. Thank you!
           </p>
           <Raiders profiles={profiles} />
@@ -58,8 +67,8 @@ const RaidProgression = async () => {
       )}
       {(missing.length && (
         <div className="p-3 text-right text-sm ">
-          <p>Could not find / resolve characters:</p>
-          <ul className="list-disc flex flex-row justify-end gap-5 pl-4 text-light/70">
+          <p className="text-gold">Could not find / resolve characters:</p>
+          <ul className="list-disc flex flex-row justify-end gap-5 pl-4">
             {missing.map((profile) => (
               <li key={`${profile.name}-${profile.realm}`}>
                 {profile.name}-{profile.realm}
@@ -69,7 +78,7 @@ const RaidProgression = async () => {
         </div>
       )) ||
         undefined}
-    </div>
+    </>
   );
 };
 export default RaidProgression;

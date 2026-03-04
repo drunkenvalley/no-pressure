@@ -1,7 +1,7 @@
 "use client";
 
 import DiscordResponse from "@/interfaces/DiscordData";
-import Link from "@/components/Link";
+import Link from "@/components/Text/Link";
 import User from "@/components/Discord/User";
 import { useState } from "react";
 

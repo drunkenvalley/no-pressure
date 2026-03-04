@@ -46,45 +46,47 @@
     {
       "name": "Marko",
       "url": "https://github.com/Citrusthecrazy"
+    },
+    {
+      "name": "Matt Brewerton",
+      "url": "https://github.com/mbrewerton"
     }
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "prettier . --write && eslint . --fix --max-warnings=0"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.1",
-    "@tailwindcss/postcss": "^4.1.17",
-    "axios": "^1.13.2",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/vision": "^5.7.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "axios": "^1.13.4",
     "change-case": "^5.4.4",
-    "eslint-config-next": "^16.0.8",
-    "next": "^16.0.8",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "eslint-config-next": "^16.1.6",
+    "next": "^16.1.6",
+    "next-sanity": "^12.0.16",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^5.7.0",
+    "styled-components": "^6.3.8"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^16.0.8",
-    "@types/node": "25.0.0",
-    "@types/react": "^19.2.7",
+    "@next/eslint-plugin-next": "^16.1.6",
+    "@types/node": "25.1.0",
+    "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.49.0",
-    "@typescript-eslint/parser": "^8.49.0",
-    "autoprefixer": "^10.4.22",
-    "eslint": "^9.39.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.2",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
-    "prettier": "3.7.4",
-    "prisma": "^6.19.1",
-    "sass": "^1.96.0",
-    "tailwindcss": "^4.1.17",
+    "prettier": "^3.8.1",
+    "sass": "^1.97.3",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "npm run lint",
-      "npm run format"
-    ]
   }
 }

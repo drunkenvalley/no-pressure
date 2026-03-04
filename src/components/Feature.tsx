@@ -1,24 +1,37 @@
-import Image from "@/components/Image";
-import { PropsWithChildren } from "react";
+import { PortableText, PortableTextReactComponents } from "next-sanity";
+import Image from "next/image";
+import { TypedObject } from "sanity";
+import UserCount from "./Discord/UserCount";
 
-const Feature = ({ children, src, title }: PropsWithChildren<Props>) => (
-  <article className="text-center flex-grow w-full flex flex-col gap-y-3">
-    <Image
-      alt={title}
-      className="w-full h-[160px] object-cover rounded"
-      height={160}
-      responsive
-      src={src}
-      width={{ lg: 167, md: 167, sm: 283 }}
-    />
-    <section>
-      <h2 className="text-2xl">{title && title}</h2>
-      <p className="text-green">{children && children}</p>
-    </section>
-  </article>
-);
+const Feature = ({ alt, content, src, title }: Props) => {
+  const components: Partial<PortableTextReactComponents> | undefined = {
+    marks: {
+      discordUserCount: () => <UserCount />,
+    },
+  };
+
+  return (
+    <article className="text-center flex-grow w-full flex flex-col gap-y-3">
+      <div className="w-full h-[160px] relative">
+        <Image
+          alt={alt}
+          className="w-full h-full top-0 left-0 object-cover rounded"
+          fill
+          src={src}
+          unoptimized
+        />
+      </div>
+      <section>
+        <h2 className="text-2xl text-gold">{title && title}</h2>
+        <PortableText components={components} value={content} />
+      </section>
+    </article>
+  );
+};
 
 interface Props {
+  alt: string;
+  content: TypedObject | TypedObject[];
   src: string;
   title: string;
 }
